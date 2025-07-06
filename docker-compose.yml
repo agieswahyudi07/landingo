@@ -1,5 +1,5 @@
 services:
-  codebase-landingpage:
+  landingo:
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -8,7 +8,7 @@ services:
       - /app/node_modules
     ports:
       - "5173:5173"
-    container_name: landing_page
+    container_name: landingo
     restart: unless-stopped
     environment:
       - NODE_ENV=development
