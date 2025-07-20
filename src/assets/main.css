@@ -3,6 +3,10 @@
 
 @theme {
   --font-display: "Poppins", sans-serif;
+  --color-primary: #5356FF;
+  --color-secondary: #378CE7;
+  --color-tertiary: #67C6E3;
+  --color-quaternary: #DFF5FF;
 }
 
 body {
