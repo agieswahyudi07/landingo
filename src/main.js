@@ -1,6 +1,7 @@
 import './assets/main.css'
 
 import naive from 'naive-ui'
+import { Icon } from "@iconify/vue"
 import { createApp } from 'vue'
 import App from './App.vue'
 import Home from './pages/Home.vue'
@@ -18,4 +19,5 @@ app.component('ValueProposition', ValueProposition)
 app.component('Pricing', Pricing)
 app.component('Cta', Cta)
 app.component('Footer', Footer)
+app.component('Icon', Icon)
 app.mount('#app')
