@@ -34,14 +34,12 @@ const scrollToSection = (id) => {
 </script>
 
 <template>
-  <header class="fixed w-full text-gray-600 body-font z-50 bg-white/80 backdrop-blur-md shadow-md">
-    <div class="container mx-auto flex flex-wrap p-4 flex-row items-center justify-between">
+  <header class="fixed w-full text-gray-600 body-font z-50 bg-white/50 backdrop-blur-md shadow-md">
+    <div class="container mx-auto flex flex-wrap p-4 lg:px-15 flex-row items-center justify-between">
       
-      <a href="#home" @click.prevent="scrollToSection('#home')" class="flex title-font font-medium items-center text-gray-900">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">Landingo</span>
+      <a href="#home" @click.prevent="scrollToSection('#hero')" class="flex title-font font-medium items-center text-gray-900 flex-row gap-2">
+        <img src="/assets/images/landingo_logo2.png" alt="Logo Landingo" class=" max-w-10">
+        <img src="/assets/images/landingo_logo.png" alt="Logo Landingo" class=" max-h-5">
       </a>
 
       <button @click="isMenuOpen = !isMenuOpen" class="md:hidden p-2 rounded-md text-gray-600 focus:outline-none">
@@ -65,6 +63,7 @@ const scrollToSection = (id) => {
         <div class="w-full md:w-auto mt-4 md:mt-0 md:ml-4">
            <n-button color="#5356FF" round @click="scrollToSection('#kontak')">
              Konsultasi
+            <Icon icon="mdi:whatsapp" class=" text-2xl ml-1"/>
            </n-button>
         </div>
 

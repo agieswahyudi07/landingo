@@ -77,7 +77,7 @@
 </script>
 
 <template>
-    <section class="text-gray-600 body-font overflow-hidden">
+    <section class="min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.svg)] bg-cover bg-center">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
             <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">{{ title }}</h1>
@@ -86,7 +86,7 @@
                 <div class=" p-4 xl:w-1/4 md:w-1/2 w-full" v-for="(item, index) in package_list" :key="index">
                     <div   
                         :class="[
-                            'h-full p-6 rounded-lg border-2 flex flex-col relative overflow-hidden',
+                            'h-full p-6 rounded-lg border-2 flex flex-col relative overflow-hidden bg-white',
                             item.isMostLiked ? 'border-indigo-500' : ''
                         ]"
                     >

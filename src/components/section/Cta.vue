@@ -17,7 +17,7 @@ const redirectToWhatsApp = () => {
 </script>
 
 <template>
-  <section class="min-h-screen flex flex-col text-gray-600 body-font justify-center">
+  <section class="min-h-screen flex flex-col text-gray-600 body-font justify-center bg-[url(/assets/abstract_paper.svg)] bg-cover bg-center">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full max-w-4xl mx-auto">
         
@@ -38,6 +38,7 @@ const redirectToWhatsApp = () => {
             round
           >
             Konsultasi Gratis via WhatsApp
+            <Icon  icon="mdi:whatsapp" width="24" class="ml-3"></Icon>
           </n-button>
         </div>
       </div>
