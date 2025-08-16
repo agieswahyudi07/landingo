@@ -29,7 +29,7 @@
 
 <template>
     <section class="relative min-h-screen flex flex-row gap-5 items-center justify-center bg-[url(/assets/rect_light.svg)] bg-cover bg-center">
-        <div class="absolute inset-0 bg-black/15 backdrop-blur-md z-0"></div>
+        <!-- <div class="absolute inset-0 bg-black/15 backdrop-blur-md z-0"></div> -->
         <div class="container px-5 py-24 mx-auto relative z-10">
             <div class="text-center mb-20">
             <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-100 mb-4">Kenapa Bisnismu Butuh Landingo ?</h1>

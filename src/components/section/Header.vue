@@ -37,7 +37,7 @@ const scrollToSection = (id) => {
   <header class="fixed w-full text-gray-600 body-font z-50 bg-white/50 backdrop-blur-md shadow-md">
     <div class="container mx-auto flex flex-wrap p-4 lg:px-15 flex-row items-center justify-between">
       
-      <a href="#home" @click.prevent="scrollToSection('#hero')" class="flex title-font font-medium items-center text-gray-900 flex-row gap-2">
+      <a href="#home" @click.prevent="scrollToSection('#hero')" class="flex title-font font-medium items-center text-gray-900 flex-row gap-2 mr-1">
         <img src="/assets/images/landingo_logo2.png" alt="Logo Landingo" class=" max-w-10">
         <img src="/assets/images/landingo_logo.png" alt="Logo Landingo" class=" max-h-5">
       </a>
@@ -49,7 +49,7 @@ const scrollToSection = (id) => {
 
       <div :class="{ 'hidden': !isMenuOpen }" class="absolute top-full left-0 w-full bg-white shadow-md md:shadow-none md:static md:w-auto md:flex md:items-center md:bg-transparent">
         
-        <nav class="flex flex-col md:flex-row md:ml-auto items-center text-base w-full md:w-auto">
+        <nav class="flex flex-col md:flex-row sm:ml-auto items-center text-base w-full md:w-auto">
           <a v-for="link in navLinks" 
              :key="link.href" 
              :href="link.href"
@@ -60,9 +60,9 @@ const scrollToSection = (id) => {
           </a>
         </nav>
         
-        <div class="w-full md:w-auto mt-4 md:mt-0 md:ml-4">
-           <n-button color="#5356FF" round @click="scrollToSection('#kontak')">
-             Konsultasi
+        <div class="flex justify-center w-full md:w-auto mt-4 md:mt-0 lg:ml-4 pb-5 sm:pb-0">
+           <n-button color="#25D366" round @click="scrollToSection('#kontak')">
+             Konsultasi Gratis
             <Icon icon="mdi:whatsapp" class=" text-2xl ml-1"/>
            </n-button>
         </div>

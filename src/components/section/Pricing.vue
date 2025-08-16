@@ -3,7 +3,7 @@
     const package_list = [
         {
             name:'Basic',
-            price:'Rp950.000',
+            price:'Rp999.000',
             description:'Cocok untuk UMKM & Brand Lokal yang ingin tampil professional dengan cepat dan siap mulai branding ',
             isMostLiked: false,
             list:[
@@ -190,7 +190,6 @@
                         </h1>
                     </div>
                     <div class=" justify-self-start">
-                        <p>{{ item.list.length }}</p>
                         <p class="flex items-center text-gray-600 mb-2" v-for="(list, index) in item.list" :key="index">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
