@@ -5,15 +5,29 @@ const isMenuOpen = ref(false);
 
 // Daftar link navigasi
 const navLinks = ref([
-  { href: '#layanan', text: 'Layanan' },
-  { href: '#portofolio', text: 'Portofolio' },
-  { href: '#harga', text: 'Paket Harga' },
-  { href: '#faq', text: 'FAQ' },
+  { href: '#value-proposition', text: 'Kenapa Landingo ?' },
+  { href: '#pricing', text: 'Paket Harga' },
+  { href: '#cta', text: 'Siap Upgrade Bisnis' },
+  // { href: '#faq', text: 'FAQ' },
 ]);
 
 const closeMenu = () => {
   isMenuOpen.value = false;
 };
+
+const redirectToWhatsApp = () => {
+  // use international fomat, without '+', space, atau '-'. example: 6281234567890
+  const phoneNumber = '6281398257238'; 
+
+  // --- default message ---
+  const defaultMessage = 'Halo, saya tertarik dengan jasa pembuatan landing page/website untuk bisnis saya. Bisa minta informasi lebih lanjut?';
+  
+  const encodedMessage = encodeURIComponent(defaultMessage);
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+  
+  window.open(whatsappUrl, '_blank');
+};
+
 
 /**
  * Fungsi utama untuk smooth scroll.
@@ -61,7 +75,7 @@ const scrollToSection = (id) => {
         </nav>
         
         <div class="flex justify-center w-full md:w-auto mt-4 md:mt-0 lg:ml-4 pb-5 sm:pb-0">
-           <n-button color="#25D366" round @click="scrollToSection('#kontak')">
+           <n-button color="#25D366" round @click="redirectToWhatsApp">
              Konsultasi Gratis
             <Icon icon="mdi:whatsapp" class=" text-2xl ml-1"/>
            </n-button>

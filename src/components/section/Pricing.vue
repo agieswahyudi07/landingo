@@ -116,51 +116,51 @@
             isMostLiked: false,
             list:[
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Semua fitur **Pro**, plus:',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'1-5 halaman landing page',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Interactive Design (Animate on Scroll, Parallax, dll.)',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Hosting (1 Tahun)',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Bisa menangani ~25.000 pengunjung',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'25 GB STORAGE',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'3 Email Bisnis',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Speed Optimization',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Auto-responder via WA Gateway / Email',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Countdown timer / upsell popup (opsional)',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'Support teknis 60 hari pertama',
                 },
                 {
-                    icon:'',
+                    icon:'mdi:checkbox-marked-circle-outline',
                     text:'3x revisi minor',
                 },
             ]
@@ -169,7 +169,7 @@
 </script>
 
 <template>
-    <section class="relative min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.svg)] bg-cover bg-center">
+    <section id="pricing" class="relative min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.svg)] bg-cover bg-center">
         <div class="absolute inset-0 bg-white/35 sm:bg-white/5 backdrop-blur-sm z-0"></div>
         <div class="container px-5 py-24 mx-auto z-10">
             <div class="flex flex-col text-center w-full mb-20">
@@ -192,10 +192,8 @@
                     </div>
                     <div class=" justify-self-start">
                         <p class="flex items-center text-gray-600 mb-2" v-for="(list, index) in item.list" :key="index">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                <path d="M20 6L9 17l-5-5"></path>
-                            </svg>
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center text-green-500 rounded-full flex-shrink-0">
+                                <Icon :icon="list.icon" width="48"/>
                             </span>{{ list.text }}
                         </p>
                     </div>
