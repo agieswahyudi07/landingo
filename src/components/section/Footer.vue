@@ -60,22 +60,22 @@ const isTopSection = false
         </div>
       </div>
     </div>
-    <div class=" bg-primary text-white">
+    <div class=" bg-white text-primary font-semibold">
       <div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-        <p class="text-sm text-white sm:ml-6 sm:mt-0 mt-4">© 2025 Landingo —
-          <a href="https://agieswahyudi.vercel.app" rel="noopener noreferrer" class="text-white ml-1" target="_blank">@agieswahyudi</a>
+        <p class="text-sm text-primary sm:ml-6 sm:mt-0 mt-4 uppercase">© 2025 Landingo —
+          <a href="https://agieswahyudi.vercel.app" rel="noopener noreferrer" class="text-primary ml-1 lowercase" target="_blank">@agieswahyudi</a>
         </p>
         <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start gap-2">
-          <a class="text-white">
+          <a class="text-primary">
             <Icon  icon="mdi:facebook" width="24"></Icon>
           </a>
-          <a class="text-white">
+          <a class="text-primary">
             <Icon  icon="mdi:instagram" width="24"></Icon>
           </a>
-          <a class="text-white">
+          <a class="text-primary">
             <Icon  icon="mdi:linkedin" width="24"></Icon>
           </a>
-          <a class="text-white">
+          <a class="text-primary">
             <Icon  icon="mdi:whatsapp" width="24"></Icon>
           </a>
         </span>

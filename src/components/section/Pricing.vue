@@ -169,10 +169,11 @@
 </script>
 
 <template>
-    <section class="min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.svg)] bg-cover bg-center">
-        <div class="container px-5 py-24 mx-auto">
+    <section class="relative min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.svg)] bg-cover bg-center">
+        <div class="absolute inset-0 bg-white/35 sm:bg-white/5 backdrop-blur-sm z-0"></div>
+        <div class="container px-5 py-24 mx-auto z-10">
             <div class="flex flex-col text-center w-full mb-20">
-            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">{{ title }}</h1>
+            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900 z-10">{{ title }}</h1>
             </div>
             <div class="flex flex-wrap -m-4 justify-center lg:gap-10">
                 <div class=" p-4 xl:w-1/4 md:w-1/2 w-full" v-for="(item, index) in package_list" :key="index">

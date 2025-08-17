@@ -18,7 +18,7 @@ const redirectToWhatsApp = () => {
 
 <template>
   <section class="relative min-h-screen flex flex-col text-gray-600 body-font justify-center bg-[url(/assets/abstract_paper.svg)] bg-cover bg-center">
-    <div class="absolute inset-0 bg-white/15 backdrop-blur-md z-0"></div>
+    <!-- <div class="absolute inset-0 bg-white/15 backdrop-blur-md z-0"></div> -->
     <div class="relative z-10 container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full max-w-4xl mx-auto">
         
