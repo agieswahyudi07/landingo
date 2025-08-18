@@ -1,11 +1,35 @@
 <script setup>
+    const discountCalculation = (price, discount) => {
+        const discounted = price - (price * (discount / 100));
+        return discounted;
+    };
+
+    const formatRupiah = (amount) => {
+        return amount.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 });
+    };
+
+    const redirectToWhatsApp = (message) => {
+        const phoneNumber = '6281398257238'; 
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+        
+        window.open(whatsappUrl, '_blank');
+    };
+
+
     const title = 'Pilih Paket Sesuai Kebutuhanmu'
     const package_list = [
         {
             name:'Basic',
-            price:'Rp999.000',
-            description:'Cocok untuk UMKM & Brand Lokal yang ingin tampil professional dengan cepat dan siap mulai branding ',
-            isMostLiked: false,
+            realPrice: 1599000,
+            discount: 45,
+            price: discountCalculation(1599000,45),
+            description:'Untuk pemilik bisnis pemula yang ingin terlihat profesional dan bisa langsung mulai jualan',
+            tag: {
+                status: true, 
+                desc: 'Termurah - Waktu Terbatas' 
+            },
+            quickMessage: 'Halo, saya tertarik dengan paket Basic Landing Page. Bisa minta informasi lebih lanjut?',
             list:[
                 {
                     icon:'mdi:checkbox-marked-circle-outline',
@@ -55,9 +79,15 @@
         },
         {
             name:'Pro',
-            price:'Rp1.750.000',
-            description:'Cocok untuk UMKM & Brand Lokal yang ingin tampil professional dengan cepat dan siap mulai branding ',
-            isMostLiked: true,
+            realPrice: 3299000,
+            discount: 15,
+            price: discountCalculation(3299000,15),
+            description:'Cocok untuk yang sudah mulai beriklan, ingin tampil meyakinkan dan capture data pembeli.',
+            tag: {
+                status: true,
+                desc: 'Penawaran Terbaik'
+            },
+            quickMessage: 'Halo, saya tertarik dengan paket Pro Landing Page. Bisa minta informasi lebih lanjut?',
             list:[
                 {
                     icon:'mdi:checkbox-marked-circle-outline',
@@ -111,9 +141,15 @@
         },
         {
             name:'Smart Funnel',
-            price:'Rp2.500.000',
-            description:'Cocok untuk UMKM & Brand Lokal yang ingin tampil professional dengan cepat dan siap mulai branding ',
-            isMostLiked: false,
+            realPrice: 4999000,
+            discount: 20,
+            price: discountCalculation(4999000,20),
+            description:'Untuk brand lokal yang ingin otomatisasi penjualan & leads funnel langsung ke WhatsApp',
+            tag: {
+                status: true,
+                desc: 'Siap Scale Up !'
+            },
+            quickMessage: 'Halo, saya tertarik dengan paket Smart Funnel. Bisa minta informasi lebih lanjut?',
             list:[
                 {
                     icon:'mdi:checkbox-marked-circle-outline',
@@ -166,6 +202,7 @@
             ]
         },
     ]
+
 </script>
 
 <template>
@@ -180,14 +217,15 @@
                     <div   
                         :class="[
                             'h-full p-6 rounded-lg border-2 flex flex-col relative overflow-hidden justify-between bg-white',
-                            item.isMostLiked ? 'border-indigo-500' : ''
+                            item.tag.status ? 'border-indigo-500' : ''
                         ]"
                     >
-                    <span class="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl" v-if="item.isMostLiked">Best Deal - Limited Time Only</span>
+                    <span class="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl" v-if="item.tag.status">{{ item.tag.desc }}</span>
                     <div class="">
-                        <h2 class="text-sm tracking-widest title-font mb-1 font-medium">{{ item.name }}</h2>
-                        <h1 class="text-3xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-                            <span>{{ item.price }}</span>
+                        <h2 class="text-xl tracking-widest title-font mb-1 font-medium">{{ item.name }}</h2>
+                        <h1 class="text-3xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 gap-2">
+                            <span class="font-bold text-indigo-600">{{ formatRupiah(item.price) }}</span>
+                            <span v-if="item.discount > 0" class="text-lg text-gray-400 line-through">{{ formatRupiah(item.realPrice) }}</span>
                         </h1>
                     </div>
                     <div class=" justify-self-start">
@@ -198,7 +236,7 @@
                         </p>
                     </div>
                     <div class="flex flex-col">
-                        <n-button type="info" size="large" color="#5356FF" class="justify-self-end">
+                        <n-button type="info" size="large" color="#5356FF" class="justify-self-end" @click="redirectToWhatsApp(item.quickMessage)">
                             <div class="flex flex-row ">
                                 <p>Pilih Paket</p>
                                 <div class=" ml-1">
