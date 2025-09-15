@@ -9,7 +9,7 @@ services:
       - NODE_ENV=production
     labels:
       - traefik.enable=true
-      - traefik.http.routers.landingo.rule=Host(`landingo.id`,`www.landingo.id`)
+      - traefik.http.routers.landingo.rule=Host(`landingo.id`) || Host(`www.landingo.id`)
       - traefik.http.routers.landingo.tls=true
       - traefik.http.routers.landingo.entrypoints=web,websecure
       - traefik.http.middlewares.landingo.headers.SSLRedirect=true
