@@ -166,7 +166,7 @@ const package_list = ref([
         list:[
             {
                 icon:'mdi:checkbox-marked-circle-outline',
-                text:'Semua fitur **Pro**, plus:',
+                text:'Semua fitur PRO, plus:',
             },
             {
                 icon:'mdi:checkbox-marked-circle-outline',
