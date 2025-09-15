@@ -20,6 +20,7 @@ services:
       - traefik.http.middlewares.landingo.headers.STSIncludeSubdomains=true
       - traefik.http.middlewares.landingo.headers.STSPreload=true
       - traefik.http.routers.landingo.tls.certresolver=mytlschallenge
+      - traefik.http.routers.landingo.middlewares=landingo@docker
     networks:
       - traefik-network
 
