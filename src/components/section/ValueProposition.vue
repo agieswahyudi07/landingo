@@ -66,11 +66,11 @@ onMounted(() => {
   >
     <div class="container px-5 py-24 mx-auto relative z-10">
       <div class="text-center mb-20">
-        <h1
+        <h2
           class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-100 mb-4"
         >
           Kenapa Bisnismu Butuh Landingo ?
-        </h1>
+        </h2>
         <p
           class="text-base text-gray-100 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto"
         >

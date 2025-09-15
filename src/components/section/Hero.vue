@@ -6,11 +6,14 @@ const heroTitle = ref(null);
 const heroDesc = ref(null);
 const heroButtons = ref(null);
 const heroImage = ref(null);
+const isDesktop = ref(false)
 
 onMounted(() => {
-  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+    isDesktop.value = window.innerWidth >= 640
 
-  tl.from(heroTitle.value, { y: -60, opacity: 0, duration: 0.8 })
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+    tl.from(heroTitle.value, { y: -60, opacity: 0, duration: 0.8 })
     .from(heroDesc.value, { y: 30, opacity: 0, duration: 0.7 }, "-=0.4")
     .from(heroButtons.value, { y: 20, opacity: 0, duration: 0.6, stagger: 0.15 }, "-=0.3")
     .from(heroImage.value, { x: 60, opacity: 0, duration: 0.9 }, "-=0.5");
@@ -36,11 +39,11 @@ const redirectToWhatsApp = () => {
             <p ref="heroDesc" class="mb-8 leading-relaxed">Bangun kepercayaan dan convert penjualan lewat landing page profesional yang cepat, ringan, dan mobile-friendly.</p>
             <div ref="heroButtons" class="flex flex-col lg:flex-row justify-center gap-4 sm:gap-6">
                 <n-button type="info" size="large" color="#5356FF" round><span class=" mx-1 text-lg uppercase">promo launching <span class="font-semibold capitalize">Rp 899.000</span></span></n-button>
-                <n-button type="info" size="large" ghost round @click="redirectToWhatsApp" >Konsultasi Gratis <Icon icon="mdi:whatsapp" class=" text-2xl ml-1"/></n-button>
+                <n-button type="info" size="large" ghost round @click="redirectToWhatsApp" aria-label="Konsultasi gratis via WhatsApp untuk pembuatan landing page" >Konsultasi Gratis <Icon icon="mdi:whatsapp" class=" text-2xl ml-1"/></n-button>
             </div>
             </div>
-            <div ref="heroImage" class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 hidden sm:inline-block">
-                <img class=" object-cover object-center rounded" alt="hero" src="/assets/images/digital-marketing.webp">
+            <div ref="heroImage" v-if="isDesktop" class=" hidden sm:inline-block">
+                <img class="object-cover object-center rounded max-w-[400px] xl:max-w-[500px] ring-1 ring-primary shadow-2xl" fetchpriority="high" alt="Ilustrasi pertumbuhan bisnis UMKM dengan landing page profesional Landingo" loading="eager" width="720" height="600" decoding="async" src="/public/assets/images/business-growth.webp">
             </div>
         </div>
     </section>

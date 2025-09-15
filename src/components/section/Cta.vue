@@ -70,6 +70,7 @@ onMounted(() => {
             strong
             :color="buttonColor"
             round
+            aria-label="Konsultasi gratis via WhatsApp untuk pembuatan landing page"
           >
             Konsultasi Gratis via WhatsApp
             <Icon icon="mdi:whatsapp" width="24" class="ml-3"></Icon>

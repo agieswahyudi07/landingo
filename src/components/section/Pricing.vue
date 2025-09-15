@@ -225,7 +225,7 @@ onMounted(() => {
     },
   });
 
-  tl.from("#pricing h1", {
+  tl.from("#pricing h2", {
     opacity: 0,
     y: 50,
     duration: 1,
@@ -249,7 +249,7 @@ onMounted(() => {
         <div class="absolute inset-0 bg-white/35 sm:bg-white/5 backdrop-blur-sm z-0"></div>
         <div class="container px-5 py-24 mx-auto z-10">
             <div class="flex flex-col text-center w-full mb-20">
-            <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900 z-10">{{ title }}</h1>
+            <h2 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900 z-10">{{ title }}</h2>
             </div>
             <div class="flex flex-wrap -m-4 justify-center lg:gap-10">
                 <div class=" p-4 xl:w-1/4 md:w-1/2 w-full pricing-card" v-for="(item, index) in package_list" :key="index">
@@ -261,12 +261,12 @@ onMounted(() => {
                     >
                     <span class="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl" v-if="item.tag.status">{{ item.tag.desc }}</span>
                     <div class="">
-                        <h2 class="text-xl tracking-widest title-font mb-1 font-medium">{{ item.name }}</h2>
-                        <h1 class="text-3xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 gap-2">
+                        <h3 class="text-xl tracking-widest title-font mb-1 font-medium">{{ item.name }}</h3>
+                        <h4 class="text-3xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 gap-2">
                             <span v-if="item.customPrice" class="font-bold text-indigo-600">{{ formatRupiah(item.customPrice) }}</span>
                             <span v-else class="font-bold text-indigo-600">{{ formatRupiah(item.price) }}</span>
                             <span v-if="item.discount > 0" class="text-lg text-gray-400 line-through">{{ formatRupiah(item.realPrice) }}</span>
-                        </h1>
+                        </h4>
                     </div>
                     <div class=" justify-self-start">
                         <p class="flex items-center text-gray-600 mb-2" v-for="(list, index) in item.list" :key="index">

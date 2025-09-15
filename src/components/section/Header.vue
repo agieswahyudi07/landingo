@@ -52,8 +52,8 @@ const scrollToSection = (id) => {
     <div class="container mx-auto flex flex-wrap p-4 lg:px-15 flex-row items-center justify-between">
       
       <a href="#home" @click.prevent="scrollToSection('#hero')" class="flex title-font font-medium items-center text-gray-900 flex-row gap-2 mr-1">
-        <img src="/assets/images/landingo_logo2.png" alt="Logo Landingo" class=" max-w-10">
-        <img src="/assets/images/landingo_logo.png" alt="Logo Landingo" class=" max-h-5">
+        <img src="/assets/images/landingo_logo2.webp" alt="Logo Landingo" class=" max-w-10">
+        <img src="/assets/images/landingo_logo.webp" alt="Logo Landingo" class=" max-h-5">
       </a>
 
       <button @click="isMenuOpen = !isMenuOpen" class="md:hidden p-2 rounded-md text-gray-600 focus:outline-none">
@@ -75,7 +75,7 @@ const scrollToSection = (id) => {
         </nav>
         
         <div class="flex justify-center w-full md:w-auto mt-4 md:mt-0 lg:ml-4 pb-5 sm:pb-0">
-           <n-button color="#25D366" round @click="redirectToWhatsApp">
+           <n-button color="#25D366" round @click="redirectToWhatsApp" aria-label="Konsultasi gratis via WhatsApp untuk pembuatan landing page">
              Konsultasi Gratis
             <Icon icon="mdi:whatsapp" class=" text-2xl ml-1"/>
            </n-button>

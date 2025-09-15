@@ -1,23 +1,14 @@
 import './assets/main.css'
-
-import naive from 'naive-ui'
-import { Icon } from "@iconify/vue"
 import { createApp } from 'vue'
 import App from './App.vue'
-import Home from './pages/Home.vue'
-import { Layout } from '@/layouts'
-import {Hero, ValueProposition, Pricing, Cta, Footer, Header} from '@/components/section'
+import naive from 'naive-ui'
 
+import { Layout } from '@/layouts'
+import { Icon } from "@iconify/vue"
 
 const app = createApp(App)
 app.use(naive)
 app.component('Layout', Layout)
-app.component('Home', Home)
-app.component('Header', Header)
-app.component('Hero', Hero)
-app.component('ValueProposition', ValueProposition)
-app.component('Pricing', Pricing)
-app.component('Cta', Cta)
-app.component('Footer', Footer)
 app.component('Icon', Icon)
+
 app.mount('#app')
