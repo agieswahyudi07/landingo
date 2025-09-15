@@ -2,14 +2,10 @@ services:
   landingo:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - .:/app
-      - /app/node_modules
+      dockerfile: Dockerfile.prod
     ports:
-      - "5173:5173"
+      - "80:80"
     container_name: landingo
     restart: unless-stopped
     environment:
-      - NODE_ENV=development
-    
+      - NODE_ENV=production
