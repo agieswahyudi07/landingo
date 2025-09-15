@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    ports:
-      - "80:80"
     container_name: landingo
     restart: unless-stopped
     environment:
