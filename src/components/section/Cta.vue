@@ -95,17 +95,18 @@ onMounted(() => {
 
 <template>
   <section 
-    id="cta" 
-    class="relative min-h-screen flex flex-col text-gray-600 body-font justify-center bg-[url(/assets/abstract_paper.svg)] bg-cover bg-center"
+    id="cta" z
+    class="relative min-h-screen flex flex-col text-gray-600 body-font justify-center bg-[url(/assets/abstract_paper.webp)] bg-cover bg-center"
   >
+    <div class="absolute inset-0 bg-white/35 sm:bg-white/5 backdrop-blur-md z-0"></div>
     <div class="relative z-10 container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full max-w-4xl mx-auto">
         
-        <h2 ref="ctaTitle" class="sm:text-4xl text-3xl font-medium title-font mb-4 text-gray-900">
+        <h2 ref="ctaTitle" class="sm:text-5xl text-3xl font-extrabold title-font mb-4">
           Siap Naikan Level Penjualanmu?
         </h2>
 
-        <p ref="ctaParagraph" class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-600">
+        <p ref="ctaParagraph" class="lg:w-2/3 mx-auto font-extrabold leading-relaxed text-base">
           Dari landing page yang professional hingga website custom yang fungsional, kami siap membantu UMKM dan brand lokal untuk tumbuh lebih cepat di dunia digital.
         </p>
 

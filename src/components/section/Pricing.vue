@@ -179,7 +179,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <section id="pricing" class="relative min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.svg)] bg-cover bg-center">
+    <section id="pricing" class="relative min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.webp)] bg-cover bg-center">
         <div class="absolute inset-0 bg-white/35 sm:bg-white/5 backdrop-blur-sm z-0"></div>
         <div class="container px-5 py-24 mx-auto z-10">
             <div ref="pricingHeader" class="flex flex-col text-center w-full mb-20">

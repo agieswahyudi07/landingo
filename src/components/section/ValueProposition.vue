@@ -82,7 +82,7 @@ onMounted(() => {
 <template>
   <section
     id="value-proposition"
-    class="relative min-h-screen flex flex-row gap-5 items-center justify-center bg-[url(/assets/rect_light.svg)] bg-cover bg-center"
+    class="relative min-h-screen flex flex-row gap-5 items-center justify-center bg-[url(/assets/rect_light.webp)] bg-cover bg-center"
   >
     <div class="container px-5 py-24 mx-auto relative z-10">
       <div class="text-center mb-20" ref="headerContainer">

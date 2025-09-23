@@ -48,7 +48,7 @@ const scrollToSection = (id) => {
 </script>
 
 <template>
-  <header class="fixed w-full text-gray-600 body-font z-50 bg-white/50 backdrop-blur-md shadow-md">
+  <header class="fixed w-full text-gray-600 body-font z-50 bg-white/80 backdrop-blur-md shadow-md">
     <div class="container mx-auto flex flex-wrap p-4 lg:px-15 flex-row items-center justify-between">
       
       <a href="#home" @click.prevent="scrollToSection('#hero')" class="flex title-font font-medium items-center text-gray-900 flex-row gap-2 mr-1">
