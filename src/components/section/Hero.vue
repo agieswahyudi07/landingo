@@ -1,6 +1,9 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const heroTitle = ref(null);
 const heroDesc = ref(null);
@@ -8,15 +11,65 @@ const heroButtons = ref(null);
 const heroImage = ref(null);
 const isDesktop = ref(false)
 
+const handleMouseMove = (event) => {
+    if (!isDesktop.value) return; 
+
+    const { clientX, clientY } = event;
+    const x = (clientX / window.innerWidth) - 0.5;
+    const y = (clientY / window.innerHeight) - 0.5;
+
+    gsap.to(heroTitle.value, { 
+        x: x * -50,
+        y: y * -25, 
+        rotationZ: x * -1.5,
+        duration: 1.5, 
+        ease: "power3.out" 
+    });
+    
+    gsap.to(heroDesc.value, { 
+        x: x * 25, 
+        y: y * 12, 
+        duration: 1.6, 
+        ease: "power3.out" 
+    });
+
+    gsap.to(heroButtons.value, { 
+        x: x * 30, 
+        y: y * 18, 
+        duration: 1.7, 
+        ease: "power3.out" 
+    });
+
+    if (heroImage.value) {
+        gsap.to(heroImage.value, { 
+            x: x * 40, 
+            y: y * -20,
+            rotationY: x * 8,
+            duration: 1.8, 
+            ease: "power3.out" 
+        });
+    }
+};
+
+
 onMounted(() => {
     isDesktop.value = window.innerWidth >= 640
 
-    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+    const tl = gsap.timeline({ 
+        defaults: { ease: "power3.out" },
+        delay: 0.2
+    });
 
-    tl.from(heroTitle.value, { y: -60, opacity: 0, duration: 0.8 })
-    .from(heroDesc.value, { y: 30, opacity: 0, duration: 0.7 }, "-=0.4")
-    .from(heroButtons.value, { y: 20, opacity: 0, duration: 0.6, stagger: 0.15 }, "-=0.3")
-    .from(heroImage.value, { x: 60, opacity: 0, duration: 0.9 }, "-=0.5");
+    tl.from(heroTitle.value, { y: -50, opacity: 0, duration: 1 })
+      .from(heroDesc.value, { y: 30, opacity: 0, duration: 0.9 }, "-=0.6")
+      .from(heroButtons.value, { y: 20, opacity: 0, duration: 0.8, stagger: 0.2 }, "-=0.5")
+      .from(heroImage.value, { x: 80, opacity: 0, duration: 1.1 }, "-=0.7");
+
+    window.addEventListener('mousemove', handleMouseMove);
+});
+
+onUnmounted(() => {
+    window.removeMouseMove('mousemove', handleMouseMove);
 });
 
 const redirectToWhatsApp = () => {

@@ -108,13 +108,6 @@ const isTopSection = false
       >
         <p class="text-sm text-primary sm:ml-6 sm:mt-0 mt-4 uppercase">
           © 2025 Landingo — Website profesional untuk UMKM
-          <a
-            href="https://agieswahyudi.vercel.app"
-            rel="noopener noreferrer"
-            class="text-primary ml-1 lowercase"
-            target="_blank"
-          >
-          </a>
         </p>
         <span
           class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start gap-2"
