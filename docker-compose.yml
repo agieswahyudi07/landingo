@@ -23,6 +23,12 @@ services:
       - traefik.http.routers.landingo.middlewares=landingo@docker
     networks:
       - traefik-network
+    volumes:
+      - landingo_data
+
+volumes:
+  landingo_data:
+    external:true
 
 networks:
   traefik-network:
