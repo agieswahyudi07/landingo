@@ -9,12 +9,42 @@ const headerContainer = ref(null)
 const listContainer = ref(null)
 
 const list = ref([
-  { icon: 'mdi:palette-outline', text: 'Desain simpel, cepat dibuat (2-5 hari)' },
-  { icon: 'mdi:cellphone-link', text: 'Mobile-friendly dan siap iklan' },
-  { icon: 'mdi:whatsapp', text: 'Leads masuk langsung ke WhatsApp' },
-  { icon: 'mdi:domain', text: 'Tanpa repot domain & hosting (kami bantu)' },
-  { icon: 'mdi:search', text: 'Siap SEO basic untuk tampil di Google' },
-  { icon: 'mdi:account-tie', text: 'Tampil Professional di hadapan client' }
+  { 
+    icon: 'mdi:rocket-launch', 
+    title: 'Launch Cepat',
+    text: 'Landing page siap online dalam 2-5 hari kerja. Tidak perlu menunggu berminggu-minggu untuk mulai jualan.',
+    color: 'from-blue-500 to-cyan-500'
+  },
+  { 
+    icon: 'mdi:cellphone-link', 
+    title: 'Mobile-First',
+    text: 'Optimized untuk semua device. 70%+ traffic dari mobile, landing page Anda akan tampil sempurna di smartphone.',
+    color: 'from-purple-500 to-pink-500'
+  },
+  { 
+    icon: 'mdi:whatsapp', 
+    title: 'WhatsApp Ready',
+    text: 'Leads langsung masuk ke WhatsApp Anda. Tidak ada form yang ribet, customer langsung chat dan closing lebih cepat.',
+    color: 'from-green-500 to-emerald-500'
+  },
+  { 
+    icon: 'mdi:shield-check', 
+    title: 'All-In-One',
+    text: 'Domain, hosting, SSL certificate, dan email bisnis sudah termasuk. Tidak perlu repot setup sendiri.',
+    color: 'from-indigo-500 to-blue-500'
+  },
+  { 
+    icon: 'mdi:google', 
+    title: 'SEO Optimized',
+    text: 'Siap tampil di Google Search. Struktur yang SEO-friendly membantu bisnis Anda ditemukan calon customer.',
+    color: 'from-orange-500 to-red-500'
+  },
+  { 
+    icon: 'mdi:trending-up', 
+    title: 'Tingkatkan Kredibilitas',
+    text: 'Tampil profesional meningkatkan kepercayaan customer. Brand Anda terlihat lebih established dan terpercaya.',
+    color: 'from-violet-500 to-purple-500'
+  }
 ])
 
 const onCardEnter = (e) => {
@@ -82,41 +112,48 @@ onMounted(() => {
 <template>
   <section
     id="value-proposition"
-    class="relative min-h-screen flex flex-row gap-5 items-center justify-center bg-[url(/assets/rect_light.webp)] bg-cover bg-center"
+    class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-white via-gray-50 to-white py-24"
   >
-    <div class="container px-5 py-24 mx-auto relative z-10">
-      <div class="text-center mb-20" ref="headerContainer">
+    <div class="container px-5 mx-auto relative z-10">
+      <div class="text-center mb-16" ref="headerContainer">
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold">
+          <Icon icon="mdi:star" class="text-yellow-500" />
+          Mengapa Memilih Landingo?
+        </div>
         <h2
-          class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-100 mb-4"
+          class="sm:text-4xl text-3xl font-extrabold text-center title-font text-gray-900 mb-4"
         >
-          Kenapa Bisnismu Butuh Landingo ?
+          Semua yang Dibutuhkan untuk
+          <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"> Sukses Online</span>
         </h2>
         <p
-          class="text-base text-gray-100 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto"
+          class="text-lg text-gray-600 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto"
         >
-          UMKM & brand lokal kini bisa punya landing page profesional tanpa ribet
-          dan tanpa mahal.
+          Solusi lengkap untuk UMKM yang ingin berkembang di era digital. Dari desain profesional hingga optimasi performa, semuanya sudah kami handle.
         </p>
       </div>
         <div
           ref="listContainer"
-          class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
           style="perspective: 1000px;">
         <div
-          class="p-2 sm:w-1/2 w-full list-value"
+          class="list-value"
           v-for="(item, index) in list"
           :key="index"
           @mouseenter="onCardEnter"
           @mouseleave="onCardLeave"
         >
           <div
-            class="bg-gray-100 rounded flex p-4 h-full items-center shadow-md transition-shadow duration-300"
+            class="bg-white rounded-2xl p-6 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
           >
-          <Icon
-              :icon="item.icon"
-              class="text-gray-600 w-6 h-6 flex-shrink-0 mr-4"
-            />
-            <span class="title-font font-medium">{{ item.text }}</span>
+            <div :class="`inline-flex p-3 rounded-xl bg-gradient-to-br ${item.color} mb-4 group-hover:scale-110 transition-transform duration-300`">
+              <Icon
+                :icon="item.icon"
+                class="text-white w-6 h-6"
+              />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ item.title }}</h3>
+            <p class="text-gray-600 leading-relaxed">{{ item.text }}</p>
           </div>
         </div>
       </div>

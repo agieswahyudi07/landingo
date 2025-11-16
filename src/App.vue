@@ -1,6 +1,8 @@
 <template>
-  <Header/>
-  <Home/>
+  <div id="app">
+    <Header/>
+    <Home/>
+  </div>
 </template>
 
 <script setup>

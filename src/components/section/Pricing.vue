@@ -22,83 +22,85 @@ const formatRupiah = (amount) => {
 };
 
 const redirectToWhatsApp = (message) => {
-  const phoneNumber = "6281398257238";
+  const phoneNumber = "6285183077289";
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
   window.open(whatsappUrl, "_blank");
 };
 
-const title = "Pilih Paket Sesuai Kebutuhanmu";
+const title = "Pilih Paket yang Tepat untuk Bisnis Anda";
 const package_list = ref([
     {
-        name:'Basic',
-        realPrice: 1599000,
-        discount: 45,
-        price: discountCalculation(1599000,38),
+        name:'Starter',
+        realPrice: 1999000,
+        discount: 50,
+        price: discountCalculation(1999000,50),
         customPrice: 999000,
-        description:'Untuk pemilik bisnis pemula yang ingin terlihat profesional dan bisa langsung mulai jualan',
-        tag: { status: true, desc: 'Termurah - Waktu Terbatas' },
-        quickMessage: 'Halo, saya tertarik dengan paket Basic Landing Page. Bisa minta informasi lebih lanjut?',
+        description:'Perfect untuk bisnis baru yang ingin mulai online dengan cepat dan profesional',
+        tag: { status: true, desc: 'Paling Populer' },
+        quickMessage: 'Halo! Saya tertarik dengan paket Starter. Bisa minta informasi lebih detail?',
+        popular: true,
         list:[
-            { icon:'mdi:checkbox-marked-circle-outline', text:'1 halaman landing page modern dan profesional' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Desain responsive (mobile-first, clean, trustable)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Shared Hosting (6 bulan)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'gratis domain (.com)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'1 Email Bisnis' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'handle ~1.000 pengunjung' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'1 GB STORAGE' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'CTA langsung ke WhatsApp' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Website kamu aman & dipercaya Google – Gratis Sertifikat SSL seumur hidup!' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Support teknis 15 hari pertama' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Gratis 1x revisi minor' },
+            { icon:'mdi:check-circle', text:'1 halaman landing page modern & profesional' },
+            { icon:'mdi:check-circle', text:'Desain responsive (mobile-first, clean, trustable)' },
+            { icon:'mdi:check-circle', text:'Shared Hosting (6 bulan gratis)' },
+            { icon:'mdi:check-circle', text:'Domain .com gratis (tahun pertama)' },
+            { icon:'mdi:check-circle', text:'1 Email Bisnis (@yourdomain.com)' },
+            { icon:'mdi:check-circle', text:'Kapasitas hingga 1.000 pengunjung/bulan' },
+            { icon:'mdi:check-circle', text:'1 GB Storage' },
+            { icon:'mdi:check-circle', text:'WhatsApp CTA langsung' },
+            { icon:'mdi:check-circle', text:'SSL Certificate gratis (lifetime)' },
+            { icon:'mdi:check-circle', text:'Support teknis 15 hari pertama' },
+            { icon:'mdi:check-circle', text:'1x revisi minor gratis' },
         ]
     },
     {
-        name:'Pro',
-        realPrice: 3299000,
-        discount: 15,
-        price: discountCalculation(3299000,15),
+        name:'Professional',
+        realPrice: 3999000,
+        discount: 25,
+        price: discountCalculation(3999000,25),
         customPrice: 2999000,
-        description:'Cocok untuk yang sudah mulai beriklan, ingin tampil meyakinkan dan capture data pembeli.',
-        tag: { status: true, desc: 'Penawaran Terbaik' },
-        quickMessage: 'Halo, saya tertarik dengan paket Pro Landing Page. Bisa minta informasi lebih lanjut?',
+        description:'Ideal untuk bisnis yang sudah berjalan dan ingin scale up dengan iklan digital',
+        tag: { status: true, desc: 'Value Terbaik' },
+        quickMessage: 'Halo! Saya tertarik dengan paket Professional. Bisa minta informasi lebih detail?',
+        popular: false,
         list:[
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Semua fitur BASIC, plus:' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'1-3 halaman landing page' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Content Management System' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Hosting (1 Tahun)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Handle ~10.000 pengunjung' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'10 GB STORAGE' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'CTA langsung ke WhatsApp' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'2 Email Bisnis' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Performance optimized (lighthouse >90)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Basic SEO setup (meta title + desc)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Support teknis 30 hari pertama' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'3x revisi minor' },
+            { icon:'mdi:check-circle', text:'Semua fitur Starter, plus:' },
+            { icon:'mdi:check-circle', text:'1-3 halaman landing page' },
+            { icon:'mdi:check-circle', text:'Content Management System (CMS)' },
+            { icon:'mdi:check-circle', text:'Hosting premium (1 tahun)' },
+            { icon:'mdi:check-circle', text:'Kapasitas hingga 10.000 pengunjung/bulan' },
+            { icon:'mdi:check-circle', text:'10 GB Storage' },
+            { icon:'mdi:check-circle', text:'2 Email Bisnis' },
+            { icon:'mdi:check-circle', text:'Performance optimized (Lighthouse >90)' },
+            { icon:'mdi:check-circle', text:'SEO setup lengkap (meta tags, sitemap)' },
+            { icon:'mdi:check-circle', text:'Support teknis 30 hari pertama' },
+            { icon:'mdi:check-circle', text:'3x revisi minor gratis' },
         ]
     },
     {
-        name:'Smart Funnel',
-        realPrice: 4999000,
-        discount: 20,
-        price: discountCalculation(4999000,20),
+        name:'Enterprise',
+        realPrice: 5999000,
+        discount: 33,
+        price: discountCalculation(5999000,33),
         customPrice: 3999000,
-        description:'Untuk brand lokal yang ingin otomatisasi penjualan & leads funnel langsung ke WhatsApp',
-        tag: { status: true, desc: 'Siap Scale Up !' },
-        quickMessage: 'Halo, saya tertarik dengan paket Smart Funnel. Bisa minta informasi lebih lanjut?',
+        description:'Solusi lengkap untuk brand yang ingin maksimalkan konversi dan otomatisasi',
+        tag: { status: true, desc: 'Siap Scale!' },
+        quickMessage: 'Halo! Saya tertarik dengan paket Enterprise. Bisa minta informasi lebih detail?',
+        popular: false,
         list:[
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Semua fitur PRO, plus:' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'1-5 halaman landing page' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Interactive Design (Animate on Scroll, Parallax, dll.)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Hosting (1 Tahun)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Bisa menangani ~25.000 pengunjung' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'25 GB STORAGE' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'3 Email Bisnis' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Speed Optimization' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Auto-responder via WA Gateway / Email' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Countdown timer / upsell popup (opsional)' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'Support teknis 60 hari pertama' },
-            { icon:'mdi:checkbox-marked-circle-outline', text:'3x revisi minor' },
+            { icon:'mdi:check-circle', text:'Semua fitur Professional, plus:' },
+            { icon:'mdi:check-circle', text:'1-5 halaman landing page' },
+            { icon:'mdi:check-circle', text:'Interactive Design (animations, parallax)' },
+            { icon:'mdi:check-circle', text:'Hosting premium (1 tahun)' },
+            { icon:'mdi:check-circle', text:'Kapasitas hingga 25.000 pengunjung/bulan' },
+            { icon:'mdi:check-circle', text:'25 GB Storage' },
+            { icon:'mdi:check-circle', text:'3 Email Bisnis' },
+            { icon:'mdi:check-circle', text:'Advanced Speed Optimization' },
+            { icon:'mdi:check-circle', text:'Auto-responder (WA Gateway/Email)' },
+            { icon:'mdi:check-circle', text:'Countdown timer & upsell popup' },
+            { icon:'mdi:check-circle', text:'Support teknis 60 hari pertama' },
+            { icon:'mdi:check-circle', text:'Unlimited revisi minor' },
         ]
     },
 ]);
@@ -179,49 +181,116 @@ onMounted(() => {
 </script>
 
 <template>
-    <section id="pricing" class="relative min-h-screen text-gray-600 body-font overflow-hidden bg-[url(/assets/contour_line.webp)] bg-cover bg-center">
-        <div class="absolute inset-0 bg-white/35 sm:bg-white/5 backdrop-blur-sm z-0"></div>
-        <div class="container px-5 py-24 mx-auto z-10">
-            <div ref="pricingHeader" class="flex flex-col text-center w-full mb-20">
-            <h2 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900 z-10">{{ title }}</h2>
+    <section id="pricing" class="relative min-h-screen text-gray-600 body-font overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-24">
+        <div class="container px-5 mx-auto">
+            <div ref="pricingHeader" class="flex flex-col text-center w-full mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold mx-auto">
+                    <Icon icon="mdi:tag" class="text-indigo-500" />
+                    Harga Transparan, Tanpa Hidden Cost
+                </div>
+                <h2 class="sm:text-4xl text-3xl font-extrabold title-font mb-4 text-gray-900">
+                    {{ title }}
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Mulai dari yang sederhana hingga solusi lengkap. Semua paket sudah termasuk domain, hosting, dan support.
+                </p>
             </div>
-            <div ref="pricingContainer" class="flex flex-wrap -m-4 justify-center lg:gap-10" style="perspective: 1200px;">
-                <div class="p-4 xl:w-1/4 md:w-1/2 w-full pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.tag.status)" @mouseleave="onCardLeave($event)">
+            <div ref="pricingContainer" class="flex flex-wrap -m-4 justify-center lg:gap-6 max-w-7xl mx-auto" style="perspective: 1200px;">
+                <div class="p-4 xl:w-1/3 md:w-1/2 w-full pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.popular)" @mouseleave="onCardLeave($event)">
                     <div
                         :class="[
-                            'h-full p-6 rounded-lg border-2 flex flex-col relative overflow-hidden justify-between bg-white transition-all duration-300',
-                            item.tag.status ? 'border-indigo-500' : 'border-gray-300'
+                            'h-full rounded-2xl border-2 flex flex-col relative justify-between bg-white transition-all duration-300 shadow-lg overflow-hidden',
+                            item.popular ? 'border-gray-200' : 'border-gray-200 hover:border-indigo-300'
                         ]"
                     >
-                    <span class="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl z-20" v-if="item.tag.status">{{ item.tag.desc }}</span>
-                    <div class="z-10">
-                        <h3 class="text-xl tracking-widest title-font mb-1 font-medium">{{ item.name }}</h3>
-                        <h4 class="text-3xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200 gap-2">
-                            <span v-if="item.customPrice" class="font-bold text-indigo-600">{{ formatRupiah(item.customPrice) }}</span>
-                            <span v-else class="font-bold text-indigo-600">{{ formatRupiah(item.price) }}</span>
-                            <span v-if="item.discount > 0" class="text-lg text-gray-400 line-through">{{ formatRupiah(item.realPrice) }}</span>
-                        </h4>
-                    </div>
-                    <div class="z-10 justify-self-start">
-                        <p class="flex items-center text-gray-600 mb-2" v-for="(list, index) in item.list" :key="index">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center text-green-500 rounded-full flex-shrink-0">
-                                <Icon :icon="list.icon" width="48"/>
-                            </span>{{ list.text }}
-                        </p>
-                    </div>
-                    <div class="z-10 flex flex-col mt-auto pt-4">
-                        <n-button type="info" size="large" color="#5356FF" class="justify-self-end" @click="redirectToWhatsApp(item.quickMessage)">
-                            <div class="flex flex-row items-center justify-center">
-                                <p>Pilih Paket</p>
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
+                    <!-- Purple gradient bar for Starter (popular) -->
+                    <div v-if="item.popular" class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-30"></div>
+                    
+                    <!-- Tag badges for all cards -->
+                    <span v-if="item.tag.status" 
+                          :class="[
+                              'absolute right-0 top-0 px-3 py-1.5 rounded-bl-xl z-30 text-xs font-semibold text-white',
+                              item.popular ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : (item.name === 'Professional' ? 'bg-indigo-600' : 'bg-blue-500')
+                          ]">
+                        {{ item.tag.desc }}
+                    </span>
+                    
+                    <!-- Content wrapper with padding -->
+                    <div class="p-8 flex flex-col h-full relative z-10">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ item.name }}</h3>
+                            <div class="mb-6">
+                                <!-- Discount Badge -->
+                                <div v-if="item.discount > 0" class="inline-flex items-center gap-1.5 px-3 py-1.5 mb-3 rounded-full bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200">
+                                    <Icon icon="mdi:tag" class="text-green-600 text-sm"/>
+                                    <span class="text-xs font-bold text-green-700">DISKON {{ item.discount }}%</span>
+                                </div>
+                                
+                                <!-- Price Display -->
+                                <div class="mb-3">
+                                    <div class="flex items-baseline gap-3 mb-1">
+                                        <span v-if="item.customPrice" class="text-5xl font-extrabold text-gray-900 leading-none">{{ formatRupiah(item.customPrice) }}</span>
+                                        <span v-else class="text-5xl font-extrabold text-gray-900 leading-none">{{ formatRupiah(item.price) }}</span>
+                                    </div>
+                                    <div v-if="item.discount > 0" class="flex items-center gap-2">
+                                        <span class="text-lg text-gray-400 line-through">{{ formatRupiah(item.realPrice) }}</span>
+                                        <span class="text-xs text-gray-500">Harga Normal</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Savings Amount -->
+                                <div v-if="item.discount > 0" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 border border-green-200">
+                                    <Icon icon="mdi:wallet" class="text-green-600 text-lg"/>
+                                    <div class="flex-1">
+                                        <p class="text-xs text-gray-600">Anda Hemat</p>
+                                        <p class="text-base font-bold text-green-700">
+                                            {{ formatRupiah(item.realPrice - (item.customPrice || item.price)) }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </n-button>
-                        <p class="text-xs text-gray-500 mt-3">{{ item.description }}</p>
+                        </div>
+                    
+                        <div class="flex-grow mb-6">
+                            <ul class="space-y-3">
+                                <li class="flex items-start text-gray-700" v-for="(list, idx) in item.list" :key="idx">
+                                    <span class="mr-3 mt-0.5 flex-shrink-0">
+                                        <Icon :icon="list.icon" class="text-green-500 text-xl"/>
+                                    </span>
+                                    <span class="text-sm leading-relaxed">{{ list.text }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-col mt-auto pt-6 border-t border-gray-100">
+                            <n-button 
+                                :type="item.popular ? 'primary' : 'default'"
+                                size="large" 
+                                :color="item.popular ? '#5356FF' : undefined"
+                                :class="[
+                                    'w-full justify-center font-semibold transition-all duration-300',
+                                    item.popular ? 'shadow-md hover:shadow-lg' : 'border-2 border-gray-300 hover:border-indigo-500 bg-white text-gray-700 hover:text-indigo-600'
+                                ]"
+                                @click="redirectToWhatsApp(item.quickMessage)"
+                            >
+                                <div class="flex flex-row items-center justify-center">
+                                    <span>Pilih Paket Ini</span>
+                                    <Icon icon="mdi:arrow-right" class="ml-2 text-lg"/>
+                                </div>
+                            </n-button>
+                            <p class="text-xs text-gray-500 mt-4 text-center leading-relaxed">{{ item.description }}</p>
+                        </div>
                     </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Trust Note -->
+            <div class="mt-12 text-center">
+                <p class="text-sm text-gray-500">
+                    <Icon icon="mdi:shield-check" class="inline text-green-500 mr-2"/>
+                    Semua paket termasuk setup lengkap. Tidak ada biaya tersembunyi.
+                </p>
             </div>
         </div>
     </section>

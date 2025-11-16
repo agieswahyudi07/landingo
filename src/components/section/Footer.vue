@@ -102,19 +102,24 @@ const isTopSection = false
     </div>
 
     <!-- Bottom Section -->
-    <div class="bg-white text-primary font-semibold">
+    <div class="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
       <div
-        class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col"
+        class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col gap-4"
       >
-        <p class="text-sm text-primary sm:ml-6 sm:mt-0 mt-4 uppercase">
-          © 2025 Landingo — Website profesional untuk UMKM
-        </p>
+        <div class="flex-1">
+          <p class="text-sm text-gray-300 sm:ml-6 sm:mt-0 mt-4">
+            © 2025 <span class="font-semibold text-white">Landingo</span> — Landing Page Profesional untuk UMKM & Brand Lokal
+          </p>
+          <p class="text-xs text-gray-400 sm:ml-6 mt-2">
+            Transformasi bisnis Anda dengan landing page yang mengkonversi
+          </p>
+        </div>
         <span
-          class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start gap-2"
+          class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start gap-3"
         >
           <a
             href="https://facebook.com/landingoid"
-            class="text-primary"
+            class="text-gray-400 hover:text-blue-400 transition-colors"
             aria-label="Landingo di Facebook"
             target="_blank"
             rel="noopener noreferrer"
@@ -123,7 +128,7 @@ const isTopSection = false
           </a>
           <a
             href="https://instagram.com/landingoid"
-            class="text-primary"
+            class="text-gray-400 hover:text-pink-400 transition-colors"
             aria-label="Landingo di Instagram"
             target="_blank"
             rel="noopener noreferrer"
@@ -132,7 +137,7 @@ const isTopSection = false
           </a>
           <a
             href="https://linkedin.com/company/landingoid"
-            class="text-primary"
+            class="text-gray-400 hover:text-blue-500 transition-colors"
             aria-label="Landingo di LinkedIn"
             target="_blank"
             rel="noopener noreferrer"
@@ -140,8 +145,8 @@ const isTopSection = false
             <Icon icon="mdi:linkedin" width="24" />
           </a>
           <a
-            href="https://wa.me/6281398257238"
-            class="text-primary"
+            href="https://wa.me/6285183077289"
+            class="text-gray-400 hover:text-green-400 transition-colors"
             aria-label="Chat via WhatsApp dengan Landingo"
             target="_blank"
             rel="noopener noreferrer"
