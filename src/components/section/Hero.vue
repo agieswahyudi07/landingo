@@ -12,6 +12,9 @@ const heroImage = ref(null);
 const isDesktop = ref(false);
 let throttledMouseMoveHandler = null;
 
+// Ensure image path is correct and not processed by Vite
+const imageSrc = '/assets/images/business-growth.webp';
+
 const handleMouseMove = (event) => {
     if (!isDesktop.value) return; 
 
@@ -201,7 +204,7 @@ const redirectToWhatsApp = () => {
                         width="720" 
                         height="600" 
                         decoding="sync" 
-                        src="/assets/images/business-growth.webp"
+                        :src="imageSrc"
                         sizes="(max-width: 1024px) 0px, 600px"
                     >
                 </div>
