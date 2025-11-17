@@ -195,8 +195,8 @@ onMounted(() => {
                     Mulai dari yang sederhana hingga solusi lengkap. Semua paket sudah termasuk domain, hosting, dan support.
                 </p>
             </div>
-            <div ref="pricingContainer" class="flex flex-nowrap -m-4 justify-center gap-3 sm:gap-4 lg:gap-6 max-w-7xl mx-auto" style="perspective: 1200px;">
-                <div class="p-3 sm:p-4 flex-shrink-0 w-1/3 pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.popular)" @mouseleave="onCardLeave($event)">
+            <div ref="pricingContainer" class="flex flex-col md:flex-row flex-nowrap -m-4 justify-center gap-3 sm:gap-4 lg:gap-6 max-w-7xl mx-auto" style="perspective: 1200px;">
+                <div class="p-3 sm:p-4 w-full md:w-1/3 pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.popular)" @mouseleave="onCardLeave($event)">
                     <div
                         :class="[
                             'h-full rounded-2xl border-2 flex flex-col relative justify-between bg-white transition-all duration-300 shadow-lg overflow-hidden',
