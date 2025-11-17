@@ -195,8 +195,8 @@ onMounted(() => {
                     Mulai dari yang sederhana hingga solusi lengkap. Semua paket sudah termasuk domain, hosting, dan support.
                 </p>
             </div>
-            <div ref="pricingContainer" class="flex flex-wrap -m-4 justify-center lg:gap-6 max-w-7xl mx-auto" style="perspective: 1200px;">
-                <div class="p-4 xl:w-1/3 md:w-1/2 w-full pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.popular)" @mouseleave="onCardLeave($event)">
+            <div ref="pricingContainer" class="flex flex-nowrap -m-4 justify-center gap-3 sm:gap-4 lg:gap-6 max-w-7xl mx-auto" style="perspective: 1200px;">
+                <div class="p-3 sm:p-4 flex-shrink-0 w-1/3 pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.popular)" @mouseleave="onCardLeave($event)">
                     <div
                         :class="[
                             'h-full rounded-2xl border-2 flex flex-col relative justify-between bg-white transition-all duration-300 shadow-lg overflow-hidden',
@@ -216,34 +216,34 @@ onMounted(() => {
                     </span>
                     
                     <!-- Content wrapper with padding -->
-                    <div class="p-8 flex flex-col h-full relative z-10">
+                    <div class="p-4 sm:p-6 md:p-8 flex flex-col h-full relative z-10">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ item.name }}</h3>
-                            <div class="mb-6">
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">{{ item.name }}</h3>
+                            <div class="mb-4 sm:mb-6">
                                 <!-- Discount Badge -->
-                                <div v-if="item.discount > 0" class="inline-flex items-center gap-1.5 px-3 py-1.5 mb-3 rounded-full bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200">
-                                    <Icon icon="mdi:tag" class="text-green-600 text-sm"/>
+                                <div v-if="item.discount > 0" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200">
+                                    <Icon icon="mdi:tag" class="text-green-600 text-xs sm:text-sm"/>
                                     <span class="text-xs font-bold text-green-700">DISKON {{ item.discount }}%</span>
                                 </div>
                                 
                                 <!-- Price Display -->
-                                <div class="mb-3">
-                                    <div class="flex items-baseline gap-3 mb-1">
-                                        <span v-if="item.customPrice" class="text-5xl font-extrabold text-gray-900 leading-none">{{ formatRupiah(item.customPrice) }}</span>
-                                        <span v-else class="text-5xl font-extrabold text-gray-900 leading-none">{{ formatRupiah(item.price) }}</span>
+                                <div class="mb-2 sm:mb-3">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 mb-1">
+                                        <span v-if="item.customPrice" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-none">{{ formatRupiah(item.customPrice) }}</span>
+                                        <span v-else class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-none">{{ formatRupiah(item.price) }}</span>
                                     </div>
-                                    <div v-if="item.discount > 0" class="flex items-center gap-2">
-                                        <span class="text-lg text-gray-400 line-through">{{ formatRupiah(item.realPrice) }}</span>
+                                    <div v-if="item.discount > 0" class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                                        <span class="text-base sm:text-lg text-gray-400 line-through">{{ formatRupiah(item.realPrice) }}</span>
                                         <span class="text-xs text-gray-500">Harga Normal</span>
                                     </div>
                                 </div>
                                 
                                 <!-- Savings Amount -->
-                                <div v-if="item.discount > 0" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-50 border border-green-200">
-                                    <Icon icon="mdi:wallet" class="text-green-600 text-lg"/>
-                                    <div class="flex-1">
+                                <div v-if="item.discount > 0" class="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-green-50 border border-green-200">
+                                    <Icon icon="mdi:wallet" class="text-green-600 text-base sm:text-lg flex-shrink-0"/>
+                                    <div class="flex-1 min-w-0">
                                         <p class="text-xs text-gray-600">Anda Hemat</p>
-                                        <p class="text-base font-bold text-green-700">
+                                        <p class="text-sm sm:text-base font-bold text-green-700 truncate">
                                             {{ formatRupiah(item.realPrice - (item.customPrice || item.price)) }}
                                         </p>
                                     </div>
@@ -251,34 +251,34 @@ onMounted(() => {
                             </div>
                         </div>
                     
-                        <div class="flex-grow mb-6">
-                            <ul class="space-y-3">
+                        <div class="flex-grow mb-4 sm:mb-6">
+                            <ul class="space-y-2 sm:space-y-3">
                                 <li class="flex items-start text-gray-700" v-for="(list, idx) in item.list" :key="idx">
-                                    <span class="mr-3 mt-0.5 flex-shrink-0">
-                                        <Icon :icon="list.icon" class="text-green-500 text-xl"/>
+                                    <span class="mr-2 sm:mr-3 mt-0.5 flex-shrink-0">
+                                        <Icon :icon="list.icon" class="text-green-500 text-lg sm:text-xl"/>
                                     </span>
-                                    <span class="text-sm leading-relaxed">{{ list.text }}</span>
+                                    <span class="text-xs sm:text-sm leading-relaxed">{{ list.text }}</span>
                                 </li>
                             </ul>
                         </div>
                         
-                        <div class="flex flex-col mt-auto pt-6 border-t border-gray-100">
-                            <n-button 
-                                :type="item.popular ? 'primary' : 'default'"
-                                size="large" 
-                                :color="item.popular ? '#5356FF' : undefined"
-                                :class="[
-                                    'w-full justify-center font-semibold transition-all duration-300',
-                                    item.popular ? 'shadow-md hover:shadow-lg' : 'border-2 border-gray-300 hover:border-indigo-500 bg-white text-gray-700 hover:text-indigo-600'
-                                ]"
-                                @click="redirectToWhatsApp(item.quickMessage)"
-                            >
-                                <div class="flex flex-row items-center justify-center">
-                                    <span>Pilih Paket Ini</span>
-                                    <Icon icon="mdi:arrow-right" class="ml-2 text-lg"/>
-                                </div>
-                            </n-button>
-                            <p class="text-xs text-gray-500 mt-4 text-center leading-relaxed">{{ item.description }}</p>
+                        <div class="flex flex-col mt-auto pt-4 sm:pt-6 border-t border-gray-100">
+                        <n-button 
+                            :type="item.popular ? 'primary' : 'default'"
+                            size="large" 
+                            :color="item.popular ? '#5356FF' : undefined"
+                            :class="[
+                                'w-full justify-center font-semibold transition-all duration-300 text-sm sm:text-base',
+                                item.popular ? 'shadow-md hover:shadow-lg' : 'border-2 border-gray-300 hover:border-indigo-500 bg-white text-gray-700 hover:text-indigo-600'
+                            ]"
+                            @click="redirectToWhatsApp(item.quickMessage)"
+                        >
+                            <div class="flex flex-row items-center justify-center">
+                                <span>Pilih Paket Ini</span>
+                                <Icon icon="mdi:arrow-right" class="ml-2 text-base sm:text-lg"/>
+                            </div>
+                        </n-button>
+                        <p class="text-xs text-gray-500 mt-3 sm:mt-4 text-center leading-relaxed">{{ item.description }}</p>
                         </div>
                     </div>
                     </div>

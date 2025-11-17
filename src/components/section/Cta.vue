@@ -113,7 +113,7 @@ onMounted(() => {
         </svg>
     </div>
     
-    <div class="relative z-10 container px-5 py-24 mx-auto">
+    <div class="relative z-10 container px-5 py-12 sm:py-16 md:py-24 mx-auto mt-16 sm:mt-20 md:mt-0">
       <div class="flex flex-col text-center w-full max-w-4xl mx-auto">
         
         <!-- Badge -->
@@ -202,6 +202,8 @@ onMounted(() => {
     width: 100%;
     overflow: hidden;
     line-height: 0;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .custom-shape-divider-top-1758725921 svg {
@@ -219,7 +221,16 @@ onMounted(() => {
 @media (max-width: 767px) {
     .custom-shape-divider-top-1758725921 svg {
         width: calc(176% + 1.3px);
-        height: 500px;
+        height: 200px;
+        transform: translateY(-50px);
+    }
+}
+
+/** For small mobile devices **/
+@media (max-width: 480px) {
+    .custom-shape-divider-top-1758725921 svg {
+        height: 150px;
+        transform: translateY(-30px);
     }
 }
 </style>
