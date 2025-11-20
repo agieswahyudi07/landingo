@@ -195,8 +195,8 @@ onMounted(() => {
                     Mulai dari yang sederhana hingga solusi lengkap. Semua paket sudah termasuk domain, hosting, dan support.
                 </p>
             </div>
-            <div ref="pricingContainer" class="flex flex-col md:flex-row flex-nowrap -m-4 justify-center gap-3 sm:gap-4 lg:gap-6 max-w-7xl mx-auto" style="perspective: 1200px;">
-                <div class="p-3 sm:p-4 w-full md:w-1/3 pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.popular)" @mouseleave="onCardLeave($event)">
+            <div ref="pricingContainer" class="flex flex-col lg:flex-row flex-nowrap justify-center gap-3 sm:gap-4 lg:gap-6 max-w-7xl mx-auto" style="perspective: 1200px;">
+                <div class="w-full lg:w-1/3 pricing-card" v-for="(item, index) in package_list" :key="index" @mouseenter="onCardHover($event, item.popular)" @mouseleave="onCardLeave($event)">
                     <div
                         :class="[
                             'h-full rounded-2xl border-2 flex flex-col relative justify-between bg-white transition-all duration-300 shadow-lg overflow-hidden',
@@ -204,12 +204,12 @@ onMounted(() => {
                         ]"
                     >
                     <!-- Purple gradient bar for Starter (popular) -->
-                    <div v-if="item.popular" class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-30"></div>
+                    <div v-if="item.popular" class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-20"></div>
                     
                     <!-- Tag badges for all cards -->
                     <span v-if="item.tag.status" 
                           :class="[
-                              'absolute right-0 top-0 px-3 py-1.5 rounded-bl-xl z-30 text-xs font-semibold text-white',
+                              'absolute right-0 top-2 px-3 py-1.5 rounded-bl-xl z-30 text-xs font-semibold text-white whitespace-nowrap',
                               item.popular ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : (item.name === 'Professional' ? 'bg-indigo-600' : 'bg-blue-500')
                           ]">
                         {{ item.tag.desc }}
@@ -217,8 +217,8 @@ onMounted(() => {
                     
                     <!-- Content wrapper with padding -->
                     <div class="p-4 sm:p-6 md:p-8 flex flex-col h-full relative z-10">
-                        <div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">{{ item.name }}</h3>
+                        <div class="pt-8 sm:pt-10 md:pt-12">
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 pr-20 sm:pr-24 md:pr-28">{{ item.name }}</h3>
                             <div class="mb-4 sm:mb-6">
                                 <!-- Discount Badge -->
                                 <div v-if="item.discount > 0" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 mb-2 sm:mb-3 rounded-full bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200">

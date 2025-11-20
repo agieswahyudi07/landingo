@@ -16,7 +16,7 @@ let throttledMouseMoveHandler = null;
 const imageSrc = '/assets/images/business-growth.webp';
 
 const handleMouseMove = (event) => {
-    if (!isDesktop.value) return; 
+    if (!heroImage.value || window.innerWidth < 1024) return; 
 
     const { clientX, clientY } = event;
     const x = (clientX / window.innerWidth) - 0.5;
@@ -57,7 +57,8 @@ const handleMouseMove = (event) => {
 
 
 onMounted(() => {
-    isDesktop.value = window.innerWidth >= 640
+    // Check if desktop for mouse move handler
+    const checkDesktop = () => window.innerWidth >= 1024;
 
     // Use requestAnimationFrame for better performance
     requestAnimationFrame(() => {
@@ -193,7 +194,7 @@ const redirectToWhatsApp = () => {
             </div>
             
             <!-- Hero Image -->
-            <div ref="heroImage" v-if="isDesktop" class="hidden lg:inline-block lg:w-1/2">
+            <div ref="heroImage" class="hidden lg:block lg:w-1/2">
                 <div class="relative">
                     <div class="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-3xl blur-2xl opacity-30 transform rotate-6"></div>
                     <img 

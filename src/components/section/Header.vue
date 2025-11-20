@@ -49,11 +49,10 @@ const scrollToSection = (id) => {
 
 <template>
   <header class="fixed w-full text-gray-600 body-font z-50 bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100">
-    <div class="container mx-auto flex flex-wrap p-4 lg:px-15 flex-row items-center justify-between">
+    <div class="container mx-auto flex flex-wrap p-4 lg:px-16 flex-row items-center justify-between">
       
-      <a href="#home" @click.prevent="scrollToSection('#hero')" class="flex title-font font-semibold items-center text-gray-900 flex-row gap-2 mr-1 hover:opacity-80 transition-opacity" aria-label="Landingo - Landing Page Profesional untuk UMKM">
-        <img src="/assets/images/landingo_logo2.webp" alt="Landingo Logo Icon" class="max-w-10" width="40" height="40" loading="eager" fetchpriority="high" decoding="sync">
-        <img src="/assets/images/landingo_logo.webp" alt="Landingo - Landing Page Profesional untuk UMKM" class="max-h-5" width="120" height="20" loading="eager" fetchpriority="high" decoding="sync">
+      <a href="#home" @click.prevent="scrollToSection('#hero')" class="flex title-font font-semibold items-center text-gray-900 mr-1 hover:opacity-80 transition-opacity" aria-label="Landingo - Landing Page Profesional untuk UMKM">
+        <img src="/assets/images/landingo_logo.webp" alt="Landingo - Landing Page Profesional untuk UMKM" class="h-11 3xl:h-15 w-auto" loading="eager" fetchpriority="high" decoding="sync">
       </a>
 
       <button @click="isMenuOpen = !isMenuOpen" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none transition-colors" aria-label="hamburger">

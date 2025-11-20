@@ -148,26 +148,28 @@ onMounted(() => {
         </div>
 
         <div ref="ctaButtonContainer" class="mt-6">
-          <n-button 
-            ref="ctaButton"
-            class="cta-button"
-            size="large" 
-            @click="redirectToWhatsApp"
-            @mouseenter="onButtonEnter"
-            @mouseleave="onButtonLeave"
-            strong
-            :color="buttonColor"
-            round
-            aria-label="Konsultasi gratis via WhatsApp untuk pembuatan landing page"
-          >
-            <span class="flex items-center gap-2 px-4">
-              <span class="text-lg font-semibold">Konsultasi Gratis via WhatsApp</span>
-              <Icon icon="mdi:whatsapp" width="24" class="cta-icon"></Icon>
-            </span>
-          </n-button>
-          <p class="mt-4 text-sm text-white/70">
-            Respon cepat dalam 1 jam kerja • Tanpa komitmen
-          </p>
+          <div class="flex flex-col items-center">
+            <n-button 
+              ref="ctaButton"
+              class="cta-button w-full sm:w-auto"
+              size="large" 
+              @click="redirectToWhatsApp"
+              @mouseenter="onButtonEnter"
+              @mouseleave="onButtonLeave"
+              strong
+              :color="buttonColor"
+              round
+              aria-label="Konsultasi gratis via WhatsApp untuk pembuatan landing page"
+            >
+              <span class="flex items-center justify-center gap-2 px-4">
+                <span class="text-base sm:text-lg font-semibold">Konsultasi Gratis via WhatsApp</span>
+                <Icon icon="mdi:whatsapp" width="24" class="cta-icon flex-shrink-0"></Icon>
+              </span>
+            </n-button>
+            <p class="mt-4 text-sm text-white/70 text-center px-4 max-w-md">
+              Respon cepat dalam 1 jam kerja • Tanpa komitmen
+            </p>
+          </div>
         </div>
       </div>
     </div>
