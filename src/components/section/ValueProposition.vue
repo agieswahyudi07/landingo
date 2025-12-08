@@ -44,6 +44,12 @@ const list = ref([
     title: 'Tingkatkan Kredibilitas',
     text: 'Tampil profesional meningkatkan kepercayaan customer. Brand Anda terlihat lebih established dan terpercaya.',
     color: 'from-violet-500 to-purple-500'
+  },
+  { 
+    icon: 'mdi:autorenew', 
+    title: 'Renewal Terjangkau',
+    text: 'Sistem renewal transparan dengan harga tetap. Tidak ada kenaikan harga, layanan berkelanjutan dengan biaya yang terjangkau.',
+    color: 'from-teal-500 to-cyan-500'
   }
 ])
 
@@ -134,7 +140,7 @@ onMounted(() => {
       </div>
         <div
           ref="listContainer"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto"
           style="perspective: 1000px;">
         <div
           class="list-value"
