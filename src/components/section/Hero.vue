@@ -13,7 +13,7 @@ const isDesktop = ref(false);
 let throttledMouseMoveHandler = null;
 
 // Ensure image path is correct and not processed by Vite
-const imageSrc = '/assets/images/business-growth.webp';
+const imageSrc = '/assets/images/seo.webp';
 
 const handleMouseMove = (event) => {
     if (!heroImage.value || window.innerWidth < 1024) return; 
@@ -172,7 +172,7 @@ const redirectToWhatsApp = () => {
                         @click="redirectToWhatsApp"
                     >
                         <span class="flex items-center gap-2">
-                            Mulai dari <span class="text-2xl font-bold">Rp 999rb</span>
+                            Mulai dari <span class="text-2xl font-bold">Rp 899rb</span>
                         </span>
                     </n-button>
                     <n-button 
@@ -200,7 +200,7 @@ const redirectToWhatsApp = () => {
                     <img 
                         class="relative object-cover object-center rounded-3xl max-w-[500px] xl:max-w-[600px] shadow-2xl transform hover:scale-105 transition-transform duration-500" 
                         fetchpriority="high" 
-                        alt="Ilustrasi pertumbuhan bisnis UMKM dengan landing page profesional Landingo - Transformasi digital untuk bisnis lokal" 
+                        alt="Ilustrasi Optimasi SEO dan Performa Website - Jasa Pembuatan Landing Page Google Friendly" 
                         loading="eager" 
                         width="720" 
                         height="600" 
