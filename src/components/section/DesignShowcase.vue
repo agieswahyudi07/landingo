@@ -263,7 +263,7 @@ onMounted(() => {
           <span>Lihat Semua Design</span>
           <Icon icon="mdi:arrow-right" class="text-xl" />
         </button>
-        <p class="text-sm text-gray-500 mt-4">
+        <p class="text-sm text-gray-500 mt-10">
           Lebih dari 10+ design template siap pakai untuk berbagai jenis bisnis
         </p>
       </div>
