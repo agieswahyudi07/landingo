@@ -1,5 +1,7 @@
 ---
 import { Icon } from '@iconify/vue';
+import { Image } from 'astro:assets';
+import logoImage from '../../assets/landingo_logo.webp';
 
 const navLinks = [
   { href: '#value-proposition', text: 'Keunggulan', type: 'scroll' },
@@ -13,7 +15,7 @@ const navLinks = [
   <div class="container mx-auto flex flex-wrap p-4 lg:px-16 flex-row items-center justify-between">
     
     <a href="/" class="flex title-font font-semibold items-center text-gray-900 mr-1 hover:opacity-80 transition-opacity" aria-label="Landingo - Landing Page Profesional untuk UMKM">
-      <img src="/assets/images/landingo_logo.webp" alt="Landingo - Landing Page Profesional untuk UMKM" class="h-11 3xl:h-15 w-auto" loading="eager" fetchpriority="high" decoding="sync" />
+      <Image src={logoImage} alt="Landingo - Landing Page Profesional untuk UMKM" class="h-11 3xl:h-15 w-auto" loading="eager" fetchpriority="high" decoding="sync" width={109} height={44} />
     </a>
 
     <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none transition-colors" aria-label="hamburger">
