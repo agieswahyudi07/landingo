@@ -26,7 +26,7 @@
           :key="category.id"
           @click="activeCategory = category.id"
           :class="[
-            'px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300',
+            'cursor-pointer px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300',
             activeCategory === category.id
               ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105'
               : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300 hover:text-indigo-600'
@@ -79,14 +79,14 @@
                   :href="design.previewPath"
                   target="_blank"
                   rel="noopener"
-                  class="flex-1 px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold hover:bg-indigo-600 hover:text-white transition-colors flex items-center justify-center gap-2"
+                  class="cursor-pointer flex-1 px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold hover:bg-indigo-600 hover:text-white transition-colors flex items-center justify-center gap-2"
                 >
                   <Icon icon="mdi:eye" />
                   Lihat Preview
                 </a>
                 <button
                   @click="viewDesign(design)"
-                  class="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+                  class="cursor-pointer flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
                 >
                   <Icon icon="mdi:information" />
                   Info
@@ -124,7 +124,7 @@
             <!-- CTA Button -->
             <button
               @click="redirectToWhatsApp(design)"
-              class="w-full px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+              class="cursor-pointer w-full px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
             >
               <Icon icon="mdi:whatsapp" />
               Konsultasi Design Ini
@@ -149,7 +149,7 @@
           <p class="text-lg mb-6 opacity-90">Konsultasikan kebutuhan design Anda dengan tim kami. Gratis!</p>
           <button
             @click="redirectToWhatsApp()"
-            class="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+            class="cursor-pointer inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
             <Icon icon="mdi:whatsapp" class="text-2xl" />
             Konsultasi Gratis via WhatsApp

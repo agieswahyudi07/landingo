@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, computed, Suspense } from 'vue';
-import { useRouter } from 'vue-router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Icon } from '@iconify/vue';
@@ -8,8 +7,6 @@ import { designs as allDesigns } from '@/data/designs';
 import DesignThumbnail from '@/components/preview/DesignThumbnail.vue';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const router = useRouter();
 const sectionRef = ref(null);
 const headerRef = ref(null);
 const cardsRef = ref(null);
@@ -47,12 +44,12 @@ const getCategoryGradient = (category) => {
 };
 
 const navigateToGallery = () => {
-  router.push('/gallery');
+  window.location.href = '/gallery';
 };
 
 const viewDesign = (design) => {
   if (design.previewPath) {
-    router.push(design.previewPath);
+    window.location.href = design.previewPath;
   } else {
     navigateToGallery();
   }

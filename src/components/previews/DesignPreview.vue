@@ -7,9 +7,9 @@
           <Icon icon="mdi:alert-circle" class="text-6xl text-gray-400 mb-4 mx-auto" />
           <h2 class="text-2xl font-bold text-gray-900 mb-2">Design tidak ditemukan</h2>
           <p class="text-gray-600 mb-4">Design yang Anda cari tidak tersedia atau preview belum tersedia.</p>
-          <router-link to="/gallery" class="text-indigo-600 hover:text-indigo-700 font-semibold">
+          <a href="/gallery" class="text-indigo-600 hover:text-indigo-700 font-semibold">
             Kembali ke Gallery
-          </router-link>
+          </a>
         </div>
       </div>
     </template>
@@ -26,11 +26,17 @@
 
 <script setup>
 import { computed, defineAsyncComponent } from 'vue';
-import { useRoute } from 'vue-router';
 import { designs } from '@/data/designs';
+import { Icon } from '@iconify/vue';
 
-const route = useRoute();
-const designId = route.params.designId;
+const props = defineProps({
+  designId: {
+    type: String,
+    required: true
+  }
+});
+
+const designId = props.designId;
 
 // Find design by slug/id
 const design = computed(() => {
@@ -42,16 +48,16 @@ const previewComponent = computed(() => {
   if (!design.value) return null;
   
   const componentMap = {
-    'ecommerce-modern': () => import('./EcommerceModern.vue'),
-    'service-business': () => import('./ServiceBusiness.vue'),
-    'product-launch': () => import('./ProductLaunch.vue'),
-    'online-course': () => import('./OnlineCourse.vue'),
-    'healthcare': () => import('./Healthcare.vue'),
-    'restaurant': () => import('./Restaurant.vue'),
-    'fashion-store': () => import('./FashionStore.vue'),
-    'consulting': () => import('./Consulting.vue'),
-    'tech-product': () => import('./TechProduct.vue'),
-    'tech-product-v2': () => import('./TechProductV2.vue'),
+    'ecommerce-modern': () => import('@/components/previews/EcommerceModern.vue'),
+    'service-business': () => import('@/components/previews/ServiceBusiness.vue'),
+    'product-launch': () => import('@/components/previews/ProductLaunch.vue'),
+    'online-course': () => import('@/components/previews/OnlineCourse.vue'),
+    'healthcare': () => import('@/components/previews/Healthcare.vue'),
+    'restaurant': () => import('@/components/previews/Restaurant.vue'),
+    'fashion-store': () => import('@/components/previews/FashionStore.vue'),
+    'consulting': () => import('@/components/previews/Consulting.vue'),
+    'tech-product': () => import('@/components/previews/TechProduct.vue'),
+    'tech-product-v2': () => import('@/components/previews/TechProductV2.vue'),
   };
   
   const componentLoader = componentMap[design.value.slug] || componentMap[design.value.id];

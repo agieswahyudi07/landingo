@@ -1,0 +1,135 @@
+---
+import { Icon } from '@iconify/vue';
+
+const navLinks = [
+  { href: '#value-proposition', text: 'Keunggulan', type: 'scroll' },
+  { href: '#pricing', text: 'Paket & Harga', type: 'scroll' },
+  { href: '#cta', text: 'Mulai Sekarang', type: 'scroll' },
+  { href: '/gallery', text: 'Referensi Design', type: 'route' },
+];
+---
+
+<header class="fixed w-full text-gray-600 body-font z-50 bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100">
+  <div class="container mx-auto flex flex-wrap p-4 lg:px-16 flex-row items-center justify-between">
+    
+    <a href="/" class="flex title-font font-semibold items-center text-gray-900 mr-1 hover:opacity-80 transition-opacity" aria-label="Landingo - Landing Page Profesional untuk UMKM">
+      <img src="/assets/images/landingo_logo.webp" alt="Landingo - Landing Page Profesional untuk UMKM" class="h-11 3xl:h-15 w-auto" loading="eager" fetchpriority="high" decoding="sync" />
+    </a>
+
+    <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none transition-colors" aria-label="hamburger">
+      <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+      <svg id="menu-icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
+
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:shadow-none md:static md:w-auto md:flex md:items-center md:bg-transparent">
+      
+      <nav class="flex flex-col md:flex-row sm:ml-auto items-center text-base w-full md:w-auto">
+        {navLinks.map((link) => (
+          link.type === 'route' ? (
+            <a
+              href={link.href}
+              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-indigo-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
+            >
+              {link.text}
+            </a>
+          ) : (
+            <a
+              href={link.href}
+              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-indigo-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
+            >
+              {link.text}
+            </a>
+          )
+        ))}
+      </nav>
+      
+      <div class="flex justify-center w-full md:w-auto mt-4 md:mt-0 lg:ml-4 pb-5 sm:pb-0">
+        <button 
+          id="header-whatsapp-button"
+          class="px-6 py-2 rounded-full bg-[#25D366] text-white font-semibold shadow-md hover:shadow-lg transition-all"
+          aria-label="Konsultasi gratis via WhatsApp untuk pembuatan landing page"
+        >
+          <Icon icon="mdi:whatsapp" class="text-xl mr-2 inline" client:load />
+          Konsultasi Gratis
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Wait for DOM to be ready
+  (function() {
+    function initHeader() {
+      // Mobile menu toggle
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIconOpen = document.getElementById('menu-icon-open');
+      const menuIconClose = document.getElementById('menu-icon-close');
+
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          menuIconOpen?.classList.toggle('hidden');
+          menuIconClose?.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking on a link
+        const links = mobileMenu.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuIconOpen?.classList.remove('hidden');
+            menuIconClose?.classList.add('hidden');
+          });
+        });
+      }
+
+      // Smooth scroll for anchor links
+      const anchorLinks = document.querySelectorAll('a[href^="#"]');
+      anchorLinks.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href && href !== '#') {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const element = document.getElementById(targetId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              // If element not found, might be on different page
+              // Navigate to home first, then scroll
+              if (window.location.pathname !== '/') {
+                window.location.href = '/' + href;
+              }
+            }
+          }
+        });
+      });
+
+      // WhatsApp button
+      const redirectToWhatsApp = () => {
+        const phoneNumber = '6285183077289'; 
+        const defaultMessage = 'Halo! Saya ingin konsultasi tentang landing page profesional untuk bisnis saya. Bisa minta informasi lebih detail?';
+        const encodedMessage = encodeURIComponent(defaultMessage);
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+      };
+
+      const whatsappButton = document.getElementById('header-whatsapp-button');
+      if (whatsappButton) {
+        whatsappButton.addEventListener('click', redirectToWhatsApp);
+      }
+    }
+
+    // Run on DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeader);
+    } else {
+      initHeader();
+    }
+  })();
+</script>
+

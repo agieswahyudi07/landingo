@@ -1,0 +1,277 @@
+---
+import { Icon } from '@iconify/vue';
+
+import { Image } from 'astro:assets';
+import seoImage from '../../assets/seo.webp';
+
+// const imageSrc = '/assets/images/seo.webp'; // Old static path
+---
+
+<main class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero" role="main">
+  <!-- Modern gradient background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 z-0"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(83,86,255,0.1),transparent_50%)] z-0"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.1),transparent_50%)] z-0"></div>
+  
+  <!-- Spotlight Effect (Subtle) -->
+  <div 
+    id="hero-spotlight"
+    class="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500 opacity-0"
+    style="background: radial-gradient(800px circle at var(--x) var(--y), rgba(99, 102, 241, 0.07), transparent 40%);"
+  ></div>
+
+  <!-- Animated background elements -->
+  <div class="absolute top-20 left-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+  <div class="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+  <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+
+  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center xl:px-20 z-10 relative">
+    <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+      <!-- Badge -->
+      <div 
+        data-speed="0.02" 
+        class="parallax-item inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold"
+      >
+        <span class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span>
+        Promo Launching Terbatas
+      </div>
+      
+      <!-- Main Headline -->
+      <h1 
+        data-speed="0.04"
+        class="parallax-item text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 text-gray-900 font-extrabold leading-tight"
+      >
+        <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          Landing Page Profesional
+        </span>
+        <br class="hidden lg:inline-block" />
+        <span class="text-gray-900">untuk Bisnismu</span>
+      </h1>
+      
+      <!-- Subheadline -->
+      <p 
+        data-speed="0.06"
+        class="parallax-item text-lg sm:text-xl text-gray-600 mb-4 leading-relaxed max-w-2xl"
+      >
+        Transformasi bisnis UMKM Anda dengan landing page yang <strong class="text-gray-900">mengkonversi visitor menjadi customer</strong>. Desain modern, loading cepat, dan siap untuk iklan digital.
+      </p>
+      
+      <!-- Trust indicators -->
+      <div 
+        data-speed="0.08"
+        class="parallax-item flex flex-wrap items-center justify-center md:justify-start gap-4 mb-8 text-sm text-gray-600"
+      >
+        <div class="flex items-center gap-2">
+          <Icon icon="mdi:check-circle" class="text-green-500 text-xl" client:load />
+          <span>Mobile-First Design</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon icon="mdi:check-circle" class="text-green-500 text-xl" client:load />
+          <span>SEO Optimized</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon icon="mdi:check-circle" class="text-green-500 text-xl" client:load />
+          <span>WhatsApp Integration</span>
+        </div>
+      </div>
+      
+      <!-- CTA Buttons -->
+      <div 
+        data-speed="0.1"
+        class="parallax-item flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto"
+      >
+        <button 
+          id="cta-button-1"
+          class="cursor-pointer px-8 py-2 text-base font-semibold rounded-full bg-[#5356FF] text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+        >
+          <span class="flex items-center justify-center gap-2">
+            <span class="text-sm font-medium opacity-90">Mulai dari</span>
+            <span class="text-2xl font-bold">Rp 899rb</span>
+          </span>
+        </button>
+        <button 
+          id="cta-button-2"
+          class="cursor-pointer px-8 py-2 text-base font-semibold rounded-full border-2 border-gray-300 hover:border-indigo-500 transition-all duration-300"
+        >
+          <Icon icon="mdi:whatsapp" class="text-xl mr-2 text-green-500 inline" client:load />
+          Konsultasi Gratis
+        </button>
+      </div>
+    </div>
+    
+    <!-- Hero Image -->
+    <div class="hidden lg:block lg:w-1/2 perspective-container">
+      <div 
+        id="hero-image-wrapper"
+        class="relative transition-transform duration-100 ease-out will-change-transform transform-style-3d"
+      >
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-3xl blur-2xl opacity-30 transform rotate-6 pointer-events-none"></div>
+        <Image 
+          id="hero-3d-image"
+          class="relative object-cover object-center rounded-3xl max-w-[500px] xl:max-w-[600px] shadow-2xl" 
+          fetchpriority="high" 
+          alt="Ilustrasi Optimasi SEO dan Performa Website - Jasa Pembuatan Landing Page Google Friendly" 
+          loading="eager" 
+          width={720}
+          height={600}
+          src={seoImage}
+        />
+        
+        <!-- Premium Glint Effect -->
+        <div id="hero-glint" class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 pointer-events-none z-10 mix-blend-overlay"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+  .perspective-container {
+    perspective: 1200px; /* Deeper perspective for premium feel */
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .parallax-item {
+    will-change: transform;
+    /* No transition property here - we manage it via JS frames for perfect smoothness */
+  }
+  
+  @keyframes blob {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+</style>
+
+<script>
+  // WhatsApp Redirect Logic
+  const redirectToWhatsApp = () => {
+    const phoneNumber = '6285183077289'; 
+    const defaultMessage = 'Halo! Saya tertarik dengan layanan landing page profesional Landingo. Bisa minta informasi lebih detail tentang paket dan prosesnya?';
+    const encodedMessage = encodeURIComponent(defaultMessage);
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  document.getElementById('cta-button-1')?.addEventListener('click', redirectToWhatsApp);
+  document.getElementById('cta-button-2')?.addEventListener('click', redirectToWhatsApp);
+
+  // --- Premium Lerp Animation Engine ---
+  class SmoothParallax {
+    constructor() {
+      this.hero = document.getElementById('hero');
+      this.items = document.querySelectorAll('.parallax-item');
+      this.spotlight = document.getElementById('hero-spotlight');
+      this.imageWrapper = document.getElementById('hero-image-wrapper');
+      this.imageGlint = document.getElementById('hero-glint');
+
+      // State
+      this.mouse = { x: 0, y: 0 };
+      this.target = { x: 0, y: 0 };
+      this.current = { x: 0, y: 0 };
+      
+      // Configuration
+      this.lerpFactor = 0.08; // Lower = smoother/heavier (0.05 - 0.1 is sweet spot)
+      this.maxTilt = 8; // Degrees
+      this.maxMove = 30; // Pixels
+      
+      this.init();
+    }
+
+    // Linear Interpolation
+    lerp(start, end, factor) {
+      return start + (end - start) * factor;
+    }
+
+    init() {
+      if (!this.hero) return;
+
+      // Global Mouse Tracking
+      window.addEventListener('mousemove', (e) => {
+        // Normalize mouse position from center of screen (-1 to 1)
+        this.target.x = (e.clientX / window.innerWidth) * 2 - 1;
+        this.target.y = (e.clientY / window.innerHeight) * 2 - 1;
+        
+        // Raw mouse for spotlight
+        this.mouse.x = e.clientX;
+        this.mouse.y = e.clientY;
+      });
+
+      // Start Loop
+      this.animate();
+    }
+
+    animate() {
+      // Interpolate current values towards target
+      this.current.x = this.lerp(this.current.x, this.target.x, this.lerpFactor);
+      this.current.y = this.lerp(this.current.y, this.target.y, this.lerpFactor);
+
+      // 1. Update Parallax Text Items
+      this.items.forEach(item => {
+        const speed = parseFloat(item.getAttribute('data-speed') || '0.05');
+        const x = this.current.x * this.maxMove * speed * 2; // Multiplier for noticeable effect
+        const y = this.current.y * this.maxMove * speed * 2;
+        
+        item.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
+
+      // 2. Update 3D Image Tilt
+      if (this.imageWrapper) {
+        const rotateY = this.current.x * this.maxTilt; // Rotate Y axis based on Mouse X
+        const rotateX = this.current.y * -this.maxTilt; // Rotate X axis based on Mouse Y (inverted)
+        
+        this.imageWrapper.style.transform = `
+          perspective(1000px)
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+          scale3d(1.02, 1.02, 1.02)
+        `;
+        
+        // Glint opacity based on movement
+        if (this.imageGlint) {
+          const moveIntensity = Math.abs(this.current.x) + Math.abs(this.current.y);
+          this.imageGlint.style.opacity = (moveIntensity * 0.5).toString(); // Max 0.5 opacity
+          this.imageGlint.style.transform = `translate(${this.current.x * 20}px, ${this.current.y * 20}px)`;
+        }
+      }
+
+      // 3. Update Spotlight (Raw position for responsiveness, no lerp needed for simple gradient)
+      if (this.spotlight) {
+        const rect = this.hero.getBoundingClientRect();
+        // Calculate relative to hero container
+        const spotX = this.mouse.x - rect.left;
+        const spotY = this.mouse.y - rect.top;
+        
+        this.spotlight.style.setProperty('--x', `${spotX}px`);
+        this.spotlight.style.setProperty('--y', `${spotY}px`);
+        this.spotlight.style.opacity = '1';
+      }
+
+      requestAnimationFrame(this.animate.bind(this));
+    }
+  }
+
+  // Initialize
+  // wrapped in idle callback to not block main thread on load
+  window.requestIdleCallback ? window.requestIdleCallback(() => new SmoothParallax()) : setTimeout(() => new SmoothParallax(), 100);
+
+</script>
+

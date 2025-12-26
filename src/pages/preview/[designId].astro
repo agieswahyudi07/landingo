@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
+import DesignPreview from '../../components/previews/DesignPreview.vue';
+import FloatingBackButton from '../../components/navigation/FloatingBackButton.vue';
+import { designs } from '../../data/designs';
+
+export async function getStaticPaths() {
+  return designs.map((design) => ({
+    params: { designId: design.slug || design.id },
+    props: { design },
+  }));
+}
+
+const { design } = Astro.props;
+const designId = design.slug || design.id;
+
+const title = `Preview ${design.name} - Landingo`;
+const description = `${design.description} - Lihat preview design landing page profesional untuk ${design.category}.`;
+---
+
+<Layout
+  title={title}
+  description={description}
+  image={`https://landingo.id${design.image || '/assets/images/seo.webp'}`}
+>
+  <DesignPreview client:load designId={designId} />
+  <FloatingBackButton client:load />
+</Layout>
+

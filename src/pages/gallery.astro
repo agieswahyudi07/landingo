@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/section/Header.astro';
+import Footer from '../components/section/Footer.astro';
+import DesignGallery from '../pages/_old/DesignGallery.vue';
+import { designs } from '../data/designs';
+---
+
+<Layout
+  title="Referensi Design Landing Page - Landingo"
+  description="Lihat koleksi design landing page profesional kami. Setiap design dibuat dengan fokus pada konversi dan user experience yang optimal. Pilih design yang sesuai dengan brand Anda."
+>
+  <Header />
+  <DesignGallery client:load />
+  <Footer />
+</Layout>
+

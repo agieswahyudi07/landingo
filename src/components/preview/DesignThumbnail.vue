@@ -49,26 +49,39 @@ const scale = ref(0.25); // Scale down to 25% for thumbnail
 const containerWidth = ref(1600); // Base width for desktop design
 const containerHeight = ref(900); // Base height for desktop design
 
+// Load all preview components eagerly/lazily
+const modules = import.meta.glob('@/components/previews/*.vue');
+
 const loadComponent = async () => {
   // Reset component first to ensure clean state
   previewComponent.value = null;
   
+  if (!props.componentName) return;
+
   try {
-    // Dynamically import the preview component
-    const componentModule = await import(`@/pages/previews/${props.componentName}.vue`);
-    previewComponent.value = componentModule.default;
-    
-    // Calculate scale based on thumbnail size
-    // Most landing pages are designed for ~1920px width
-    const baseWidth = 1920;
-    const baseHeight = 1080;
-    
-    const scaleX = props.width / baseWidth;
-    const scaleY = props.height / baseHeight;
-    scale.value = Math.min(scaleX, scaleY) * 0.8; // Add some padding
-    
-    containerWidth.value = props.width / scale.value;
-    containerHeight.value = props.height / scale.value;
+    // Find the matching module key
+    const moduleKey = Object.keys(modules).find(path => 
+      path.includes(`/${props.componentName}.vue`)
+    );
+
+    if (moduleKey) {
+      const componentModule = await modules[moduleKey]();
+      previewComponent.value = componentModule.default;
+      
+      // Calculate scale based on thumbnail size
+      // Most landing pages are designed for ~1920px width
+      const baseWidth = 1920;
+      const baseHeight = 1080;
+      
+      const scaleX = props.width / baseWidth;
+      const scaleY = props.height / baseHeight;
+      scale.value = Math.min(scaleX, scaleY) * 0.8; // Add some padding
+      
+      containerWidth.value = props.width / scale.value;
+      containerHeight.value = props.height / scale.value;
+    } else {
+      console.warn(`Preview component not found: ${props.componentName}`);
+    }
   } catch (error) {
     console.error('Error loading preview component:', error);
     previewComponent.value = null;

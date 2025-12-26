@@ -1,0 +1,131 @@
+---
+import { Icon } from '@iconify/vue';
+
+const links = [
+  { name: 'Keunggulan', href: '#value-proposition' },
+  { name: 'Paket & Harga', href: '#pricing' },
+  { name: 'Referensi Design', href: '/gallery' },
+  //{ name: 'FAQ', href: '#faq' },
+];
+
+const socials = [
+  { name: 'Instagram', icon: 'mdi:instagram', href: 'https://instagram.com/landingo.id' },
+  { name: 'Facebook', icon: 'mdi:facebook', href: 'https://facebook.com/landingo.id' }
+  // { name: 'LinkedIn', icon: 'mdi:linkedin', href: 'https://linkedin.com/company/landingo.id' },
+];
+---
+
+<footer class="bg-gray-50 text-gray-800 pt-16 pb-12">
+
+  <div class="container px-6 mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      
+      <!-- Brand Section -->
+      <div class="lg:col-span-1">
+        <a href="/" class="flex items-center gap-2 mb-6">
+          <img src="/assets/images/landingo_logo2.webp" alt="Landingo Logo" class="w-10 h-10" />
+          <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+            Landingo
+          </span>
+        </a>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Partner digital terbaik untuk transformasi bisnis UMKM Anda. Desain profesional, konversi maksimal.
+        </p>
+        <div class="flex gap-4">
+          {socials.map(social => (
+            <a 
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300 transform hover:-translate-y-1"
+              aria-label={social.name}
+            >
+              <Icon icon={social.icon} class="text-xl" client:load />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="lg:col-span-1">
+        <h3 class="text-gray-900 font-bold text-lg mb-6">Navigasi</h3>
+        <ul class="space-y-4">
+          {links.map(link => (
+            <li>
+              <a 
+                href={link.href}
+                class="text-gray-600 hover:text-indigo-600 transition-colors flex items-center gap-2 group"
+              >
+                <Icon icon="mdi:chevron-right" class="text-gray-400 group-hover:text-indigo-600 transition-colors" client:load />
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="lg:col-span-1">
+        <h3 class="text-gray-900 font-bold text-lg mb-6">Hubungi Kami</h3>
+        <ul class="space-y-4">
+          <li>
+            <a 
+              href="https://wa.me/6285183077289" 
+              target="_blank"
+              class="flex items-start gap-3 text-gray-600 hover:text-green-600 transition-colors"
+            >
+              <div class="p-2 bg-green-50 rounded-full text-green-600 mt-1 flex-shrink-0">
+                 <Icon icon="mdi:whatsapp" class="text-lg" client:load />
+              </div>
+              <span>
+                <span class="font-semibold block text-gray-900">WhatsApp Support</span>
+                <span class="block text-sm text-gray-500 mt-1">Setiap Hari, 07:00 - 22:00</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a 
+              href="mailto:hello@landingo.id" 
+              class="flex items-center gap-3 text-gray-600 hover:text-indigo-600 transition-colors"
+            >
+              <div class="p-2 bg-indigo-50 rounded-full text-indigo-600 flex-shrink-0">
+                <Icon icon="mdi:email-outline" class="text-lg" client:load />
+              </div>
+              agieswahyudi@landingo.id
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Newsletter/CTA Small -->
+      <div class="lg:col-span-1">
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+          <h3 class="text-gray-900 font-bold text-lg mb-2">Mulai Sekarang?</h3>
+          <p class="text-gray-600 mb-6 text-sm">
+            Konsultasikan kebutuhan landing page Anda secara gratis.
+          </p>
+          <a 
+            href="https://wa.me/6285183077289"
+            target="_blank"
+            class="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-white font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+          >
+            Konsultasi Gratis
+            <Icon icon="mdi:arrow-right" class="ml-2" client:load />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-500 text-sm text-center md:text-left">
+        © {new Date().getFullYear()} Landingo. All rights reserved.
+      </p>
+      <!-- <div class="flex items-center gap-6 text-sm text-gray-500 font-medium">
+        <a href="/privacy" class="hover:text-indigo-600 transition-colors">Privacy Policy</a>
+        <a href="/terms" class="hover:text-indigo-600 transition-colors">Terms of Service</a>
+      </div> -->
+    </div>
+  </div>
+</footer>
+

@@ -42,14 +42,14 @@ const package_list = ref([
         quickMessage: 'Halo! Saya tertarik dengan paket LANDINGO LITE. Bisa minta informasi lebih detail?',
         popular: true,
         list:[
-            { icon:'mdi:check-circle', text:'1 halaman landing page clean & mobile-friendly' },
+            { icon:'mdi:check-circle', text:'1 - 2 halaman landing page clean & mobile-friendly' },
             { icon:'mdi:check-circle', text:'Desain simple, rapi, tidak berlebihan' },
             { icon:'mdi:check-circle', text:'CTA langsung ke WhatsApp' },
-            { icon:'mdi:check-circle', text:'FREE domain .com (tahun pertama)' },
-            { icon:'mdi:check-circle', text:'Hosting 6 bulan' },
+            { icon:'mdi:check-circle', text:'FREE domain .com' },
+            { icon:'mdi:check-circle', text:'Hosting 1 tahun' },
             { icon:'mdi:check-circle', text:'SSL seumur hidup' },
             { icon:'mdi:check-circle', text:'1x revisi minor' },
-            { icon:'mdi:check-circle', text:'Support 15 hari' },
+            { icon:'mdi:check-circle', text:'Support 30 hari' },
         ]
     },
     {
@@ -69,7 +69,7 @@ const package_list = ref([
             // description: 'Form → Google Sheets + email admin + auto-email user'
         // },
         list:[
-            { icon:'mdi:check-circle', text:'1–3 halaman landing page' },
+            { icon:'mdi:check-circle', text:'1 – 5 halaman landing page' },
             { icon:'mdi:check-circle', text:'Desain premium + animasi ringan' },
             { icon:'mdi:check-circle', text:'Speed optimization (lebih cepat dibuka)' },
             { icon:'mdi:check-circle', text:'Basic SEO (judul + deskripsi)' },
@@ -77,7 +77,7 @@ const package_list = ref([
             { icon:'mdi:check-circle', text:'Event tracking dasar (WhatsApp click)' },
             { icon:'mdi:check-circle', text:'Hosting 1 tahun' },
             { icon:'mdi:check-circle', text:'3x revisi minor' },
-            { icon:'mdi:check-circle', text:'Support 30 hari' },
+            { icon:'mdi:check-circle', text:'Support 45 hari' },
         ]
     },
     {
@@ -92,7 +92,7 @@ const package_list = ref([
         quickMessage: 'Halo! Saya tertarik dengan paket LANDINGO FUNNEL. Bisa minta informasi lebih detail?',
         popular: false,
         list:[
-            { icon:'mdi:check-circle', text:'3–5 halaman funnel (Offer → Form → Thank You)' },
+            { icon:'mdi:check-circle', text:'1–10 halaman funnel (Offer → Form → Thank You)' },
             { icon:'mdi:check-circle', text:'Desain premium + motion halus' },
             { icon:'mdi:check-circle', text:'VPS hosting 1 tahun' },
             { icon:'mdi:check-circle', text:'Speed optimization lanjutan' },

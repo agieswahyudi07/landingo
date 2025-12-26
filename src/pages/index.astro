@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/section/Header.astro';
+import Hero from '../components/section/Hero.astro';
+import ValueProposition from '../components/section/ValueProposition.astro';
+import Footer from '../components/section/Footer.astro';
+import DesignShowcase from '../components/section/DesignShowcase.vue';
+import Pricing from '../components/section/Pricing.vue';
+import Cta from '../components/section/Cta.astro';
+---
+
+<Layout
+  title="Landingo - Landing Page Profesional untuk UMKM | Mulai dari Rp 899rb | SEO Optimized"
+  description="Transformasi bisnis UMKM Anda dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, loading cepat, SEO optimized, dan siap untuk iklan digital. Mulai dari Rp 899rb dengan diskon hingga 30%. Siap online dalam 2-5 hari kerja."
+>
+  <Header />
+  <Hero />
+  <ValueProposition />
+  <DesignShowcase client:visible />
+  <Pricing client:visible />
+  <Cta />
+  <Footer />
+</Layout>
+

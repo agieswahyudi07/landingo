@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/pages/Home.vue';
-import DesignGallery from '@/pages/DesignGallery.vue';
+// Note: Router ini untuk legacy Vue SPA, tidak digunakan di Astro
+// File-file sudah dipindahkan ke _old folder
+import Home from '@/pages/_old/Home.vue';
+import DesignGallery from '@/pages/_old/DesignGallery.vue';
 
-// Lazy load preview pages
-const EcommerceModern = () => import('@/pages/previews/EcommerceModern.vue');
+// Lazy load preview pages (legacy - not used in Astro)
+const EcommerceModern = () => import('@/components/previews/EcommerceModern.vue');
 
 const routes = [
   {
@@ -25,7 +27,7 @@ const routes = [
   {
     path: '/preview/:designId',
     name: 'DesignPreview',
-    component: () => import('@/pages/previews/DesignPreview.vue'),
+    component: () => import('@/components/previews/DesignPreview.vue'),
     meta: {
       title: 'Preview Design - Landingo'
     }

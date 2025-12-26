@@ -1,0 +1,127 @@
+---
+import '../assets/main.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title = 'Landingo - Landing Page Profesional untuk UMKM | Mulai dari Rp 899rb | SEO Optimized',
+  description = 'Transformasi bisnis UMKM Anda dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, loading cepat, SEO optimized, dan siap untuk iklan digital. Mulai dari Rp 899rb dengan diskon hingga 30%. Siap online dalam 2-5 hari kerja.',
+  image = 'https://landingo.id/assets/images/seo.webp',
+  type = 'website'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://landingo.id');
+---
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title & Meta Description -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="landing page profesional, website UMKM, landing page murah, landing page SEO optimized, jasa pembuatan landing page, landing page Indonesia, website untuk bisnis, landing page cepat, landing page mobile-first, landing page WhatsApp ready" />
+    <meta name="author" content="Landingo" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="Indonesian" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:site_name" content="Landingo" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/webp" href="/assets/images/landingo_logo2.webp" />
+    <link rel="apple-touch-icon" href="/assets/images/landingo_logo2.webp" />
+    <link rel="canonical" href={canonicalURL.toString()} />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#5356FF" />
+    <meta name="msapplication-TileColor" content="#5356FF" />
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.whatsapp.com" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/assets/main.css" as="style" fetchpriority="high" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" as="style" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" />
+    
+    <!-- Font Display Optimization -->
+    <style>
+      @font-face {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400 900;
+        font-display: swap;
+        src: url('https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+
+    <!-- Preload Hero Image (LCP) -->
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/images/seo.webp"
+      fetchpriority="high"
+      type="image/webp"
+    />
+    
+    <!-- Preload Logo Images -->
+    <link rel="preload" as="image" href="/assets/images/landingo_logo2.webp" fetchpriority="high" type="image/webp" />
+    <link rel="preload" as="image" href="/assets/images/landingo_logo.webp" fetchpriority="high" type="image/webp" />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Landingo",
+      "url": "https://landingo.id",
+      "logo": "https://landingo.id/assets/images/landingo_logo.webp",
+      "sameAs": [
+        "https://www.facebook.com/landingo.id",
+        "https://www.instagram.com/landingo.id",
+        "https://www.linkedin.com/company/landingo.id"
+      ],
+      "description": "Transformasi bisnis UMKM dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, SEO optimized, mobile-first, dan siap untuk iklan digital.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+62-851-8307-7289",
+        "contactType": "customer service",
+        "availableLanguage": ["Indonesian"]
+      }
+    })} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
