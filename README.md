@@ -81,4 +81,3 @@ Open in browser: [http://localhost:5173](http://localhost:5173)
 ## 🙋‍♂️ Author
 
 Built with 💙 by [Agies Wahyudi](https://agieswahyudi.vercel.app)
-
