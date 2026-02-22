@@ -9,11 +9,11 @@ const isMenuOpen = ref(false);
 
 // Daftar link navigasi
 const navLinks = ref([
-  { href: '#value-proposition', text: 'Keunggulan', type: 'scroll' },
-  { href: '#pricing', text: 'Paket & Harga', type: 'scroll' },
-  { href: '#cta', text: 'Mulai Sekarang', type: 'scroll' },
+  { href: '/#value-proposition', text: 'Keunggulan', type: 'scroll' },
+  { href: '/#pricing', text: 'Paket & Harga', type: 'scroll' },
+  { href: '/#cta', text: 'Mulai Sekarang', type: 'scroll' },
   { path: '/gallery', text: 'Referensi Design', type: 'route' },
-  // { href: '#faq', text: 'FAQ' },
+  // { href: '/#faq', text: 'FAQ' },
 ]);
 
 const closeMenu = () => {
@@ -35,7 +35,7 @@ const redirectToWhatsApp = () => {
 
 /**
  * Fungsi utama untuk smooth scroll atau navigasi halaman.
- * Menerima id dari section tujuan (contoh: '#harga') atau route path.
+ * Menerima route path atau anchor link.
  */
 const handleNavigation = (link) => {
   if (link.type === 'route') {
@@ -43,22 +43,25 @@ const handleNavigation = (link) => {
     router.push(link.path);
     closeMenu();
   } else {
-    // Scroll to section (only if on home page)
+    // For scroll links (e.g. '/#cta')
+    const targetId = link.href.split('#')[1];
+    
     if (route.path === '/') {
-      const targetId = link.href.substring(1);
-      const element = document.getElementById(targetId);
-      
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      if (targetId) {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     } else {
       // If on different page, navigate to home first then scroll
-      router.push('/').then(() => {
+      router.push('/#' + targetId).then(() => {
         setTimeout(() => {
-          const targetId = link.href.substring(1);
-          const element = document.getElementById(targetId);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+          if (targetId) {
+            const element = document.getElementById(targetId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
           }
         }, 100);
       });

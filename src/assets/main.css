@@ -9,6 +9,10 @@
   --color-quaternary: #DFF5FF;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-display);
   /* Performance optimizations */

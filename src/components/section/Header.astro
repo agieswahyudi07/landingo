@@ -4,9 +4,9 @@ import { Image } from 'astro:assets';
 import logoImage from '../../assets/landingo_logo.webp';
 
 const navLinks = [
-  { href: '#value-proposition', text: 'Keunggulan', type: 'scroll' },
-  { href: '#pricing', text: 'Paket & Harga', type: 'scroll' },
-  { href: '#cta', text: 'Mulai Sekarang', type: 'scroll' },
+  { href: '/#value-proposition', text: 'Keunggulan', type: 'scroll' },
+  { href: '/#pricing', text: 'Paket & Harga', type: 'scroll' },
+  { href: '/#cta', text: 'Mulai Sekarang', type: 'scroll' },
   { href: '/gallery', text: 'Referensi Design', type: 'route' },
 ];
 ---
@@ -90,23 +90,20 @@ const navLinks = [
       }
 
       // Smooth scroll for anchor links
-      const anchorLinks = document.querySelectorAll('a[href^="#"]');
+      const anchorLinks = document.querySelectorAll('a[href^="/#"]');
       anchorLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
-          if (href && href !== '#') {
-            e.preventDefault();
-            const targetId = href.substring(1);
-            const element = document.getElementById(targetId);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            } else {
-              // If element not found, might be on different page
-              // Navigate to home first, then scroll
-              if (window.location.pathname !== '/') {
-                window.location.href = '/' + href;
+          if (href) {
+            const targetId = href.split('#')[1];
+            if (targetId && window.location.pathname === '/') {
+              e.preventDefault();
+              const element = document.getElementById(targetId);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
               }
             }
+            // else, allow default navigation to /#targetId
           }
         });
       });
