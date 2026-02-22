@@ -1,5 +1,5 @@
 <template>
-  <div class="design-thumbnail-wrapper">
+  <div class="design-thumbnail-wrapper" ref="wrapperRef">
     <div 
       ref="thumbnailContainer" 
       class="thumbnail-container"
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, onUnmounted } from 'vue';
+import { ref, onMounted, watch, onUnmounted, nextTick } from 'vue';
 import { Icon } from '@iconify/vue';
 
 const props = defineProps({
@@ -33,6 +33,8 @@ const props = defineProps({
     type: String,
     required: true
   },
+  // We keep width and height props for backward compatibility, 
+  // but they won't strictly dictate the CSS anymore if the wrapper resizes.
   width: {
     type: Number,
     default: 400
@@ -43,23 +45,30 @@ const props = defineProps({
   }
 });
 
+const wrapperRef = ref(null);
 const thumbnailContainer = ref(null);
 const previewComponent = ref(null);
-const scale = ref(0.25); // Scale down to 25% for thumbnail
-const containerWidth = ref(1600); // Base width for desktop design
-const containerHeight = ref(900); // Base height for desktop design
+const scale = ref(0.25); 
+const containerWidth = ref(1920); 
+const containerHeight = ref(2000); // Make height tall enough so it covers the thumbnail wrapper fully before overflow hidden
 
-// Load all preview components eagerly/lazily
 const modules = import.meta.glob('@/components/previews/*.vue');
+let resizeObserver = null;
+
+const updateScale = () => {
+  if (!wrapperRef.value) return;
+  const { clientWidth } = wrapperRef.value;
+  // Always scale to fit the exact width of the wrapper layout
+  if (clientWidth > 0) {
+    scale.value = clientWidth / containerWidth.value;
+  }
+};
 
 const loadComponent = async () => {
-  // Reset component first to ensure clean state
   previewComponent.value = null;
-  
   if (!props.componentName) return;
 
   try {
-    // Find the matching module key
     const moduleKey = Object.keys(modules).find(path => 
       path.includes(`/${props.componentName}.vue`)
     );
@@ -68,17 +77,9 @@ const loadComponent = async () => {
       const componentModule = await modules[moduleKey]();
       previewComponent.value = componentModule.default;
       
-      // Calculate scale based on thumbnail size
-      // Most landing pages are designed for ~1920px width
-      const baseWidth = 1920;
-      const baseHeight = 1080;
-      
-      const scaleX = props.width / baseWidth;
-      const scaleY = props.height / baseHeight;
-      scale.value = Math.min(scaleX, scaleY) * 0.8; // Add some padding
-      
-      containerWidth.value = props.width / scale.value;
-      containerHeight.value = props.height / scale.value;
+      nextTick(() => {
+        updateScale();
+      });
     } else {
       console.warn(`Preview component not found: ${props.componentName}`);
     }
@@ -88,18 +89,27 @@ const loadComponent = async () => {
   }
 };
 
-// Watch for componentName changes
 watch(() => props.componentName, () => {
   loadComponent();
 }, { immediate: false });
 
 onMounted(() => {
   loadComponent();
+  
+  resizeObserver = new ResizeObserver(() => {
+    updateScale();
+  });
+  
+  if (wrapperRef.value) {
+    resizeObserver.observe(wrapperRef.value);
+  }
 });
 
 onUnmounted(() => {
-  // Cleanup: reset component to ensure proper unmounting
   previewComponent.value = null;
+  if (resizeObserver) {
+    resizeObserver.disconnect();
+  }
 });
 </script>
 
