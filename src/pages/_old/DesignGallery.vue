@@ -177,6 +177,7 @@ const categories = [
   { id: 'education', name: 'Edukasi', icon: 'mdi:school' },
   { id: 'healthcare', name: 'Kesehatan', icon: 'mdi:medical-bag' },
   { id: 'food', name: 'F&B', icon: 'mdi:food' },
+  { id: 'interior', name: 'Properti & Interior', icon: 'mdi:sofa' },
 ];
 
 const filteredDesigns = computed(() => {

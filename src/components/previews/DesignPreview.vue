@@ -58,6 +58,8 @@ const previewComponent = computed(() => {
     'consulting': () => import('@/components/previews/Consulting.vue'),
     'tech-product': () => import('@/components/previews/TechProduct.vue'),
     'tech-product-v2': () => import('@/components/previews/TechProductV2.vue'),
+    'interior-design': () => import('@/components/previews/InteriorDesign.vue'),
+    'architecture-studio': () => import('@/components/previews/ArchitectureStudio.vue'),
   };
   
   const componentLoader = componentMap[design.value.slug] || componentMap[design.value.id];

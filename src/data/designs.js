@@ -110,5 +110,27 @@ export const designs = [
     previewPath: '/preview/tech-product-v2',
     previewComponent: 'TechProductV2'
   },
+  {
+    id: 'interior-design',
+    slug: 'interior-design',
+    name: 'Lumina Interior HQ',
+    category: 'interior',
+    description: 'Landing page premium nan elegan untuk layanan desain interior, kontraktor, dan furnitur custom.',
+    features: ['Mewah & Minimalis', 'Portfolio Masonry Gallery', 'Layanan & Filosofi', 'Testimoni Elegan', 'Booking Konsultasi'],
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&auto=format&fit=crop', // Temporary Unsplash image
+    previewPath: '/preview/interior-design',
+    previewComponent: 'InteriorDesign'
+  },
+  {
+    id: 'architecture-studio',
+    slug: 'architecture-studio',
+    name: 'ArchBold Studio',
+    category: 'interior',
+    description: 'Konsep desain arsitektur dan interior yang tegas, gelap, dan mengutamakan nuansa industrial modern.',
+    features: ['Dark Mode Penuh', 'Tipografi Brutalist', 'Marquee Dinamis', 'Portfolio Asimetris', 'Estetika Maskulin'],
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop', // Architecture/Dark Unsplash image
+    previewPath: '/preview/architecture-studio',
+    previewComponent: 'ArchitectureStudio'
+  }
 ];
 
