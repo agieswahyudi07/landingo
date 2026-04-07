@@ -3,13 +3,13 @@
     <!-- Header Section -->
     <section class="container px-5 mx-auto mb-12">
       <div class="text-center max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold">
-          <Icon icon="mdi:palette" class="text-indigo-500" />
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
+          <Icon icon="mdi:palette" class="text-blue-500" />
           Referensi Design Landing Page
         </div>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-4">
           Koleksi Design
-          <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <span class="bg-gradient-to-r from-blue-600 via-sky-600 to-cyan-600 bg-clip-text text-transparent">
             Profesional
           </span>
         </h1>
@@ -28,8 +28,8 @@
           :class="[
             'cursor-pointer px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300',
             activeCategory === category.id
-              ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105'
-              : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-indigo-300 hover:text-indigo-600'
+              ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow-lg scale-105'
+              : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-blue-300 hover:text-blue-600'
           ]"
         >
           <Icon :icon="category.icon" class="inline mr-2" />
@@ -79,14 +79,14 @@
                   :href="design.previewPath"
                   target="_blank"
                   rel="noopener"
-                  class="cursor-pointer flex-1 px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold hover:bg-indigo-600 hover:text-white transition-colors flex items-center justify-center gap-2"
+                  class="cursor-pointer flex-1 px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors flex items-center justify-center gap-2"
                 >
                   <Icon icon="mdi:eye" />
                   Lihat Preview
                 </a>
                 <button
                   @click="viewDesign(design)"
-                  class="cursor-pointer flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+                  class="cursor-pointer flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
                 >
                   <Icon icon="mdi:information" />
                   Info
@@ -112,7 +112,7 @@
               <span
                 v-for="(feature, idx) in design.features.slice(0, 5)"
                 :key="idx"
-                class="px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md text-xs font-medium"
+                class="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md text-xs font-medium"
               >
                 {{ feature }}
               </span>
@@ -124,7 +124,7 @@
             <!-- CTA Button -->
             <button
               @click="redirectToWhatsApp(design)"
-              class="cursor-pointer w-full px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+              class="cursor-pointer w-full px-4 py-2.5 bg-gradient-to-r from-blue-600 to-sky-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-sky-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
             >
               <Icon icon="mdi:whatsapp" />
               Konsultasi Design Ini
@@ -142,14 +142,14 @@
 
     <!-- CTA Section -->
     <section class="container px-5 mx-auto mt-16">
-      <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden">
+      <div class="bg-gradient-to-r from-blue-600 via-sky-600 to-cyan-600 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden">
         <div class="absolute inset-0 cta-pattern opacity-20"></div>
         <div class="relative z-10">
           <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Siap Membuat Landing Page Profesional?</h2>
           <p class="text-lg mb-6 opacity-90">Konsultasikan kebutuhan design Anda dengan tim kami. Gratis!</p>
           <button
             @click="redirectToWhatsApp()"
-            class="cursor-pointer inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+            class="cursor-pointer inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
             <Icon icon="mdi:whatsapp" class="text-2xl" />
             Konsultasi Gratis via WhatsApp

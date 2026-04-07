@@ -33,9 +33,9 @@ const getCategoryLabel = (category) => {
 
 const getCategoryGradient = (category) => {
   const gradients = {
-    'ecommerce': 'from-blue-500 to-purple-500',
-    'service': 'from-indigo-500 to-cyan-500',
-    'product': 'from-purple-500 to-pink-500',
+    'ecommerce': 'from-blue-500 to-sky-500',
+    'service': 'from-blue-500 to-cyan-500',
+    'product': 'from-sky-500 to-cyan-500',
     'education': 'from-green-500 to-teal-500',
     'healthcare': 'from-blue-500 to-cyan-500',
     'food': 'from-orange-500 to-red-500'
@@ -148,20 +148,20 @@ onMounted(() => {
     class="relative py-24 bg-gradient-to-b from-white via-[#DFF5FF]/20 to-white overflow-hidden"
   >
     <!-- Background Decor -->
-    <div class="absolute top-0 right-0 w-96 h-96 bg-[#5356FF] rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#2563EB] rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#378CE7] rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
 
     <div class="container px-5 mx-auto relative z-10">
       <!-- Header -->
       <div ref="headerRef" class="text-center max-w-3xl mx-auto mb-16">
         <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-[#DFF5FF] border border-[#67C6E3]/30">
-          <Icon icon="mdi:palette" class="text-[#5356FF]" />
-          <span class="text-sm font-semibold text-[#5356FF]">Portfolio Design</span>
+          <Icon icon="mdi:palette" class="text-[#2563EB]" />
+          <span class="text-sm font-semibold text-[#2563EB]">Portfolio Design</span>
         </div>
         
         <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
           Pilih Design yang
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#5356FF] to-[#378CE7]">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#378CE7]">
             Sesuai Brand Anda
           </span>
         </h2>
@@ -212,14 +212,14 @@ onMounted(() => {
               {{ getCategoryLabel(design.category) }}
             </div>
             <!-- View Badge -->
-            <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#5356FF] text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+            <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#2563EB] text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
               Preview
             </div>
           </div>
 
           <!-- Content -->
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#5356FF] transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#2563EB] transition-colors">
               {{ design.name }}
             </h3>
             <p class="text-sm text-gray-600 mb-4 line-clamp-2">
@@ -229,13 +229,13 @@ onMounted(() => {
               <span
                 v-for="(feature, idx) in design.features.slice(0, 2)"
                 :key="idx"
-                class="px-2 py-1 rounded-md bg-[#DFF5FF] text-[#5356FF] text-xs font-medium"
+                class="px-2 py-1 rounded-md bg-[#DFF5FF] text-[#2563EB] text-xs font-medium"
               >
                 {{ feature }}
               </span>
             </div>
             <button
-              class="w-full px-4 py-2 rounded-lg bg-[#DFF5FF] text-[#5356FF] font-semibold text-sm hover:bg-[#5356FF] hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+              class="w-full px-4 py-2 rounded-lg bg-[#DFF5FF] text-[#2563EB] font-semibold text-sm hover:bg-[#2563EB] hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
             >
               <span>Lihat Preview</span>
               <Icon icon="mdi:arrow-right" class="text-lg" />
@@ -253,7 +253,7 @@ onMounted(() => {
       <div class="text-center">
         <button
           @click="navigateToGallery"
-          class="cta-button inline-flex items-center gap-3 px-8 py-4 bg-[#5356FF] hover:bg-[#378CE7] text-white rounded-full font-bold text-lg shadow-xl shadow-[#5356FF]/20 hover:shadow-[#5356FF]/40 transition-all duration-300 transform hover:-translate-y-1"
+          class="cta-button inline-flex items-center gap-3 px-8 py-4 bg-[#2563EB] hover:bg-[#378CE7] text-white rounded-full font-bold text-lg shadow-xl shadow-[#2563EB]/20 hover:shadow-[#2563EB]/40 transition-all duration-300 transform hover:-translate-y-1"
           style="opacity: 1; visibility: visible;"
         >
           <Icon icon="mdi:view-grid-outline" class="text-2xl" />

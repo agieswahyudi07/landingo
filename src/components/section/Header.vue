@@ -92,7 +92,7 @@ const handleNavigation = (link) => {
               v-if="link.type === 'route'"
               :to="link.path"
               @click="closeMenu"
-              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-indigo-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
+              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-blue-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
             >
               {{ link.text }}
             </router-link>
@@ -100,7 +100,7 @@ const handleNavigation = (link) => {
               v-else
               :href="link.href"
               @click.prevent="handleNavigation(link)"
-              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-indigo-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
+              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-blue-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
             >
               {{ link.text }}
             </a>

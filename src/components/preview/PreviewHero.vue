@@ -1,24 +1,24 @@
 <template>
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden" :style="heroStyle">
     <!-- Background Elements -->
-    <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-sky-50"></div>
     <div v-if="showBlobs" class="absolute inset-0">
-      <div class="absolute top-20 left-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div class="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-      <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+      <div class="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div class="absolute top-40 right-10 w-72 h-72 bg-sky-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
     </div>
 
     <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center z-10 relative">
       <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
         <!-- Badge -->
-        <div v-if="badge" class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold">
-          <span class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span>
+        <div v-if="badge" class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
+          <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
           {{ badge }}
         </div>
         
         <!-- Main Headline -->
         <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 text-gray-900 font-extrabold leading-tight">
-          <span v-if="headlineGradient" class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <span v-if="headlineGradient" class="bg-gradient-to-r from-blue-600 via-sky-600 to-cyan-600 bg-clip-text text-transparent">
             {{ headlineGradient }}
           </span>
           <span v-if="headlineGradient && headlineNormal">
@@ -41,8 +41,8 @@
             :class="[
               'px-8 py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2',
               index === 0 
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:scale-105' 
-                : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-indigo-500 hover:text-indigo-600'
+                ? 'bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow-lg hover:shadow-xl hover:scale-105' 
+                : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-blue-500 hover:text-blue-600'
             ]"
           >
             <Icon v-if="cta.icon" :icon="cta.icon" class="text-xl" />
@@ -54,9 +54,9 @@
       <!-- Hero Image/Visual -->
       <div v-if="showImage" class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
         <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-3xl blur-2xl opacity-30 transform rotate-6"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-sky-400 rounded-3xl blur-2xl opacity-30 transform rotate-6"></div>
           <div class="relative bg-white rounded-3xl shadow-2xl p-8">
-            <div class="aspect-video bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl flex items-center justify-center">
+            <div class="aspect-video bg-gradient-to-br from-blue-100 to-sky-100 rounded-2xl flex items-center justify-center">
               <Icon icon="mdi:image-outline" class="text-6xl text-gray-400" />
             </div>
           </div>

@@ -19,7 +19,7 @@ const list = ref([
     icon: 'mdi:cellphone-link', 
     title: 'Mobile-First',
     text: 'Optimized untuk semua device. 70%+ traffic dari mobile, landing page Anda akan tampil sempurna di smartphone.',
-    color: 'from-purple-500 to-pink-500'
+    color: 'from-sky-500 to-cyan-500'
   },
   { 
     icon: 'mdi:whatsapp', 
@@ -31,7 +31,7 @@ const list = ref([
     icon: 'mdi:shield-check', 
     title: 'All-In-One',
     text: 'Domain, hosting, SSL certificate, dan email bisnis sudah termasuk. Tidak perlu repot setup sendiri.',
-    color: 'from-indigo-500 to-blue-500'
+    color: 'from-blue-500 to-blue-500'
   },
   { 
     icon: 'mdi:google', 
@@ -43,7 +43,7 @@ const list = ref([
     icon: 'mdi:trending-up', 
     title: 'Tingkatkan Kredibilitas',
     text: 'Tampil profesional meningkatkan kepercayaan customer. Brand Anda terlihat lebih established dan terpercaya.',
-    color: 'from-violet-500 to-purple-500'
+    color: 'from-violet-500 to-sky-500'
   },
   { 
     icon: 'mdi:autorenew', 
@@ -122,7 +122,7 @@ onMounted(() => {
   >
     <div class="container px-5 mx-auto relative z-10">
       <div class="text-center mb-16" ref="headerContainer">
-        <div class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold">
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
           <Icon icon="mdi:star" class="text-yellow-500" />
           Mengapa Memilih Landingo?
         </div>
@@ -130,7 +130,7 @@ onMounted(() => {
           class="sm:text-4xl text-3xl font-extrabold text-center title-font text-gray-900 mb-4"
         >
           Semua yang Dibutuhkan untuk
-          <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"> Sukses Online</span>
+          <span class="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent"> Sukses Online</span>
         </h2>
         <p
           class="text-lg text-gray-600 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto"

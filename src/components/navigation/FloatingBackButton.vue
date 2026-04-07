@@ -5,7 +5,7 @@
     aria-label="Kembali ke Gallery"
   >
     <!-- Background Gradient on Hover -->
-    <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/80 to-purple-600/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-sky-600/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
     
     <!-- Default Dark Background -->
     <div class="absolute inset-0 bg-gray-900/80 opacity-100 group-hover:opacity-0 transition-opacity duration-300 -z-10"></div>

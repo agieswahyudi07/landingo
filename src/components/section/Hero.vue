@@ -114,26 +114,26 @@ const redirectToWhatsApp = () => {
 <template>
     <main class="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero" role="main">
         <!-- Modern gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-sky-50 z-0"></div>
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(83,86,255,0.1),transparent_50%)] z-0"></div>
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.1),transparent_50%)] z-0"></div>
         
         <!-- Animated background elements -->
-        <div class="absolute top-20 left-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div class="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div class="absolute top-40 right-10 w-72 h-72 bg-sky-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center xl:px-20 z-10 relative">
             <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                 <!-- Badge -->
-                <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold">
-                    <span class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span>
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
                     Promo Launching Terbatas
                 </div>
                 
                 <!-- Main Headline -->
                 <h1 ref="heroTitle" class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6 text-gray-900 font-extrabold leading-tight">
-                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    <span class="bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">
                         Landing Page Profesional
                     </span>
                     <br class="hidden lg:inline-block">
@@ -166,20 +166,20 @@ const redirectToWhatsApp = () => {
                     <n-button 
                         type="primary" 
                         size="large" 
-                        color="#5356FF" 
+                        color="#2563EB" 
                         round
                         class="px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                         @click="redirectToWhatsApp"
                     >
                         <span class="flex items-center gap-2">
-                            Mulai dari <span class="text-2xl font-bold">Rp 899rb</span>
+                            Mulai dari <span class="text-2xl font-bold">Rp 1.500.000</span>
                         </span>
                     </n-button>
                     <n-button 
                         type="default" 
                         size="large" 
                         round
-                        class="px-8 py-6 text-base font-semibold border-2 border-gray-300 hover:border-indigo-500 transition-all duration-300"
+                        class="px-8 py-6 text-base font-semibold border-2 border-gray-300 hover:border-blue-500 transition-all duration-300"
                         @click="redirectToWhatsApp"
                     >
                         <Icon icon="mdi:whatsapp" class="text-xl mr-2 text-green-500" />
@@ -196,7 +196,7 @@ const redirectToWhatsApp = () => {
             <!-- Hero Image -->
             <div ref="heroImage" class="hidden lg:block lg:w-1/2">
                 <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-3xl blur-2xl opacity-30 transform rotate-6"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-sky-400 rounded-3xl blur-2xl opacity-30 transform rotate-6"></div>
                     <img 
                         class="relative object-cover object-center rounded-3xl max-w-[500px] xl:max-w-[600px] shadow-2xl transform hover:scale-105 transition-transform duration-500" 
                         fetchpriority="high" 

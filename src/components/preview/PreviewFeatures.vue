@@ -2,7 +2,7 @@
   <section class="py-24 bg-white">
     <div class="container px-5 mx-auto">
       <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold">
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
           <Icon icon="mdi:star" class="text-yellow-500" />
           {{ badge || 'Fitur Utama' }}
         </div>
@@ -18,9 +18,9 @@
         <div
           v-for="(feature, index) in features"
           :key="index"
-          class="p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-indigo-200 hover:shadow-lg transition-all duration-300"
+          class="p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300"
         >
-          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-sky-600 flex items-center justify-center mb-4">
             <Icon :icon="feature.icon || 'mdi:check-circle'" class="text-2xl text-white" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">{{ feature.title }}</h3>

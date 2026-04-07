@@ -99,7 +99,7 @@ onMounted(() => {
     class="relative min-h-screen flex flex-col text-white body-font justify-center overflow-hidden"
   >
     <!-- Modern gradient background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-sky-600 to-cyan-600 z-0"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)] z-0"></div>
     
     <!-- Animated background elements -->
@@ -128,7 +128,7 @@ onMounted(() => {
 
         <p ref="ctaParagraph" class="lg:w-3/4 mx-auto text-lg leading-relaxed text-white/90 mb-4">
           Jangan biarkan kompetitor mendahului Anda. Landing page profesional adalah investasi pertama untuk sukses online. 
-          <strong class="text-white">Mulai dari Rp 999rb</strong>, bisnis Anda bisa tampil profesional dan mulai jualan online.
+          <strong class="text-white">Mulai dari Rp 1.500.000</strong>, bisnis Anda bisa tampil profesional dan mulai jualan online.
         </p>
         
         <!-- Benefits list -->

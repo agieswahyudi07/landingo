@@ -5,6 +5,7 @@ import logoImage from '../../assets/landingo_logo.webp';
 
 const navLinks = [
   { href: '/#value-proposition', text: 'Keunggulan', type: 'scroll' },
+  { href: '/#design-showcase', text: 'Portfolio Design', type: 'scroll' },
   { href: '/#pricing', text: 'Paket & Harga', type: 'scroll' },
   { href: '/#cta', text: 'Mulai Sekarang', type: 'scroll' },
   { href: '/gallery', text: 'Referensi Design', type: 'route' },
@@ -30,14 +31,14 @@ const navLinks = [
           link.type === 'route' ? (
             <a
               href={link.href}
-              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-indigo-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
+              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-blue-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
             >
               {link.text}
             </a>
           ) : (
             <a
               href={link.href}
-              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-indigo-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
+              class="mr-0 md:mr-6 font-medium text-gray-700 hover:text-blue-600 py-3 md:py-0 border-b md:border-b-0 w-full text-center md:w-auto transition-colors"
             >
               {link.text}
             </a>
@@ -96,11 +97,17 @@ const navLinks = [
           const href = this.getAttribute('href');
           if (href) {
             const targetId = href.split('#')[1];
-            if (targetId && window.location.pathname === '/') {
+            if (targetId && (window.location.pathname === '/' || window.location.pathname === '')) {
               e.preventDefault();
               const element = document.getElementById(targetId);
               if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                     top: offsetPosition,
+                     behavior: 'smooth'
+                });
               }
             }
             // else, allow default navigation to /#targetId
