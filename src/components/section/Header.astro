@@ -99,13 +99,9 @@ const navLinks = [
             const targetId = href.split('#')[1];
             if (targetId && (window.location.pathname === '/' || window.location.pathname === '')) {
               e.preventDefault();
-              const element = document.getElementById(targetId);
+              const element = document.querySelector(`#${targetId}:not(.design-card *)`) || document.getElementById(targetId);
               if (element) {
-                const headerOffset = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                window.scrollTo({
-                     top: offsetPosition,
+                element.scrollIntoView({
                      behavior: 'smooth'
                 });
               }

@@ -13,6 +13,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offset for fixed header on target sections */
+#value-proposition,
+#design-showcase,
+#pricing,
+#cta {
+  scroll-margin-top: 80px;
+}
+
 body {
   font-family: var(--font-display);
   /* Performance optimizations */
