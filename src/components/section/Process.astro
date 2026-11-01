@@ -1,0 +1,8 @@
+---
+const steps = [
+  { number: '01', title: 'Ceritakan kebutuhan Anda', text: 'Mulai dari layanan, target pelanggan, hingga tujuan landing page.' },
+  { number: '02', title: 'Pilih arah desain', text: 'Kami menyesuaikan struktur dan visual agar terasa relevan dengan bisnis Anda.' },
+  { number: '03', title: 'Siap menerima lead', text: 'Setelah selesai, landing page Anda siap online dan terhubung ke WhatsApp.' },
+];
+---
+<section id="process" class="section process-section"><div class="editorial-container"><div class="section-heading"><p class="eyebrow">Cara kerja</p><h2>Mulai tanpa dibuat rumit.</h2></div><ol class="process-list">{steps.map((step) => <li><span>{step.number}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol></div></section>

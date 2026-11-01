@@ -42,6 +42,10 @@ const props = defineProps({
   height: {
     type: Number,
     default: 300
+  },
+  lazy: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -54,6 +58,8 @@ const containerHeight = ref(2000); // Make height tall enough so it covers the t
 
 const modules = import.meta.glob('@/components/previews/*.vue');
 let resizeObserver = null;
+let visibilityObserver = null;
+let hasLoaded = false;
 
 const updateScale = () => {
   if (!wrapperRef.value) return;
@@ -65,6 +71,8 @@ const updateScale = () => {
 };
 
 const loadComponent = async () => {
+  if (hasLoaded) return;
+  hasLoaded = true;
   previewComponent.value = null;
   if (!props.componentName) return;
 
@@ -94,7 +102,17 @@ watch(() => props.componentName, () => {
 }, { immediate: false });
 
 onMounted(() => {
-  loadComponent();
+  if (props.lazy && 'IntersectionObserver' in window) {
+    visibilityObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        visibilityObserver?.disconnect();
+        loadComponent();
+      }
+    }, { rootMargin: '240px' });
+    if (wrapperRef.value) visibilityObserver.observe(wrapperRef.value);
+  } else {
+    loadComponent();
+  }
   
   resizeObserver = new ResizeObserver(() => {
     updateScale();
@@ -110,6 +128,7 @@ onUnmounted(() => {
   if (resizeObserver) {
     resizeObserver.disconnect();
   }
+  if (visibilityObserver) visibilityObserver.disconnect();
 });
 </script>
 
@@ -119,6 +138,8 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  min-width: 0;
+  contain: layout paint;
   background: white;
 }
 
@@ -126,6 +147,7 @@ onUnmounted(() => {
   position: relative;
   pointer-events: none;
   user-select: none;
+  min-width: 0;
 }
 
 .loading-placeholder {

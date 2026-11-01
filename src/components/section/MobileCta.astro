@@ -1,0 +1,6 @@
+---
+import { whatsappHref } from '../../lib/whatsapp';
+import LocalIcon from '../ui/LocalIcon.astro';
+const href = whatsappHref('Halo! Saya ingin konsultasi tentang landing page untuk bisnis saya.');
+---
+<a class="mobile-cta" href={href} target="_blank" rel="noopener"><LocalIcon name="message" /> Konsultasi via WhatsApp</a>

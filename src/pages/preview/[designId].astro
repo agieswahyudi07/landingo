@@ -1,8 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Layout from '../../layouts/Layout.astro';
 import DesignPreview from '../../components/previews/DesignPreview.vue';
-import FloatingBackButton from '../../components/navigation/FloatingBackButton.vue';
 import { designs } from '../../data/designs';
 
 export async function getStaticPaths() {
@@ -25,6 +23,5 @@ const description = `${design.description} - Lihat preview design landing page p
   image={`https://landingo.id${design.image || '/assets/images/seo.webp'}`}
 >
   <DesignPreview client:load designId={designId} />
-  <FloatingBackButton client:load />
 </Layout>
 

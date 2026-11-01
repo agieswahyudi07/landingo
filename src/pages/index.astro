@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/section/Header.astro';
 import Hero from '../components/section/Hero.astro';
+import Process from '../components/section/Process.astro';
 import ValueProposition from '../components/section/ValueProposition.astro';
 import Footer from '../components/section/Footer.astro';
 import DesignShowcase from '../components/section/DesignShowcase.vue';
 import Pricing from '../components/section/Pricing.vue';
 import Cta from '../components/section/Cta.astro';
+import MobileCta from '../components/section/MobileCta.astro';
 ---
 
 <Layout
@@ -15,10 +17,12 @@ import Cta from '../components/section/Cta.astro';
 >
   <Header />
   <Hero />
-  <ValueProposition />
+  <Process />
   <DesignShowcase client:visible />
+  <ValueProposition />
   <Pricing client:visible />
   <Cta />
   <Footer />
+  <MobileCta />
 </Layout>
 
