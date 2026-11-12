@@ -3,11 +3,73 @@ import LocalIcon from '@/components/ui/LocalIcon.vue';
 import { whatsappHref } from '@/lib/whatsapp';
 
 const formatRupiah = (amount) => amount.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 });
-const commonFeatures = ['Website SSL (aman & terenkripsi)', 'Penulisan konten website', 'Akses statistik kunjungan', 'Integrasi Google Maps & sosial media', 'Tombol WhatsApp'];
+const commonFeatures = [
+  'Website SSL aktif (aman & terenkripsi HTTPS)',
+  'Penulisan konten website (copywriting terima beres)',
+  'Akses Live Dashboard Statistik Looker Studio (GA4)',
+  'Integrasi Google Maps & profil sosial media usaha',
+  'Gratis Domain (.com/.id) & Cloud Hosting 1 tahun'
+];
 const packages = [
-  { name: 'LANDINGO LITE', label: 'Untuk mulai online', realPrice: 3000000, discount: 50, price: 1500000, renewalPrice: 800000, description: 'Untuk bisnis yang butuh satu halaman rapi agar terlihat profesional tanpa ribet.', features: ['1 halaman website', 'Domain & hosting', 'Update konten & maintenance', 'Mobile friendly & SEO basic'], message: 'Halo! Saya tertarik dengan paket LANDINGO LITE. Bisa minta informasi lebih detail?' },
-  { name: 'LANDINGO PRO', label: 'Pilihan utama', realPrice: 10000000, discount: 55, price: 4500000, renewalPrice: 1500000, description: 'Untuk UMKM yang mulai beriklan dan membutuhkan landing page yang lebih lengkap.', features: ['Semua di paket LITE', '5 halaman website', '1 akun email bisnis', 'Halaman produk, layanan, galeri, atau portofolio', 'Fitur tambahan seperti form kontak'], message: 'Halo! Saya tertarik dengan paket LANDINGO PRO. Bisa minta informasi lebih detail?', popular: true },
-  { name: 'LANDINGO FUNNEL', label: 'Untuk kebutuhan lebih luas', realPrice: 15000000, discount: 45, price: 8500000, renewalPrice: 2500000, description: 'Untuk bisnis dengan struktur halaman, fitur, dan kebutuhan integrasi yang lebih lengkap.', features: ['Semua di paket PRO', '10 halaman website', '3 akun email bisnis', 'Desain lebih eksklusif', 'Booking, katalog, atau integrasi lain', 'Optimasi SEO lebih maksimal'], message: 'Halo! Saya tertarik dengan paket LANDINGO FUNNEL. Bisa minta informasi lebih detail?' },
+  {
+    name: 'LANDINGO LITE',
+    label: 'Untuk mulai online',
+    realPrice: 3000000,
+    discount: 50,
+    price: 1500000,
+    renewalPrice: 800000,
+    solution: 'Solusi agar bisnis langsung dipercaya di Google Maps & medsos tanpa ribet.',
+    description: 'Untuk bisnis jasa yang butuh 1 halaman profil rapi agar calon pelanggan tidak ragu dan admin tidak lelah menjawab hal dasar.',
+    features: [
+      '1 halaman website konversi tinggi',
+      'Tombol WhatsApp langsung (Pre-filled chat)',
+      'Domain & cloud hosting 1 tahun',
+      'Pengerjaan cepat 2–3 hari kerja',
+      'Garansi support teknis 15 hari'
+    ],
+    message: 'Halo! Saya tertarik dengan paket LANDINGO LITE. Bisa minta informasi lebih detail?'
+  },
+  {
+    name: 'LANDINGO PRO',
+    label: 'Pilihan utama (Paling Laris)',
+    realPrice: 10000000,
+    discount: 55,
+    price: 4500000,
+    renewalPrice: 1500000,
+    solution: 'Solusi anti-boncos & anti-kehilangan leads: data prospek otomatis rekap rapi.',
+    description: 'Untuk bisnis berkembang yang ingin tampil kredibel di hadapan klien premium dan siap beriklan terukur.',
+    features: [
+      'Semua fitur di paket LITE',
+      'Hingga 5 halaman website terpisah',
+      'Form interaktif rekap otomatis ke Google Sheet klien & WA',
+      'Gratis Full Setup Tracking Iklan (Meta Pixel + GTM + GA4)',
+      '1 akun email bisnis resmi (info@domainklien.id)',
+      'Pengerjaan 5–7 hari kerja & Garansi support 30 hari'
+    ],
+    message: 'Halo! Saya tertarik dengan paket LANDINGO PRO. Bisa minta informasi lebih detail?',
+    popular: true
+  },
+  {
+    name: 'LANDINGO FUNNEL',
+    label: 'Untuk skala lebih besar',
+    realPrice: 15000000,
+    discount: 45,
+    price: 8500000,
+    renewalPrice: 2500000,
+    solution: 'Solusi bebas ketergantungan programmer: kontrol katalog & leads mandiri via dashboard.',
+    description: 'Untuk bisnis dengan banyak portofolio/katalog dinamis yang butuh kontrol sistem mandiri tanpa pusing kode.',
+    features: [
+      'Semua fitur di paket PRO',
+      'Hingga 10 halaman website eksklusif',
+      'Akses Akun Landingo Central CMS Dashboard',
+      'Kelola katalog, portofolio & jadwal dinamis mandiri',
+      'Tabel database leads terpusat + auto-email notifikasi',
+      '3 akun email bisnis resmi untuk divisi tim',
+      'Gratis Full Setup Tracking Iklan (Custom Events)',
+      'Pengerjaan 7–10 hari & Prioritas garansi support 60 hari'
+    ],
+    message: 'Halo! Saya tertarik dengan paket LANDINGO FUNNEL. Bisa minta informasi lebih detail?'
+  },
 ];
 </script>
 
