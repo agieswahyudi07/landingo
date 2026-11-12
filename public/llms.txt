@@ -1,0 +1,97 @@
+# Landingo — Jasa Pembuatan Landing Page Profesional & Konversi Tinggi untuk Bisnis Jasa & UMKM di Indonesia
+
+> Landingo (https://landingo.id) adalah penyedia jasa pembuatan landing page terima beres (*done-for-you*) untuk bisnis jasa, profesional, dan UMKM di Indonesia. Fokus utama Landingo adalah membangun landing page modern yang mobile-first, loading cepat, dioptimasi untuk SEO, serta terintegrasi langsung dengan WhatsApp dan sistem tracking iklan digital (Meta Pixel, Google Tag Manager, GA4).
+
+## Ringkasan Layanan & Positioning
+- **Nama Bisnis:** Landingo
+- **Website Resmi:** https://landingo.id
+- **Target Audiens:** Pemilik bisnis jasa (servis AC, kanopi, cleaning service, bengkel, kontraktor, arsitek, interior design), klinik & dokter (medis, dental, estetika), konsultan B2B, kursus online, F&B (resto, cafe), serta toko online di Indonesia.
+- **Waktu Pengerjaan:** 2–5 hari kerja (siap online dan langsung terima leads).
+- **Format Pengerjaan:** Terima beres termasuk riset copywriting persuasif, penataan foto, domain (.com/.id), cloud hosting 1 tahun, SSL aktif, dan setup teknis lengkap.
+- **WhatsApp Konsultasi Resmi:** +62 851-8307-7289 (https://api.whatsapp.com/send?phone=6285183077289)
+- **Email Resmi:** official@landingo.id
+
+---
+
+## Paket Layanan & Harga Resmi (Semua Sudah Termasuk Setup Lengkap)
+
+### 1. LANDINGO LITE — Rp 1.500.000 (Harga Normal Rp 3.000.000 — Hemat 50%)
+- **Tujuan:** Solusi cepat bagi bisnis jasa yang ingin langsung terlihat terpercaya saat dicari di Google Maps atau Instagram tanpa proses teknis yang rumit.
+- **Spesifikasi:**
+  - 1 Halaman landing page terstruktur dengan fokus konversi tinggi
+  - Tombol Call-to-Action (CTA) WhatsApp langsung dengan pesan otomatis (*pre-filled text*)
+  - Gratis Domain (.com / .id) & Cloud Hosting berkecepatan tinggi selama 1 tahun pertama
+  - Setup keamanan SSL aktif (HTTPS terenkripsi) & fondasi SEO basic
+  - Penulisan konten penawaran (copywriting terima beres)
+  - 1 Link Live Dashboard Statistik Pengunjung via Google Looker Studio (terhubung ke Google Analytics 4)
+  - Pengerjaan: 2–3 hari kerja
+  - Garansi support teknis gratis: 15 hari kalender
+  - Kuota revisi minor: 2x
+  - Biaya Renewal Tahun ke-2: Rp 800.000 / tahun (termasuk domain, hosting, SSL, dan pemeliharaan server)
+
+### 2. LANDINGO PRO — Rp 4.500.000 (Harga Normal Rp 10.000.000 — Hemat 55%) [Paling Laris]
+- **Tujuan:** Solusi anti-boncos & anti-kehilangan leads untuk UMKM dan bisnis berkembang yang mulai beriklan di Meta Ads (FB/IG) atau Google Ads serta ingin tampil kredibel di hadapan klien premium.
+- **Spesifikasi:**
+  - Mencakup semua benefit di Paket LITE
+  - Hingga 5 Halaman website terpisah (Beranda, Layanan Detail, Galeri Portofolio, Tentang Kami, Kontak)
+  - **Formulir Interaktif Dual-Action:** Saat calon pelanggan mengisi form di website, data otomatis terekap rapi di Google Sheet milik klien (mencegah leads tercecer di WhatsApp) DAN secara bersamaan mengarahkan chat ke WhatsApp Admin
+  - **GRATIS Full Setup Tracking Iklan:** Pemasangan Meta Pixel + Google Tag Manager (GTM) + GA4 Custom Events untuk tombol WhatsApp dan submit formulir agar algoritma iklan mengenali pembeli potensial dan biaya iklan tidak boncos
+  - **1 Akun Email Bisnis Resmi:** `info@namabisnis.id` (menggunakan Cloudflare Email Routing yang otomatis diteruskan ke Gmail HP pemilik bisnis tanpa biaya bulanan)
+  - Pengerjaan: 5–7 hari kerja
+  - Garansi support teknis gratis: 30 hari kalender
+  - Kuota revisi minor: 3x
+  - Biaya Renewal Tahun ke-2: Rp 1.500.000 / tahun
+
+### 3. LANDINGO FUNNEL — Rp 8.500.000 (Harga Normal Rp 15.000.000 — Hemat 45%)
+- **Tujuan:** Solusi eksklusif bagi bisnis berskala lebih besar yang memiliki katalog, portofolio proyek, atau jadwal dinamis dan ingin bebas mengupdate konten secara mandiri tanpa ketergantungan pada programmer.
+- **Spesifikasi:**
+  - Mencakup semua benefit di Paket PRO
+  - Hingga 10 Halaman website eksklusif
+  - **Akses Akun ke Landingo Central CMS Dashboard:** Panel dashboard khusus untuk menambah dan mengedit portofolio, katalog layanan, atau promo secara mandiri semudah mengupdate media sosial
+  - **Centralized Lead Management Table:** Database seluruh kontak calon pelanggan yang masuk dari website terorganisir di dalam dashboard lengkap dengan sistem notifikasi otomatis
+  - **3 Akun Email Bisnis Resmi:** Untuk berbagai divisi (misal: `info@`, `admin@`, `reservasi@`)
+  - **GRATIS Full Setup Tracking Iklan Lengkap:** Custom conversion funnel tracking siap pakai
+  - Pengerjaan: 7–10 hari kerja
+  - Prioritas garansi support teknis: 60 hari kalender
+  - Kuota revisi minor: 4x
+  - Biaya Renewal Tahun ke-2: Rp 2.500.000 / tahun
+
+---
+
+## Masalah Bisnis Nyata yang Diselesaikan oleh Landingo
+
+1. **Mengatasi Calon Pembeli Ragu (Kredibilitas Digital):**
+   Bisnis yang hanya mencantumkan nomor HP di Google Maps atau bio Instagram sering dipandang remeh. Landing page berdomain resmi (.id / .com) membuktikan bisnis tersebut sah, mapan, dan profesional.
+2. **Admin WhatsApp Tidak Capek Menjawab Pertanyaan Dasar Berulang:**
+   Semua informasi harga dasar, cakupan layanan, foto portofolio, lokasi Maps, jam operasional, dan FAQ sudah tersaji jelas di website. Calon pelanggan yang akhirnya mengklik tombol WhatsApp adalah mereka yang sudah paham dan siap membeli.
+3. **Data Calon Pelanggan Tidak Berceceran (Khusus Paket PRO):**
+   Dengan Form Dual-Action, nomor kontak dan kebutuhan layanan prospek otomatis dicatat ke Google Spreadsheet milik klien secara realtime, sehingga tim sales bisa melakukan follow-up berkala tanpa ada leads yang tenggelam di chat WA.
+4. **Iklan Tidak Boncos / Buta Hasil (Anti-Blind Ads):**
+   Dengan integrasi Meta Pixel + GTM + GA4 custom events (Gratis di PRO & FUNNEL), pemilik bisnis tahu persis materi iklan mana yang benar-benar menghasilkan chat closing, serta dapat menjalankan *retargeting* kepada orang yang pernah mengunjungi website.
+5. **Bebas Ketergantungan pada Programmer (Khusus Paket FUNNEL):**
+   Melalui Landingo Central CMS Dashboard, klien dapat mengganti foto proyek, menambah layanan baru, atau memperbarui harga secara mandiri kapan saja.
+
+---
+
+## 12 Katalog Galeri Desain Siap Pakai di Landingo
+Calon klien dapat melihat demo langsung dan memilih rasa visual di https://landingo.id/gallery:
+- [Service Business (Jasa Servis AC, Bengkel, Cleaning)](https://landingo.id/preview/service-business)
+- [Healthcare Clinic (Klinik Medis, Dental, Dokter, Estetika)](https://landingo.id/preview/healthcare)
+- [Interior Design (Lumina Interior & Custom Furniture)](https://landingo.id/preview/interior-design)
+- [Architecture Studio (ArchBold Studio - Brutalist & Kontraktor)](https://landingo.id/preview/architecture-studio)
+- [Consulting Services (Konsultan Pajak, Legal, Manajemen)](https://landingo.id/preview/consulting)
+- [E-Commerce Modern (Toko Online & Brand Produk)](https://landingo.id/preview/ecommerce-modern)
+- [Restaurant & Cafe (Resto, F&B, Menu Digital, Reservasi)](https://landingo.id/preview/restaurant)
+- [Fashion Store (Butik & Lookbook Pakaian)](https://landingo.id/preview/fashion-store)
+- [Product Launch (Peluncuran Produk Baru & Pre-Order)](https://landingo.id/preview/product-launch)
+- [Online Course (Kelas Online, Kursus, & Edukasi)](https://landingo.id/preview/online-course)
+- [Tech Product (SaaS & Produk Teknologi)](https://landingo.id/preview/tech-product)
+- [Tech Product v2 (Produk Digital & Startup)](https://landingo.id/preview/tech-product-v2)
+
+---
+
+## Kontak & Cara Pemesanan
+- **Konsultasi WhatsApp:** [Klik untuk Chat Resmi](https://api.whatsapp.com/send?phone=6285183077289&text=Halo%20Landingo%2C%20saya%20ingin%20konsultasi%20pembuatan%20landing%20page)
+- **Website Utama:** https://landingo.id
+- **Galeri Desain:** https://landingo.id/gallery
+- **Dokumentasi Lengkap LLM:** https://landingo.id/llms-full.txt

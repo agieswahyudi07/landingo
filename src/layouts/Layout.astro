@@ -79,25 +79,129 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://landingo
     <link rel="preload" as="image" href="/assets/images/landingo_logo2.webp" fetchpriority="high" type="image/webp" />
     <link rel="preload" as="image" href="/assets/images/landingo_logo.webp" fetchpriority="high" type="image/webp" />
 
-    <!-- Structured Data JSON-LD -->
+    <!-- LLM Context & AI Agent Discovery -->
+    <link rel="alternate" type="text/plain" href="https://landingo.id/llms.txt" title="AI / LLM Summary" />
+
+    <!-- Structured Data JSON-LD (Multi-Entity Graph: Organization, ProfessionalService, OfferCatalog & FAQPage) -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Landingo",
-      "url": "https://landingo.id",
-      "logo": "https://landingo.id/assets/images/landingo_logo.webp",
-      "sameAs": [
-        "https://www.facebook.com/landingo.id",
-        "https://www.instagram.com/landingo.id",
-        "https://www.linkedin.com/company/landingo.id"
-      ],
-      "description": "Transformasi bisnis UMKM dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, SEO optimized, mobile-first, dan siap untuk iklan digital.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+62-851-8307-7289",
-        "contactType": "customer service",
-        "availableLanguage": ["Indonesian"]
-      }
+      "@graph": [
+        {
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://landingo.id/#organization",
+          "name": "Landingo",
+          "url": "https://landingo.id",
+          "logo": "https://landingo.id/assets/images/landingo_logo.webp",
+          "image": "https://landingo.id/assets/images/seo.webp",
+          "description": "Jasa pembuatan landing page terima beres dan profesional untuk bisnis jasa & UMKM di Indonesia. Mobile-first, loading cepat, SEO optimized, dan terintegrasi WhatsApp.",
+          "priceRange": "IDR 1.500.000 - IDR 8.500.000",
+          "currenciesAccepted": "IDR",
+          "paymentAccepted": "Bank Transfer",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Indonesia"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-851-8307-7289",
+            "contactType": "customer service",
+            "availableLanguage": ["Indonesian", "English"]
+          },
+          "sameAs": [
+            "https://www.instagram.com/landingo.id",
+            "https://www.facebook.com/landingo.id",
+            "https://www.linkedin.com/company/landingo.id"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Paket Pembuatan Landing Page Landingo",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "LANDINGO LITE",
+                "description": "1 halaman landing page konversi tinggi untuk bisnis jasa, tombol WhatsApp langsung, domain & hosting 1 tahun, pengerjaan 2-3 hari kerja.",
+                "price": "1500000",
+                "priceCurrency": "IDR",
+                "url": "https://landingo.id/#pricing",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Jasa Landing Page Paket LITE"
+                }
+              },
+              {
+                "@type": "Offer",
+                "name": "LANDINGO PRO",
+                "description": "Hingga 5 halaman website terpisah, Form Interaktif Dual-Action rekap otomatis ke Google Sheet klien & WhatsApp, Gratis Full Ads Tracking Setup (Meta Pixel + GTM + GA4), 1 akun email bisnis resmi.",
+                "price": "4500000",
+                "priceCurrency": "IDR",
+                "url": "https://landingo.id/#pricing",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Jasa Landing Page Paket PRO (Paling Laris)"
+                }
+              },
+              {
+                "@type": "Offer",
+                "name": "LANDINGO FUNNEL",
+                "description": "Hingga 10 halaman website eksklusif, Akses Akun Landingo Central CMS Dashboard (kelola katalog & database leads mandiri), 3 akun email bisnis resmi, Gratis Full Ads Tracking.",
+                "price": "8500000",
+                "priceCurrency": "IDR",
+                "url": "https://landingo.id/#pricing",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Jasa Landing Page Paket FUNNEL (Eksklusif CMS)"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://landingo.id/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Berapa lama waktu pengerjaan landing page di Landingo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Waktu pengerjaan berkisar antara 2–3 hari kerja untuk Paket LITE, 5–7 hari kerja untuk Paket PRO, dan 7–10 hari kerja untuk Paket FUNNEL setelah materi onboarding lengkap dan DP 50% diterima."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Apakah pembuatan landing page sudah termasuk materi penulisan promosi (copywriting)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ya, seluruh paket di Landingo berkonsep 100% terima beres. Tim Landingo meriset dan menyusun copywriting persuasif yang menonjolkan solusi usaha Anda agar pengunjung terdorong untuk menghubungi WhatsApp."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Apa keunggulan Paket PRO dibanding Paket LITE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Paket PRO mencakup hingga 5 halaman terpisah, Form Interaktif Dual-Action yang otomatis merekap data prospek ke Google Spreadsheet klien dan membuka WhatsApp admin, 1 akun email bisnis resmi (info@domain.id), serta GRATIS Full Setup Tracking Iklan (Meta Pixel + GTM + GA4) agar iklan tidak boncos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Bagaimana sistem pembayaran di Landingo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pembayaran dilakukan dalam 2 termin transparan: DP 50% di awal untuk mengunci slot antrean produksi, dan pelunasan 50% dibayarkan maksimal 3 hari kalender setelah website resmi online dan disetujui."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Bagaimana cara memantau performa pengunjung website?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Setiap klien mendapatkan 1 Link Live Dashboard Google Looker Studio yang terhubung ke Google Analytics 4 (GA4). Dashboard visual ini dapat dibuka dari smartphone kapan saja untuk memantau total pengunjung, jumlah klik tombol WhatsApp, dan kota asal visitor."
+              }
+            }
+          ]
+        }
+      ]
     })} />
 
     <!-- Meta Pixel Code -->

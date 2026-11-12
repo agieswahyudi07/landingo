@@ -1,0 +1,117 @@
+# Landingo — Full Documentation & LLM Knowledge Base
+
+> Website Resmi: https://landingo.id  
+> Kontak WhatsApp Resmi: +62 851-8307-7289 (https://api.whatsapp.com/send?phone=6285183077289)  
+> Email Resmi: official@landingo.id  
+> Dokumen Ringkas: https://landingo.id/llms.txt  
+
+---
+
+## 1. Tentang Landingo
+
+**Landingo** adalah studio layanan digital (*done-for-you landing page service*) asal Indonesia yang berspesialisasi dalam merancang, menulis, dan mempublikasikan landing page konversi tinggi untuk pemilik bisnis jasa, profesional, klinik, dan UMKM.
+
+### Nilai Utama & Positioning:
+- **Terima Beres Tanpa Beban Teknis:** Klien tidak perlu pusing memikirkan coding, setup hosting, konfigurasi domain, maupun copywriting. Seluruh kalimat promosi, tata letak foto, dan tombol chat WhatsApp disiapkan langsung oleh tim Landingo.
+- **Fokus Konversi Penjualan:** Desain mengutamakan *mobile-first*, kecepatan loading kilat, navigasi bersih tanpa distraksi, dan penempatan Call-to-Action (CTA) strategis yang mengarahkan prospek langsung ke WhatsApp atau formulir terdata.
+- **Transparansi Biaya:** Tidak ada biaya tersembunyi. Setiap paket sudah mencakup domain (.com/.id), hosting cloud 1 tahun pertama, sertifikat SSL HTTPS, dan garansi support teknis.
+
+---
+
+## 2. Masalah Bisnis Nyata yang Diselesaikan
+
+Banyak pelaku usaha di Indonesia mengalami hambatan penjualan digital. Landingo hadir untuk menyelesaikan celah-celah tersebut:
+
+1. **Ragu Membeli Karena Bisnis Tidak Memiliki Website Resmi:**
+   Banyak calon pelanggan merasa was-was bertransaksi jika profil bisnis hanya berupa nomor handphone di Google Maps atau akun media sosial biasa. Website berdomain resmi membuktikan bisnis sah, kredibel, dan berkomitmen jangka panjang.
+2. **Admin WhatsApp Kelelahan Menjawab Pertanyaan Berulang:**
+   Admin sering menghabiskan waktu berjam-jam menjawab hal dasar (seperti daftar harga, lokasi, jenis layanan, atau portofolio) hanya untuk berujung "ghosting". Landing page menyaring prospek yang serius dan mengedukasi mereka terlebih dahulu sebelum menghubungi admin.
+3. **Leads Tercecer dan Hilang di Riwayat Chat WhatsApp (Diselesaikan di Paket PRO):**
+   Dengan Form Interaktif Dual-Action, data kontak dan pilihan layanan otomatis dicatat rapi ke Google Spreadsheet milik klien saat tombol diklik, sekaligus membuka chat WhatsApp admin. Tidak ada lagi calon pembeli yang terlupa di-follow up.
+4. **Biaya Iklan Boncos Tanpa Tracking yang Terukur (Diselesaikan di Paket PRO & FUNNEL):**
+   Memasang iklan Meta Ads (FB/IG) atau Google Ads tanpa tracking seperti melempar uang ke dalam kegelapan. Landingo memasang Meta Pixel, Google Tag Manager (GTM), dan GA4 Custom Events secara gratis di paket PRO & FUNNEL agar algoritma iklan belajar mencari orang yang benar-benar siap membeli.
+5. **Ketergantungan pada Programmer Setiap Update Konten (Diselesaikan di Paket FUNNEL):**
+   Melalui Landingo Central CMS Dashboard, klien dapat memperbarui portofolio foto, katalog produk, atau jadwal reservasi sendiri semudah menggunakan media sosial.
+
+---
+
+## 3. Perbandingan Paket & Harga Resmi
+
+| Parameter | LANDINGO LITE | LANDINGO PRO (Paling Laris) | LANDINGO FUNNEL |
+| :--- | :--- | :--- | :--- |
+| **Harga Promo** | **Rp 1.500.000** | **Rp 4.500.000** | **Rp 8.500.000** |
+| **Harga Normal** | Rp 3.000.000 (Hemat 50%) | Rp 10.000.000 (Hemat 55%) | Rp 15.000.000 (Hemat 45%) |
+| **Jumlah Halaman** | 1 Halaman Beranda Konversi | Hingga 5 Halaman Terpisah | Hingga 10 Halaman Eksklusif |
+| **Sistem Form & Data** | Tombol Chat WA Langsung | **Form Interaktif Dual-Action** (Rekap otomatis ke Google Sheet klien + WA) | **Akses Landingo Central CMS Dashboard** (Kelola konten & lead table) |
+| **Setup Tracking Iklan** | Add-on (+Rp 350.000) | **GRATIS** (Meta Pixel + GTM + GA4) | **GRATIS** (Custom Conversion Funnel) |
+| **Email Bisnis Resmi** | - | 1 Akun (`info@domainklien.id`) | 3 Akun (`info@`, `admin@`, `reservasi@`) |
+| **Waktu Pengerjaan** | 2–3 Hari Kerja | 5–7 Hari Kerja | 7–10 Hari Kerja |
+| **Garansi Support** | 15 Hari Kalender | 30 Hari Kalender | 60 Hari Kalender (Prioritas) |
+| **Batas Revisi Minor** | Maksimal 2x | Maksimal 3x | Maksimal 4x |
+| **Renewal Tahun ke-2** | Rp 800.000 / tahun | Rp 1.500.000 / tahun | Rp 2.500.000 / tahun |
+
+### Fitur yang Selalu Termasuk di Semua Paket:
+- **Gratis Domain & Cloud Hosting:** Masa aktif 1 tahun pertama (didukung cloud modern berkinerja tinggi).
+- **Keamanan SSL:** Enkripsi HTTPS hijau aktif.
+- **Copywriting Persuasif:** Penulisan naskah promosi terima beres berdasarkan keunggulan unik usaha klien.
+- **Live Dashboard Looker Studio:** 1 link laporan visual real-time dari Google Analytics 4 (memantau total pengunjung, klik tombol WhatsApp, dan kota asal visitor).
+- **Integrasi Google Maps & Sosial Media:** Memudahkan pelanggan menemukan alamat fisik usaha.
+
+---
+
+## 4. Layanan Pemeliharaan Pasca-Garansi ("Landingo Care")
+
+Bagi klien yang ingin rutin mengganti banner promo bulanan, memperbarui daftar harga treatment/layanan, atau memperbarui foto portofolio setelah masa garansi habis:
+- **Paket Hemat 6 Bulan:** Rp 499.000 / 6 bulan (Hemat Rp 95.000, kuota 2x pembaruan konten minor per bulan).
+- **Langganan Bulanan:** Rp 99.000 / bulan (kuota 2x pembaruan konten minor per bulan).
+- **Ala Carte (Per Permintaan):** Rp 150.000 / request jika tidak berlangganan.
+
+---
+
+## 5. Pertanyaan yang Sering Diajukan (FAQ)
+
+### Q: Apa saja data yang perlu disiapkan oleh klien?
+**A:** Klien hanya perlu mengisi formulir singkat onboarding online berdurasi ~2 menit, mencakup nama usaha, kontak WhatsApp, file logo, 3–5 foto kegiatan/layanan terbaik, dan preferensi desain dari galeri Landingo.
+
+### Q: Apakah pembuatan website sudah termasuk materi penulisan kata-kata promosi?
+**A:** Ya! 100% terima beres. Tim Landingo meriset dan menyusun copywriting persuasif yang menonjolkan solusi, keunggulan, dan Call-to-Action jelas agar pengunjung terdorong untuk bertransaksi.
+
+### Q: Bagaimana skema pembayarannya?
+**A:** Pembayaran dilakukan dalam 2 termin yang aman dan transparan:
+1. Uang Muka (DP) 50% di awal sebelum antrean produksi dimulai.
+2. Pelunasan 50% dibayarkan maksimal 3 hari kalender setelah website resmi online dan disetujui.
+
+### Q: Rekening resmi pembayaran Landingo ke mana?
+**A:** Pembayaran resmi Landingo hanya dilayani melalui transfer ke rekening:
+- **Bank:** BANK JAGO
+- **No. Rekening:** 101906987995
+- **Atas Nama:** RAMADHAN AGIES ANANDA WAHYUDI
+
+### Q: Apakah website ini ramah pengguna smartphone (Mobile-First)?
+**A:** Ya. Lebih dari 85% pengunjung di Indonesia mengakses internet via smartphone. Seluruh desain Landingo diuji ketat pada berbagai resolusi layar HP agar teks terbaca jelas, tombol mudah ditekan jempol, dan waktu loading sangat cepat di jaringan 4G/5G.
+
+---
+
+## 6. Daftar Portofolio & Demo Showcase Siap Pakai
+
+Calon klien dapat mencoba langsung pengalaman navigasi di https://landingo.id/gallery:
+1. **Service Business:** https://landingo.id/preview/service-business (AC, Bengkel, Cleaning, Jasa Rumah)
+2. **Healthcare & Clinic:** https://landingo.id/preview/healthcare (Klinik Gigi, Medis, Dokter, Estetika)
+3. **Lumina Interior Design:** https://landingo.id/preview/interior-design (Interior & Custom Furniture)
+4. **ArchBold Architecture Studio:** https://landingo.id/preview/architecture-studio (Kontraktor, Arsitek, Brutalist)
+5. **Consulting Services:** https://landingo.id/preview/consulting (Konsultan Pajak, Legal, Manajemen B2B)
+6. **E-Commerce Modern:** https://landingo.id/preview/ecommerce-modern (Toko Online & Direct-to-Consumer)
+7. **Restaurant & Cafe:** https://landingo.id/preview/restaurant (Menu Digital, Reservasi Meja, Cafe)
+8. **Fashion Store:** https://landingo.id/preview/fashion-store (Butik & Lookbook Pakaian)
+9. **Product Launch:** https://landingo.id/preview/product-launch (Peluncuran Produk Baru & Pre-Order)
+10. **Online Course:** https://landingo.id/preview/online-course (Edukasi, Kursus, Pelatihan)
+11. **Tech Product:** https://landingo.id/preview/tech-product (Aplikasi & Software Digital)
+12. **Tech Product v2:** https://landingo.id/preview/tech-product-v2 (Startup & Ekosistem Teknologi)
+
+---
+
+## 7. Kontak & Saluran Komunikasi Resmi
+- **Website Utama:** https://landingo.id
+- **WhatsApp Konsultasi:** +62 851-8307-7289 (https://api.whatsapp.com/send?phone=6285183077289)
+- **Email:** official@landingo.id
+- **Instagram:** @landingo.id
