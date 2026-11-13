@@ -2,7 +2,7 @@
 
 > Website Resmi: https://landingo.id  
 > Kontak WhatsApp Resmi: +62 851-8307-7289 (https://api.whatsapp.com/send?phone=6285183077289)  
-> Email Resmi: official@landingo.id  
+> Email Resmi: hello@landingo.id  
 > Dokumen Ringkas: https://landingo.id/llms.txt  
 
 ---
@@ -113,5 +113,5 @@ Calon klien dapat mencoba langsung pengalaman navigasi di https://landingo.id/ga
 ## 7. Kontak & Saluran Komunikasi Resmi
 - **Website Utama:** https://landingo.id
 - **WhatsApp Konsultasi:** +62 851-8307-7289 (https://api.whatsapp.com/send?phone=6285183077289)
-- **Email:** official@landingo.id
+- **Email:** hello@landingo.id
 - **Instagram:** @landingo.id
