@@ -14,13 +14,16 @@ const { design } = Astro.props;
 const designId = design.slug || design.id;
 
 const title = `Preview ${design.name} - Landingo`;
-const description = `${design.description} - Lihat preview design landing page profesional untuk ${design.category}.`;
+const description = `${design.description} - Lihat preview design landing page profesional untuk ${design.niche || design.category}.`;
+const ogImage = design.image
+  ? (design.image.startsWith('http') ? design.image : `https://landingo.id${design.image}`)
+  : 'https://landingo.id/assets/images/seo.webp';
 ---
 
 <Layout
   title={title}
   description={description}
-  image={`https://landingo.id${design.image || '/assets/images/seo.webp'}`}
+  image={ogImage}
 >
   <DesignPreview client:load designId={designId} />
 </Layout>

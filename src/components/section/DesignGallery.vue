@@ -12,19 +12,61 @@ const categories = [
 ];
 const designs = ref(designsData);
 const activeCategory = ref('all');
+const activeNiche = ref('all');
+
 const categoryLabel = (id) => categories.find((category) => category.id === id)?.name || id;
-const filteredDesigns = computed(() => activeCategory.value === 'all' ? designs.value : designs.value.filter((design) => design.category === activeCategory.value));
+const metaLabel = (design) => design.niche ? `${categoryLabel(design.category)} • ${design.niche}` : categoryLabel(design.category);
+
+const categoryDesigns = computed(() =>
+  activeCategory.value === 'all'
+    ? designs.value
+    : designs.value.filter((design) => design.category === activeCategory.value)
+);
+
+const availableNiches = computed(() => {
+  if (activeCategory.value === 'all') return [];
+  const niches = [...new Set(categoryDesigns.value.map((design) => design.niche).filter(Boolean))];
+  return niches.length > 1 ? niches : [];
+});
+
+const filteredDesigns = computed(() => {
+  if (activeNiche.value === 'all' || availableNiches.value.length === 0) {
+    return categoryDesigns.value;
+  }
+  return categoryDesigns.value.filter((design) => design.niche === activeNiche.value);
+});
+
+const syncUrl = () => {
+  const url = new URL(window.location.href);
+  if (activeCategory.value === 'all') url.searchParams.delete('category');
+  else url.searchParams.set('category', activeCategory.value);
+
+  if (activeNiche.value === 'all' || availableNiches.value.length === 0) url.searchParams.delete('niche');
+  else url.searchParams.set('niche', activeNiche.value);
+
+  window.history.pushState({ category: activeCategory.value, niche: activeNiche.value }, '', url);
+};
+
 const setCategory = (category) => {
   activeCategory.value = category;
-  const url = new URL(window.location.href);
-  if (category === 'all') url.searchParams.delete('category');
-  else url.searchParams.set('category', category);
-  window.history.pushState({ category }, '', url);
+  activeNiche.value = 'all';
+  syncUrl();
 };
+
+const setNiche = (niche) => {
+  activeNiche.value = niche;
+  syncUrl();
+};
+
 const onPopState = () => {
-  const category = new URLSearchParams(window.location.search).get('category');
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get('category');
   activeCategory.value = categories.some((item) => item.id === category) ? category : 'all';
+
+  const niche = params.get('niche');
+  activeNiche.value = niche && availableNiches.value.includes(niche) ? niche : 'all';
 };
+
 const consultationHref = (design) => whatsappHref(`Halo! Saya tertarik dengan design "${design.name}". Bisa minta informasi lebih detail dan konsultasi untuk customisasi design ini?`);
 onMounted(() => { onPopState(); window.addEventListener('popstate', onPopState); });
 onUnmounted(() => window.removeEventListener('popstate', onPopState));
@@ -39,6 +81,10 @@ onUnmounted(() => window.removeEventListener('popstate', onPopState));
       <nav class="gallery-filters" aria-label="Filter kategori design">
         <button v-for="category in categories" :key="category.id" type="button" :class="{ active: activeCategory === category.id }" :aria-pressed="activeCategory === category.id" @click="setCategory(category.id)">{{ category.name }}</button>
       </nav>
+      <nav v-if="availableNiches.length" class="gallery-subfilters" aria-label="Filter sub-niche design">
+        <button type="button" :class="{ active: activeNiche === 'all' }" :aria-pressed="activeNiche === 'all'" @click="setNiche('all')">Semua {{ categoryLabel(activeCategory) }}</button>
+        <button v-for="niche in availableNiches" :key="niche" type="button" :class="{ active: activeNiche === niche }" :aria-pressed="activeNiche === niche" @click="setNiche(niche)">{{ niche }}</button>
+      </nav>
       <p class="gallery-count">{{ filteredDesigns.length }} referensi desain</p>
     </div></section>
 
@@ -46,13 +92,13 @@ onUnmounted(() => window.removeEventListener('popstate', onPopState));
       <div v-if="filteredDesigns.length" class="gallery-grid">
         <article v-for="design in filteredDesigns" :key="design.id" class="gallery-card">
           <a class="gallery-preview" :href="design.previewPath" :aria-label="`Lihat preview ${design.name}`"><DesignThumbnail :component-name="design.previewComponent" :width="600" :height="360" lazy /></a>
-          <div class="gallery-card-body"><div class="gallery-card-meta"><span>{{ categoryLabel(design.category) }}</span><span>{{ design.features.length }} fitur</span></div><h2>{{ design.name }}</h2><p>{{ design.description }}</p><div class="gallery-card-actions"><a class="button button-primary" :href="design.previewPath">Lihat preview <LocalIcon name="arrow-up-right" /></a><a class="gallery-consult" :href="consultationHref(design)" target="_blank" rel="noopener">Konsultasi <LocalIcon name="message" /></a></div></div>
+          <div class="gallery-card-body"><div class="gallery-card-meta"><span>{{ metaLabel(design) }}</span><span>{{ design.features.length }} fitur</span></div><h2>{{ design.name }}</h2><p>{{ design.description }}</p><div class="gallery-card-actions"><a class="button button-primary" :href="design.previewPath">Lihat preview <LocalIcon name="arrow-up-right" /></a><a class="gallery-consult" :href="consultationHref(design)" target="_blank" rel="noopener">Konsultasi <LocalIcon name="message" /></a></div></div>
         </article>
       </div>
       <div v-else class="gallery-empty"><h2>Belum ada design di kategori ini.</h2><button type="button" class="button button-secondary" @click="setCategory('all')">Lihat semua design</button></div>
     </div></section>
 
-    <section class="gallery-cta"><div class="editorial-container"><p class="eyebrow">Punya arah sendiri?</p><h2>Mulai dari kebutuhan bisnis Anda.</h2><p>Referensi hanyalah awal. Kami bisa menyesuaikan struktur dan visualnya agar terasa milik Anda.</p><a class="button button-light" href="https://api.whatsapp.com/send?phone=6285183077289&text=Halo!%20Saya%20ingin%20konsultasi%20tentang%20design%20landing%20page." target="_blank" rel="noopener">Konsultasi via WhatsApp <LocalIcon name="arrow-up-right" /></a></div></section>
+    <section class="gallery-cta"><div class="editorial-container"><p class="eyebrow">Punya arah sendiri?</p><h2>Mulai dari kebutuhan bisnis Anda.</h2><p>Referensi hanyalah awal. Kami bisa menyesuaikan struktur dan visualnya agar terasa milik Anda.</p><a class="button button-light" :href="whatsappHref('Halo! Saya ingin konsultasi tentang design landing page.')" target="_blank" rel="noopener">Konsultasi via WhatsApp <LocalIcon name="arrow-up-right" /></a></div></section>
   </main>
 </template>
 
@@ -62,8 +108,11 @@ onUnmounted(() => window.removeEventListener('popstate', onPopState));
 .gallery-intro h1 { max-width:760px; margin:0; font-size:clamp(2.8rem,6vw,6rem); line-height:.98; }
 .gallery-intro > .editorial-container > p:not(.eyebrow):not(.gallery-count) { max-width:560px; margin:24px 0 0; color:var(--muted); font-size:1.05rem; }
 .gallery-filters { display:flex; flex-wrap:wrap; gap:8px; margin-top:48px; }
-.gallery-filters button { min-height:42px; padding:8px 14px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; font:700 .82rem var(--font-display); transition:all .2s ease; }
+.gallery-filters button { min-height:44px; padding:8px 14px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; font:700 .82rem var(--font-display); transition:background-color .2s ease,color .2s ease,border-color .2s ease; }
 .gallery-filters button:hover,.gallery-filters button.active { border-color:var(--primary); background:var(--primary); color:white; }
+.gallery-subfilters { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.gallery-subfilters button { min-height:38px; padding:6px 12px; border:1px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer; font:700 .75rem var(--font-display); transition:background-color .2s ease,color .2s ease,border-color .2s ease; }
+.gallery-subfilters button:hover,.gallery-subfilters button.active { border-color:var(--ink); background:var(--ink); color:white; }
 .gallery-count { margin:14px 0 0; color:var(--muted); font-size:.78rem; }
 .gallery-results { padding:56px 0 120px; }
 .gallery-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
@@ -72,7 +121,7 @@ onUnmounted(() => window.removeEventListener('popstate', onPopState));
 .gallery-preview > * { display:block; width:100%; height:100%; min-width:0; }
 .gallery-card-body { display:flex; flex:1; flex-direction:column; padding:20px; }
 .gallery-card-meta { display:flex; justify-content:space-between; gap:12px; color:var(--primary); font:700 .7rem var(--font-display); letter-spacing:.08em; text-transform:uppercase; }
-.gallery-card h2 { margin:16px 0 6px; font-size:1.45rem; }.gallery-card p { min-height:52px; margin:0; color:var(--muted); font-size:.84rem; }.gallery-card-actions { display:flex; align-items:center; gap:14px; margin-top:22px; }.gallery-card-actions .button { min-height:42px; padding:9px 13px; font-size:.8rem; }.gallery-consult { display:inline-flex; align-items:center; gap:6px; color:var(--primary); font:700 .8rem var(--font-display); }.gallery-consult:hover { text-decoration:underline; }
+.gallery-card h2 { margin:16px 0 6px; font-size:1.45rem; }.gallery-card p { min-height:52px; margin:0; color:var(--muted); font-size:.84rem; }.gallery-card-actions { display:flex; align-items:center; gap:14px; margin-top:22px; }.gallery-card-actions .button { min-height:44px; padding:9px 13px; font-size:.8rem; }.gallery-consult { display:inline-flex; align-items:center; min-height:44px; gap:6px; color:var(--primary); font:700 .8rem var(--font-display); }.gallery-consult:hover { text-decoration:underline; }
 .gallery-empty { padding:80px 0; text-align:center; }.gallery-empty h2 { margin:0 0 20px; font-size:2rem; }.gallery-cta { padding:86px 0; background:var(--primary); color:white; }.gallery-cta h2 { max-width:650px; margin:0; font-size:clamp(2.4rem,5vw,5rem); line-height:1; }.gallery-cta p:not(.eyebrow) { max-width:540px; margin:20px 0 28px; color:#e9e9ff; }.gallery-cta .eyebrow { color:#cbfbff; }.button-light { color:var(--ink); background:white; border-color:white; }
 @media (max-width:820px) { .gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:600px) { .gallery-intro h1 { font-size:3.15rem; }.gallery-grid { grid-template-columns:1fr; }.gallery-results { padding-top:36px; }.gallery-card p { min-height:0; }.gallery-card-actions { flex-wrap:wrap; } }
