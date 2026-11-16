@@ -215,5 +215,17 @@ export const designs = [
     image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&auto=format&fit=crop',
     previewPath: '/preview/dental-cosmetic',
     previewComponent: 'DentalCosmetic'
+  },
+  {
+    id: 'derm-lab',
+    slug: 'derm-lab',
+    name: 'SÉRA Derm Lab',
+    category: 'healthcare',
+    niche: 'Klinik Kecantikan',
+    description: 'Desain clinical-luxury berteknologi tinggi untuk klinik dermatologi & estetika medis dengan pencari protokol keluhan kulit interaktif dan showcase perangkat FDA.',
+    features: ['Hero Sinematik Full-Viewport', 'Pencari Protokol Keluhan', 'Showcase Perangkat Medis', 'Profil Dokter Sp.DVE', 'Form Reservasi Dual-Action'],
+    image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&auto=format&fit=crop',
+    previewPath: '/preview/derm-lab',
+    previewComponent: 'SeraDermLab'
   }
 ];
