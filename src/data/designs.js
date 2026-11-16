@@ -143,5 +143,65 @@ export const designs = [
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop',
     previewPath: '/preview/architecture-studio',
     previewComponent: 'ArchitectureStudio'
+  },
+  {
+    id: 'aesthetic-clinic',
+    slug: 'aesthetic-clinic',
+    name: 'Lumière Aesthetic Clinic',
+    category: 'healthcare',
+    niche: 'Klinik Kecantikan',
+    description: 'Landing page elegan untuk klinik kecantikan & skincare medis dengan filter treatment, studi kasus pasien, dan form reservasi dokter.',
+    features: ['Treatment Filter', 'Estimasi Biaya', 'Studi Kasus Before-After', 'Form Reservasi Dual-Action', 'Booking WhatsApp'],
+    image: '/assets/images/seo.webp',
+    previewPath: '/preview/aesthetic-clinic',
+    previewComponent: 'AestheticClinic'
+  },
+  {
+    id: 'dental-care',
+    slug: 'dental-care',
+    name: 'Sora Dental Studio',
+    category: 'healthcare',
+    niche: 'Klinik Gigi',
+    description: 'Desain bersih dan ramah keluarga untuk klinik gigi dengan pilihan cabang, jadwal praktik dokter, dan form booking slot kunjungan.',
+    features: ['Pilihan Cabang', 'Jadwal Praktik Dokter', 'Daftar Layanan Gigi', 'Form Booking Dual-Action', 'Sterilisasi Trust Signals'],
+    image: '/assets/images/seo.webp',
+    previewPath: '/preview/dental-care',
+    previewComponent: 'DentalCare'
+  },
+  {
+    id: 'ac-service',
+    slug: 'ac-service',
+    name: 'SejukTek AC Service',
+    category: 'service',
+    niche: 'Service AC & Pendingin',
+    description: 'Landing page fokus konversi cepat untuk jasa service AC panggilan dengan kalkulator estimasi unit, tabel tarif transparan, dan garansi 30 hari.',
+    features: ['Kalkulator Estimasi Cepat', 'Tabel Tarif Transparan', 'Komitmen Garansi 30 Hari', 'Form Panggil Teknisi', 'WhatsApp Cepat'],
+    image: '/assets/images/seo.webp',
+    previewPath: '/preview/ac-service',
+    previewComponent: 'AcService'
+  },
+  {
+    id: 'bengkel-kanopi',
+    slug: 'bengkel-kanopi',
+    name: 'BajaKarya Konstruksi',
+    category: 'service',
+    niche: 'Bengkel Las & Kanopi',
+    description: 'Desain industrial tegas untuk bengkel las, kanopi minimalis, dan pagar besi dengan simulasi RAB per m² dan form jadwal survey gratis.',
+    features: ['Simulasi Estimasi RAB/m²', 'Katalog Model & Spesifikasi', 'Galeri Proyek Selesai', 'Form Jadwal Survey Gratis', 'Spesifikasi Material SNI'],
+    image: '/assets/images/seo.webp',
+    previewPath: '/preview/bengkel-kanopi',
+    previewComponent: 'BengkelKanopi'
+  },
+  {
+    id: 'tax-legal',
+    slug: 'tax-legal',
+    name: 'Pratama Tax & Legal',
+    category: 'service',
+    niche: 'Konsultan Pajak & Legalitas',
+    description: 'Landing page berwibawa untuk konsultan pajak dan jasa pendirian PT/CV dengan tab layanan transparan, alur kerja 4 langkah, dan konsultasi rahasia.',
+    features: ['Tab Legalitas & Pajak', 'Jaminan Kerahasiaan NDA', 'Alur Kerja Terstruktur', 'Form Konsultasi Rahasia', 'Estimasi Biaya Jelas'],
+    image: '/assets/images/seo.webp',
+    previewPath: '/preview/tax-legal',
+    previewComponent: 'TaxLegal'
   }
 ];
