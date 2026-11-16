@@ -122,7 +122,7 @@
               </p>
             </div>
             <div class="mt-10 pt-10 border-t border-stone-200 flex items-center gap-8">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Halal_logo_Indonesia.svg/1200px-Halal_logo_Indonesia.svg.png" class="h-12 grayscale opacity-50 hover:opacity-100 transition-opacity" alt="Halal">
+              <img src="/assets/images/halal-logo.svg" class="h-12 grayscale opacity-50 hover:opacity-100 transition-opacity" alt="Halal">
               <img src="https://cdn-icons-png.flaticon.com/512/3408/3408546.png" class="h-12 grayscale opacity-50 hover:opacity-100 transition-opacity" alt="Local">
             </div>
           </div>
