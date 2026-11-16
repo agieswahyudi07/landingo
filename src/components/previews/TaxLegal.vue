@@ -1,611 +1,592 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import PreviewLeadTeaser from '@/components/previews/shared/PreviewLeadTeaser.vue';
 import { whatsappHref } from '@/lib/whatsapp';
 
-const activeTab = ref('legalitas');
+const activePractice = ref('pt');
 
-const packages = {
-  legalitas: [
-    {
-      title: 'Pendirian PT Umum Lengkap',
-      price: 'Rp 5.900.000',
-      timeline: '5–7 Hari Kerja',
-      items: ['Pengecekan & Pemesanan Nama PT', 'Akta Pendirian Notaris & SK Kemenkumham', 'NPWP Badan & SKT Pajak', 'NIB & Sertifikat Standar OSS RBA'],
-    },
-    {
-      title: 'Pendirian CV / PT Perorangan',
-      price: 'Mulai Rp 2.500.000',
-      timeline: '3–5 Hari Kerja',
-      items: ['Akta Notaris / Sertifikat Kemenkumham', 'Pendaftaran NIB & KBLI Usaha', 'NPWP Badan Usaha Resmi', 'Konsultasi Struktur Pemegang Saham'],
-    },
-  ],
-  pajak: [
-    {
-      title: 'Pendampingan Pajak Bulanan UMKM & PT',
-      price: 'Mulai Rp 1.750.000/bln',
-      timeline: 'Retainer Bulanan',
-      items: ['Pembukuan Laporan Laba Rugi & Neraca', 'Hitung, Setor & Lapor SPT Masa PPh/PPN', 'Rekonsiliasi Faktur Pajak & Bukti Potong', 'Konsultasi Kepatuhan Tanpa Batas'],
-    },
-    {
-      title: 'SPT Tahunan Badan & Respon SP2DK',
-      price: 'Mulai Rp 3.500.000',
-      timeline: 'Sesuai Kompleksitas',
-      items: ['Review Laporan Keuangan Fiskal', 'Penyusunan & Pelaporan SPT Tahunan Badan', 'Pendampingan Klarifikasi Surat DJP (SP2DK)', 'Perjanjian Kerahasiaan Data (NDA)'],
-    },
-  ],
-};
+const practices = [
+  {
+    id: 'pt',
+    index: '01',
+    title: 'Pendirian PT Umum & PMA',
+    fee: 'Rp 5.900.000',
+    eta: '5–7 Hari Kerja',
+    deliverables: [
+      'Pengecekan & Pemesanan Nama PT di Sistem AHU',
+      'Akta Pendirian Notaris & SK Menteri Hukum dan HAM',
+      'NPWP Badan & Surat Keterangan Terdaftar (SKT)',
+      'Nomor Induk Berusaha (NIB) & Sertifikat Standar OSS RBA',
+    ],
+  },
+  {
+    id: 'cv',
+    index: '02',
+    title: 'Pendirian CV & PT Perorangan',
+    fee: 'Mulai Rp 2.500.000',
+    eta: '3–5 Hari Kerja',
+    deliverables: [
+      'Konsultasi Pemetaan KBLI Usaha sesuai Peraturan Terbaru',
+      'Akta Pendirian CV / Sertifikat Pendirian PT Perorangan',
+      'Pendaftaran NPWP Perusahaan & Aktivasi Coretax / DJP',
+      'Penerbitan NIB OSS & Hak Akses Perizinan Berusaha',
+    ],
+  },
+  {
+    id: 'pajak',
+    index: '03',
+    title: 'Kepatuhan Pajak Bulanan & Pembukuan',
+    fee: 'Mulai Rp 1.750.000 / bln',
+    eta: 'Retainer Bulanan',
+    deliverables: [
+      'Penyusunan Laporan Keuangan Bulanan (Neraca & Laba Rugi)',
+      'Perhitungan, Penyetoran & Pelaporan SPT Masa PPh/PPN',
+      'Rekonsiliasi Faktur Pajak Masukan/Keluaran & Bukti Potong',
+      'Konsultasi Strategi Efisiensi Pajak Legal tanpa Batas',
+    ],
+  },
+  {
+    id: 'sp2dk',
+    index: '04',
+    title: 'SPT Tahunan Badan & Pendampingan SP2DK',
+    fee: 'Mulai Rp 3.500.000',
+    eta: 'Sesuai Kompleksitas',
+    deliverables: [
+      'Review Laporan Keuangan Komersial ke Koreksi Fiskal',
+      'Penyusunan & Pelaporan SPT Tahunan PPh Badan (1771)',
+      'Penyusunan Tanggapan Resmi Klarifikasi Pajak (SP2DK)',
+      'Perlindungan Kerahasiaan Data Finansial dengan NDA Tertulis',
+    ],
+  },
+];
 
-const activePackages = computed(() => packages[activeTab.value]);
+const faqs = [
+  {
+    q: 'Apakah proses pendirian PT/CV bisa dilakukan tanpa datang ke kantor notaris?',
+    a: 'Bisa. Seluruh verifikasi KTP/NPWP pendiri serta penandatanganan draf akta dapat diproses secara hybrid dan terdokumentasi resmi.',
+  },
+  {
+    q: 'Bagaimana jaminan kerahasiaan data keuangan dan pajak perusahaan kami?',
+    a: 'Setiap klien mendapatkan Non-Disclosure Agreement (NDA) resmi yang ditandatangani sebelum pertukaran laporan keuangan atau akses akun DJP.',
+  },
+  {
+    q: 'Apakah ada biaya tambahan tersembunyi di tengah pengerjaan?',
+    a: 'Tidak. Seluruh rincian PNBP, jasa notaris, dan honorarium konsultan dituangkan dalam surat penawaran tetap sebelum pekerjaan dimulai.',
+  },
+];
+
+const openFaq = ref(0);
 
 const consultHref = (topic) =>
-  whatsappHref(`Halo Pratama Tax & Legal, saya ingin konsultasi rahasia mengenai ${topic}.`);
+  whatsappHref(`Halo Pratama & Partners, saya ingin konsultasi rahasia mengenai ${topic}.`);
 </script>
 
 <template>
-  <div class="tl-page">
-    <header class="tl-header">
-      <div class="tl-wrap tl-header-inner">
-        <a href="#top" class="tl-brand">
-          <span class="tl-seal" aria-hidden="true">PTL</span>
-          <div>
-            <strong>PRATAMA TAX &amp; LEGAL</strong>
-            <span>Konsultan Pajak &amp; Perizinan Badan Usaha</span>
-          </div>
-        </a>
-
-        <nav class="tl-nav" aria-label="Navigasi konsultan pajak dan legal">
-          <a href="#layanan">Layanan &amp; Tarif</a>
-          <a href="#proses">Alur Kerja</a>
-          <a href="#konsultasi">Konsultasi Rahasia</a>
-        </nav>
-
-        <a :href="consultHref('konsultasi awal pajak dan legalitas')" target="_blank" rel="noopener" class="tl-btn tl-btn-navy">
-          Konsultasi Rahasia
-        </a>
+  <div class="firm">
+    <header class="firm-masthead">
+      <div class="firm-wrap firm-masthead-row">
+        <span class="firm-meta">JAKARTA SELATAN &bull; KONSULTAN PAJAK &amp; HUKUM KORPORASI</span>
+        <a href="#top" class="firm-logo">PRATAMA &amp; PARTNERS</a>
+        <div class="firm-right">
+          <a :href="consultHref('jadwal diskusi awal')" target="_blank" rel="noopener" class="firm-cta-outline">
+            Konsultasi Rahasia
+          </a>
+        </div>
       </div>
     </header>
 
-    <section id="top" class="tl-hero">
-      <div class="tl-wrap tl-hero-grid">
-        <div>
-          <p class="tl-eyebrow">Konsultan Pajak Terdaftar &bull; Rekanan Notaris Resmi &bull; NDA Protected</p>
-          <h1>Pendirian PT/CV &amp; Kepatuhan Pajak Bisnis Beres Tanpa Ribet.</h1>
-          <p class="tl-lead">
-            Fokus kembangkan omzet bisnis Anda. Urusan akta notaris, NIB OSS RBA, pembukuan bulanan, hingga pelaporan SPT kami tangani secara rapi, legal, dan transparan biayanya.
-          </p>
-          <div class="tl-hero-actions">
-            <a :href="consultHref('pendirian PT atau kepatuhan pajak')" target="_blank" rel="noopener" class="tl-btn tl-btn-gold">
-              Jadwalkan Konsultasi 1-on-1
-            </a>
-            <a href="#layanan" class="tl-btn tl-btn-outline">Lihat Paket Layanan</a>
-          </div>
+    <section id="top" class="firm-hero">
+      <div class="firm-wrap">
+        <div class="firm-hero-statement">
+          <p class="firm-kicker">Brevet A/B/C &bull; Kuasa Hukum Pajak &bull; Rekanan Notaris Resmi</p>
+          <h1>Kepastian hukum dan kepatuhan pajak agar bisnis Anda bertumbuh tanpa risiko denda.</h1>
         </div>
 
-        <aside class="tl-cred-card">
-          <h2>Standar Kerahasiaan &amp; Kredensial</h2>
-          <ul>
-            <li>
-              <strong>Izin Praktik Resmi (Brevet A/B/C &amp; USKP)</strong>
-              <span>Ditangani oleh konsultan berpengalaman menangani perusahaan jasa, perdagangan, hingga konstruksi.</span>
-            </li>
-            <li>
-              <strong>Jaminan Kerahasiaan Dokumen (NDA)</strong>
-              <span>Seluruh data keuangan dan akta perusahaan dijaga ketat dengan perjanjian kerahasiaan tertulis.</span>
-            </li>
-            <li>
-              <strong>Update Progres Real-Time</strong>
-              <span>Laporan status pengerjaan akta maupun bukti lapor pajak dikirim rutin setiap tahapan selesai.</span>
-            </li>
-          </ul>
-        </aside>
+        <div class="firm-banner">
+          <img
+            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1400&auto=format&fit=crop"
+            alt="Dokumen hukum dan kepatuhan korporasi di Pratama & Partners"
+          />
+        </div>
+
+        <div class="firm-ledger">
+          <div><strong>SK Kemenkumham</strong><span>Akta notaris &amp; legalitas badan usaha resmi</span></div>
+          <div><strong>Izin Praktik Aktif</strong><span>Konsultan pajak terdaftar &amp; berpengalaman</span></div>
+          <div><strong>NDA Tertulis</strong><span>Kerahasiaan data keuangan terjamin penuh</span></div>
+          <div><strong>Fixed Fee</strong><span>Penawaran tertulis tanpa biaya siluman</span></div>
+        </div>
       </div>
     </section>
 
-    <section id="layanan" class="tl-section tl-white">
-      <div class="tl-wrap">
-        <div class="tl-section-head">
-          <div>
-            <p class="tl-eyebrow">Transparansi Biaya</p>
-            <h2>Pilih Layanan Sesuai Kebutuhan Usaha</h2>
-          </div>
-          <div class="tl-tabs" role="tablist" aria-label="Kategori jasa pajak dan legal">
-            <button
-              type="button"
-              role="tab"
-              :aria-selected="activeTab === 'legalitas'"
-              :class="{ active: activeTab === 'legalitas' }"
-              @click="activeTab = 'legalitas'"
+    <section id="praktik" class="firm-practice">
+      <div class="firm-wrap firm-practice-grid">
+        <aside class="firm-index">
+          <span class="firm-kicker">Bidang Praktik</span>
+          <h2>Layanan Korporasi &amp; Perpajakan</h2>
+          <p>Pilih bidang layanan di bawah untuk melihat rincian dokumen dan estimasi biaya tetap.</p>
+          <nav class="firm-index-list" aria-label="Pilih bidang praktik">
+            <a
+              v-for="p in practices"
+              :key="p.id"
+              :href="`#practice-${p.id}`"
+              :class="{ active: activePractice === p.id }"
+              @click="activePractice = p.id"
             >
-              Pendirian PT/CV &amp; Izin
-            </button>
-            <button
-              type="button"
-              role="tab"
-              :aria-selected="activeTab === 'pajak'"
-              :class="{ active: activeTab === 'pajak' }"
-              @click="activeTab = 'pajak'"
-            >
-              Pajak &amp; Pembukuan
-            </button>
-          </div>
-        </div>
-
-        <div class="tl-grid-2">
-          <article v-for="pkg in activePackages" :key="pkg.title" class="tl-card">
-            <div class="tl-card-head">
-              <span class="tl-time">{{ pkg.timeline }}</span>
-              <h3>{{ pkg.title }}</h3>
-              <strong class="tl-price">{{ pkg.price }}</strong>
-            </div>
-            <ul class="tl-list">
-              <li v-for="item in pkg.items" :key="item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                <span>{{ item }}</span>
-              </li>
-            </ul>
-            <a :href="consultHref(pkg.title)" target="_blank" rel="noopener" class="tl-btn tl-btn-navy tl-btn-full">
-              Konsultasi Paket Ini
+              <span>{{ p.index }}</span>
+              <strong>{{ p.title }}</strong>
             </a>
+          </nav>
+        </aside>
+
+        <div class="firm-schedule">
+          <article
+            v-for="p in practices"
+            :id="`practice-${p.id}`"
+            :key="p.id"
+            class="firm-practice-row"
+            :class="{ highlighted: activePractice === p.id }"
+            @mouseenter="activePractice = p.id"
+          >
+            <div class="firm-row-head">
+              <span class="firm-row-num">{{ p.index }}</span>
+              <div>
+                <h3>{{ p.title }}</h3>
+                <span class="firm-eta">Estimasi Proses: {{ p.eta }}</span>
+              </div>
+              <strong class="firm-fee">{{ p.fee }}</strong>
+            </div>
+            <ul class="firm-deliverables">
+              <li v-for="d in p.deliverables" :key="d">{{ d }}</li>
+            </ul>
+            <div class="firm-row-foot">
+              <a :href="consultHref(p.title)" target="_blank" rel="noopener" class="firm-link">
+                Ajukan Penawaran Tertulis &rarr;
+              </a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="proses" class="tl-section">
-      <div class="tl-wrap">
-        <p class="tl-eyebrow">Alur Pengerjaan</p>
-        <h2>4 Langkah Pendampingan Terstruktur</h2>
-        <div class="tl-steps">
-          <div class="tl-step">
-            <span>01</span>
-            <h3>Diagnosa Kebutuhan</h3>
-            <p>Cek kelayakan KBLI usaha, status PKP, atau evaluasi kewajiban pajak perusahaan Anda.</p>
-          </div>
-          <div class="tl-step">
-            <span>02</span>
-            <h3>Penandatanganan NDA &amp; Penawaran</h3>
-            <p>Rincian biaya resmi tanpa tambahan mendadak dan jaminan kerahasiaan data.</p>
-          </div>
-          <div class="tl-step">
-            <span>03</span>
-            <h3>Eksekusi &amp; Pelaporan</h3>
-            <p>Pengurusan dokumen notaris, OSS RBA, maupun penyusunan laporan fiskal oleh tim ahli.</p>
-          </div>
-          <div class="tl-step">
-            <span>04</span>
-            <h3>Serah Terima &amp; Arsip</h3>
-            <p>Berkas fisik dan arsip digital BPE/Akta diserahkan rapi beserta pengingat jadwal pajak berikutnya.</p>
+    <section class="firm-faq">
+      <div class="firm-wrap firm-faq-grid">
+        <div>
+          <span class="firm-kicker">Pertanyaan Kritis</span>
+          <h2>Hal yang Sering Ditanyakan Pemilik Usaha</h2>
+        </div>
+
+        <div class="firm-faq-list">
+          <div v-for="(item, idx) in faqs" :key="item.q" class="firm-faq-item">
+            <button
+              type="button"
+              :aria-expanded="openFaq === idx"
+              @click="openFaq = openFaq === idx ? -1 : idx"
+            >
+              <span>{{ item.q }}</span>
+              <strong>{{ openFaq === idx ? '−' : '+' }}</strong>
+            </button>
+            <p v-if="openFaq === idx">{{ item.a }}</p>
           </div>
         </div>
       </div>
     </section>
 
-    <div id="konsultasi">
-      <PreviewLeadTeaser
-        business-name="Pratama Tax & Legal"
-        heading="Jadwalkan Konsultasi Pajak atau Pendirian Badan Usaha"
-        subheading="Sampaikan kebutuhan Anda secara ringkas. Konsultan kami akan menghubungi melalui jalur pribadi WhatsApp untuk sesi diskusi awal."
-        cta-label="Minta Jadwal Konsultasi Rahasia"
-        :service-options="[
-          'Pendirian PT Umum / PMA',
-          'Pendirian CV / PT Perorangan',
-          'Jasa Pajak Bulanan & Pembukuan',
-          'Pelaporan SPT Tahunan Badan',
-          'Pendampingan Surat DJP / SP2DK'
-        ]"
-        accent-color="#1E3A8A"
-        accent-text-color="#FFFFFF"
-        surface-bg="#F8FAFC"
-      />
-    </div>
+    <PreviewLeadTeaser
+      business-name="Pratama & Partners"
+      heading="Jadwalkan Diskusi Rahasia dengan Konsultan Kami"
+      subheading="Sampaikan kebutuhan legalitas atau pajak perusahaan Anda. Seluruh informasi dijaga kerahasiaannya."
+      cta-label="Hubungi Konsultan via WhatsApp"
+      :service-options="[
+        'Pendirian PT Umum / PMA',
+        'Pendirian CV / PT Perorangan',
+        'Retainer Pajak Bulanan & Pembukuan',
+        'SPT Tahunan Badan & Koreksi Fiskal',
+        'Pendampingan Klarifikasi SP2DK'
+      ]"
+      accent-color="#172554"
+      accent-text-color="#FFFFFF"
+      surface-bg="#EFECE5"
+    />
 
-    <footer class="tl-footer">
-      <div class="tl-wrap tl-footer-inner">
-        <div>
-          <strong>PRATAMA TAX &amp; LEGAL PARTNERS</strong>
-          <p>Menara Sudirman Lt. 12, Jakarta Selatan &bull; Layanan Seluruh Indonesia</p>
-        </div>
-        <span>Contoh Desain Niche Konsultan Pajak &amp; Legalitas &bull; Landingo</span>
+    <footer class="firm-footer">
+      <div class="firm-wrap firm-footer-row">
+        <strong>PRATAMA &amp; PARTNERS &bull; Menara Sudirman Lt. 12, Jakarta</strong>
+        <span>Preview Niche Konsultan Pajak &amp; Legalitas &bull; Landingo</span>
       </div>
     </footer>
   </div>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
-.tl-page {
+.firm {
   min-height: 100vh;
-  background: #f8fafc;
+  background: #f7f5f0;
   color: #0f172a;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-.tl-wrap {
-  width: min(1140px, calc(100% - 36px));
+.firm-wrap {
+  width: min(1160px, calc(100% - 36px));
   margin-inline: auto;
 }
 
-.tl-header {
+.firm-masthead {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: #ffffff;
-  border-bottom: 1px solid #cbd5e1;
+  background: #f7f5f0;
+  border-top: 3px solid #172554;
+  border-bottom: 1px solid #d6d1c7;
 }
 
-.tl-header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 76px;
-}
-
-.tl-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: #0f172a;
-}
-
-.tl-seal {
+.firm-masthead-row {
   display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 6px;
-  background: #1e3a8a;
-  color: #ffffff;
-  font-family: 'EB Garamond', serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
-.tl-brand strong {
-  display: block;
-  font-family: 'EB Garamond', serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.04em;
-}
-
-.tl-brand span {
-  display: block;
-  color: #475569;
-  font-size: 0.74rem;
-}
-
-.tl-nav {
-  display: flex;
-  gap: 24px;
-}
-
-.tl-nav a {
-  color: #334155;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.tl-nav a:hover {
-  color: #1e3a8a;
-}
-
-.tl-btn {
-  display: inline-flex;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
+  min-height: 76px;
+  gap: 16px;
 }
 
-.tl-btn-navy {
-  background: #1e3a8a;
-  color: #ffffff;
-  border: 1px solid #1e3a8a;
-}
-
-.tl-btn-navy:hover {
-  background: #1e40af;
-}
-
-.tl-btn-gold {
-  background: #b45309;
-  color: #ffffff;
-  border: 1px solid #b45309;
-}
-
-.tl-btn-gold:hover {
-  background: #92400e;
-}
-
-.tl-btn-outline {
-  background: #ffffff;
-  color: #1e3a8a;
-  border: 1px solid #1e3a8a;
-}
-
-.tl-btn-full {
-  width: 100%;
-}
-
-.tl-eyebrow {
-  margin: 0 0 12px;
-  color: #b45309;
-  font-size: 0.78rem;
+.firm-meta {
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  color: #475569;
+}
+
+.firm-logo {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #172554;
+  text-decoration: none;
+  text-align: center;
+}
+
+.firm-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.firm-cta-outline {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1px solid #172554;
+  color: #172554;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.firm-cta-outline:hover {
+  background: #172554;
+  color: #ffffff;
+}
+
+.firm-kicker {
+  display: block;
+  margin: 0 0 12px;
+  color: #9a6b2f;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.tl-hero {
-  padding: clamp(48px, 6vw, 88px) 0;
-  border-bottom: 1px solid #cbd5e1;
+.firm-hero {
+  padding: clamp(40px, 6vw, 72px) 0 0;
 }
 
-.tl-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: 36px;
-  align-items: center;
+.firm-hero-statement {
+  max-width: 900px;
+  margin: 0 auto 36px;
+  text-align: center;
 }
 
-.tl-hero h1 {
+.firm-hero-statement h1 {
   margin: 0;
   font-family: 'EB Garamond', serif;
-  font-size: clamp(2.3rem, 4.5vw, 3.6rem);
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: clamp(2.4rem, 5vw, 4.1rem);
+  font-weight: 600;
+  line-height: 1.08;
   color: #0f172a;
 }
 
-.tl-lead {
-  margin: 18px 0 28px;
-  color: #334155;
-  font-size: 1.04rem;
+.firm-banner {
+  border-top: 1px solid #d6d1c7;
+  border-bottom: 1px solid #d6d1c7;
+  background: #e5e0d5;
 }
 
-.tl-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.tl-cred-card {
-  padding: 28px;
-  border: 1px solid #cbd5e1;
-  border-top: 4px solid #1e3a8a;
-  border-radius: 8px;
-  background: #ffffff;
-}
-
-.tl-cred-card h2 {
-  margin: 0 0 18px;
-  font-family: 'EB Garamond', serif;
-  font-size: 1.5rem;
-}
-
-.tl-cred-card ul {
-  display: grid;
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tl-cred-card strong {
+.firm-banner img {
   display: block;
-  color: #1e3a8a;
+  width: 100%;
+  height: clamp(240px, 34vw, 390px);
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.04);
+}
+
+.firm-ledger {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #d6d1c7;
+}
+
+.firm-ledger > div {
+  padding: 22px 20px;
+  border-right: 1px solid #d6d1c7;
+}
+
+.firm-ledger > div:last-child {
+  border-right: 0;
+}
+
+.firm-ledger strong {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.25rem;
+  color: #172554;
+}
+
+.firm-ledger span {
+  display: block;
+  margin-top: 4px;
+  color: #475569;
+  font-size: 0.82rem;
+}
+
+.firm-practice {
+  padding: 72px 0;
+  background: #ffffff;
+  border-bottom: 1px solid #d6d1c7;
+}
+
+.firm-practice-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.firm-index {
+  position: sticky;
+  top: 104px;
+}
+
+.firm-index h2 {
+  margin: 0 0 12px;
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  line-height: 1.1;
+}
+
+.firm-index p {
+  margin: 0 0 24px;
+  color: #475569;
   font-size: 0.94rem;
 }
 
-.tl-cred-card span {
-  display: block;
-  margin-top: 4px;
+.firm-index-list {
+  display: grid;
+  border-top: 1px solid #d6d1c7;
+}
+
+.firm-index-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 8px;
+  border-bottom: 1px solid #d6d1c7;
   color: #475569;
-  font-size: 0.86rem;
-}
-
-.tl-section {
-  padding: 64px 0;
-}
-
-.tl-white {
-  background: #ffffff;
-}
-
-.tl-section-head {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.tl-section h2 {
-  margin: 0;
-  font-family: 'EB Garamond', serif;
-  font-size: clamp(1.9rem, 3.2vw, 2.5rem);
-}
-
-.tl-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tl-tabs button {
-  min-height: 44px;
-  padding: 10px 18px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  background: #f8fafc;
-  color: #334155;
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.tl-tabs button.active {
-  background: #1e3a8a;
-  border-color: #1e3a8a;
-  color: #ffffff;
-}
-
-.tl-grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.tl-card {
-  display: flex;
-  flex-direction: column;
-  padding: 28px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  background: #f8fafc;
-}
-
-.tl-card-head {
-  padding-bottom: 18px;
-  border-bottom: 1px solid #cbd5e1;
-  margin-bottom: 18px;
-}
-
-.tl-time {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 4px;
-  background: #e2e8f0;
-  color: #1e3a8a;
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.tl-card h3 {
-  margin: 0 0 8px;
-  font-family: 'EB Garamond', serif;
-  font-size: 1.5rem;
-}
-
-.tl-price {
-  color: #b45309;
-  font-size: 1.25rem;
-}
-
-.tl-list {
-  display: grid;
-  gap: 10px;
-  margin: 0 0 24px;
-  padding: 0;
-  list-style: none;
-  color: #334155;
+  text-decoration: none;
   font-size: 0.92rem;
 }
 
-.tl-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+.firm-index-list a span {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  color: #9a6b2f;
 }
 
-.tl-list svg {
-  flex: none;
-  margin-top: 4px;
-  color: #1e3a8a;
+.firm-index-list a.active,
+.firm-index-list a:hover {
+  color: #172554;
+  background: #f7f5f0;
 }
 
-.tl-card .tl-btn {
-  margin-top: auto;
-}
-
-.tl-steps {
+.firm-schedule {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 28px;
+  border-top: 1px solid #172554;
 }
 
-.tl-step {
-  padding: 22px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  background: #ffffff;
+.firm-practice-row {
+  padding: 28px 0;
+  border-bottom: 1px solid #d6d1c7;
 }
 
-.tl-step span {
-  display: block;
-  margin-bottom: 10px;
-  color: #b45309;
+.firm-row-head {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.firm-row-num {
   font-family: 'EB Garamond', serif;
   font-size: 1.5rem;
-  font-weight: 700;
+  color: #9a6b2f;
 }
 
-.tl-step h3 {
-  margin: 0 0 8px;
-  font-size: 1.05rem;
-}
-
-.tl-step p {
+.firm-row-head h3 {
   margin: 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.55rem;
+  color: #172554;
+}
+
+.firm-eta {
   color: #475569;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
 }
 
-.tl-footer {
-  padding: 28px 0;
+.firm-fee {
+  font-size: 1.05rem;
+  color: #9a6b2f;
+}
+
+.firm-deliverables {
+  margin: 0 0 18px;
+  padding-left: 58px;
+  color: #334155;
+  font-size: 0.92rem;
+  display: grid;
+  gap: 6px;
+}
+
+.firm-row-foot {
+  padding-left: 58px;
+}
+
+.firm-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #172554;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid #172554;
+}
+
+.firm-faq {
+  padding: 64px 0;
+  background: #f7f5f0;
+}
+
+.firm-faq-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 48px;
+}
+
+.firm-faq h2 {
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  line-height: 1.12;
+}
+
+.firm-faq-list {
+  border-top: 1px solid #172554;
+}
+
+.firm-faq-item {
+  border-bottom: 1px solid #d6d1c7;
+}
+
+.firm-faq-item button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 0;
+  border: 0;
+  background: transparent;
+  color: #0f172a;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.firm-faq-item p {
+  margin: 0 0 18px;
+  color: #475569;
+  font-size: 0.92rem;
+}
+
+.firm-footer {
+  padding: 26px 0;
   background: #0f172a;
-  color: #f8fafc;
+  color: #e2e8f0;
+  font-size: 0.82rem;
 }
 
-.tl-footer-inner {
+.firm-footer-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  align-items: center;
-}
-
-.tl-footer p {
-  margin: 4px 0 0;
-  color: #cbd5e1;
-  font-size: 0.84rem;
 }
 
 @media (max-width: 900px) {
-  .tl-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .firm-masthead-row {
+    grid-template-columns: 1fr auto;
   }
-}
-
-@media (max-width: 820px) {
-  .tl-nav {
+  .firm-meta {
     display: none;
   }
-  .tl-hero-grid,
-  .tl-grid-2 {
+  .firm-logo {
+    text-align: left;
+  }
+  .firm-ledger {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .firm-practice-grid,
+  .firm-faq-grid {
     grid-template-columns: 1fr;
+  }
+  .firm-index {
+    position: static;
   }
 }
 
-@media (max-width: 540px) {
-  .tl-steps {
+@media (max-width: 560px) {
+  .firm-ledger {
     grid-template-columns: 1fr;
+  }
+  .firm-ledger > div {
+    border-right: 0;
+    border-bottom: 1px solid #d6d1c7;
+  }
+  .firm-row-head {
+    grid-template-columns: 1fr;
+  }
+  .firm-deliverables,
+  .firm-row-foot {
+    padding-left: 18px;
   }
 }
 </style>

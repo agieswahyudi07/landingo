@@ -3,179 +3,195 @@ import { computed, ref } from 'vue';
 import PreviewLeadTeaser from '@/components/previews/shared/PreviewLeadTeaser.vue';
 import { whatsappHref } from '@/lib/whatsapp';
 
-const acUnits = ref(2);
-const selectedService = ref('Cuci AC Standard');
+const services = ref([
+  { id: 'cuci-std', name: 'Cuci AC Split 0.5 – 1 PK', desc: 'Termasuk cek tekanan freon & arus listrik + plastik pelindung', price: 75000, qty: 2 },
+  { id: 'cuci-big', name: 'Cuci AC Split 1.5 – 2 PK', desc: 'Pembersihan evaporator, filter & saluran pembuangan', price: 95000, qty: 0 },
+  { id: 'freon', name: 'Tambah Freon R32 / R410A', desc: 'Diukur pakai manifold gauge di depan Anda sebelum isi', price: 185000, qty: 0 },
+  { id: 'bongkar', name: 'Bongkar Pasang AC Split', desc: 'Instalasi rapi + vakum unit + garansi kebocoran 30 hari', price: 375000, qty: 0 },
+]);
 
-const tariffs = [
-  { name: 'Cuci AC Standard (0.5 – 1 PK)', price: 75000, unit: 'per unit', note: 'Sudah termasuk cek tekanan freon & arus listrik' },
-  { name: 'Cuci AC Besar (1.5 – 2 PK)', price: 95000, unit: 'per unit', note: 'Pembersihan evaporator, filter & drainase anti-bocor' },
-  { name: 'Tambah Freon R32 / R410A', price: 185000, unit: 'per isi', note: 'Diukur dengan manifold gauge transparan di depan pelanggan' },
-  { name: 'Bongkar Pasang AC Split', price: 375000, unit: 'per unit', note: 'Garansi instalasi pipa & kebocoran selama 30 hari' },
-];
-
-const selectedTariff = computed(
-  () => tariffs.find((t) => t.name.startsWith(selectedService.value)) || tariffs[0]
+const totalCost = computed(() =>
+  services.value.reduce((sum, item) => sum + item.price * item.qty, 0)
 );
 
-const estimatedTotal = computed(() =>
-  new Intl.NumberFormat('id-ID').format(selectedTariff.value.price * acUnits.value)
+const totalUnits = computed(() =>
+  services.value.reduce((sum, item) => sum + item.qty, 0)
 );
 
-const orderHref = computed(() =>
-  whatsappHref(
-    `Halo SejukTek AC, saya ingin pesan layanan ${selectedTariff.value.name} untuk ${acUnits.value} unit (estimasi Rp ${estimatedTotal.value}).`
-  )
-);
+const orderSummaryText = computed(() => {
+  const picked = services.value
+    .filter((i) => i.qty > 0)
+    .map((i) => `${i.qty}x ${i.name}`)
+    .join(', ');
+  if (!picked) {
+    return 'Halo SejukTek Express, saya ingin memanggil teknisi AC hari ini.';
+  }
+  return `Halo SejukTek Express, saya mau pesan: ${picked} (Estimasi Rp ${new Intl.NumberFormat('id-ID').format(totalCost.value)}).`;
+});
+
+const areas = ['Bintaro', 'BSD & Serpong', 'Ciputat', 'Kemang', 'Pondok Indah', 'Cinere', 'Depok'];
 </script>
 
 <template>
-  <div class="ac-srv">
-    <header class="ac-srv-header">
-      <div class="ac-srv-wrap ac-srv-header-inner">
-        <a href="#top" class="ac-srv-brand">
-          <span class="ac-srv-badge">SEJUKTEK</span>
-          <span>Service AC &amp; Pendingin</span>
+  <div class="express">
+    <div class="express-alert">
+      <div class="express-wrap express-alert-row">
+        <span>TEKNISI SIAGA HARI INI (08.00 – 20.00 WIB)</span>
+        <span>GARANSI KERJA 30 HARI &bull; TANPA BIAYA SILUMAN</span>
+      </div>
+    </div>
+
+    <header class="express-header">
+      <div class="express-wrap express-header-row">
+        <a href="#top" class="express-brand">
+          <span class="express-bolt" aria-hidden="true">ST</span>
+          <div>
+            <strong>SEJUKTEK EXPRESS</strong>
+            <span>Spesialis AC Rumah &amp; Kantor</span>
+          </div>
         </a>
 
-        <nav class="ac-srv-nav" aria-label="Navigasi service AC">
-          <a href="#tarif">Daftar Tarif</a>
-          <a href="#garansi">Standar Kerja</a>
+        <nav class="express-nav" aria-label="Navigasi service AC">
+          <a href="#tarif">Rakit Estimasi</a>
+          <a href="#alur">Cara Kerja</a>
           <a href="#panggil">Panggil Teknisi</a>
         </nav>
 
-        <a :href="orderHref" target="_blank" rel="noopener" class="ac-srv-btn ac-srv-btn-cta">
-          Panggil Teknisi Hari Ini
+        <a :href="whatsappHref(orderSummaryText)" target="_blank" rel="noopener" class="express-cta-btn">
+          Panggil Teknisi
         </a>
       </div>
     </header>
 
-    <section id="top" class="ac-srv-hero">
-      <div class="ac-srv-wrap ac-srv-hero-grid">
+    <section id="top" class="express-hero">
+      <div class="express-wrap express-hero-grid">
         <div>
-          <span class="ac-srv-chip">Teknisi Berpengalaman &bull; Garansi 30 Hari</span>
-          <h1>AC Tidak Dingin atau Bocor? Teknisi Kami Siap Datang Hari Ini.</h1>
-          <p class="ac-srv-lead">
-            Tarif diinformasikan di muka sebelum pengerjaan. Setiap pencucian dilengkapi plastik pelindung dinding agar ruangan tetap bersih tanpa repot.
+          <span class="express-pill">Rata-rata Tiba 60–90 Menit</span>
+          <h1>AC Panas, Berisik, atau Menetes Air? Beres Hari Ini.</h1>
+          <p>
+            Teknisi kami membawa terpal pelindung dinding dan alat ukur freon digital. Harga dipastikan di awal sebelum obeng menyentuh unit AC Anda.
           </p>
-          <div class="ac-srv-proof-row">
-            <div><strong>08.00 – 20.00</strong><span>Buka Setiap Hari</span></div>
-            <div><strong>30 Hari</strong><span>Garansi Pengerjaan</span></div>
-            <div><strong>Jabodetabek</strong><span>Rumah, Ruko &amp; Kantor</span></div>
+          <div class="express-hero-actions">
+            <a :href="whatsappHref(orderSummaryText)" target="_blank" rel="noopener" class="express-cta-btn express-cta-lg">
+              Chat WA Panggil Teknisi Sekarang
+            </a>
+            <a href="#tarif" class="express-ghost-btn">Hitung Biaya Layanan</a>
           </div>
         </div>
 
-        <aside class="ac-srv-calc" aria-label="Kalkulator estimasi biaya cepat">
-          <h2>Cek Estimasi Biaya Cepat</h2>
-          <div class="ac-srv-calc-group">
-            <label for="ac-service-select">Jenis Layanan</label>
-            <select id="ac-service-select" v-model="selectedService">
-              <option value="Cuci AC Standard">Cuci AC Standard (0.5 – 1 PK)</option>
-              <option value="Cuci AC Besar">Cuci AC Besar (1.5 – 2 PK)</option>
-              <option value="Tambah Freon">Tambah Freon R32 / R410A</option>
-              <option value="Bongkar Pasang">Bongkar Pasang AC Split</option>
-            </select>
+        <div class="express-photo-frame">
+          <img
+            src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&auto=format&fit=crop"
+            alt="Ruangan keluarga nyaman dan sejuk"
+          />
+          <div class="express-photo-bar">
+            <div><strong class="mono">Rp 75rb</strong><span>Cuci AC Mulai</span></div>
+            <div><strong class="mono">30 Hari</strong><span>Garansi Ulang</span></div>
+            <div><strong class="mono">08–20</strong><span>Buka Tiap Hari</span></div>
           </div>
-          <div class="ac-srv-calc-group">
-            <label for="ac-unit-count">Jumlah Unit AC: <strong class="mono">{{ acUnits }} Unit</strong></label>
-            <div class="ac-srv-stepper">
-              <button type="button" @click="acUnits = Math.max(1, acUnits - 1)" aria-label="Kurangi unit">-</button>
-              <span id="ac-unit-count" class="mono">{{ acUnits }}</span>
-              <button type="button" @click="acUnits = Math.min(20, acUnits + 1)" aria-label="Tambah unit">+</button>
-            </div>
-          </div>
-          <div class="ac-srv-total">
-            <span>Estimasi Biaya</span>
-            <strong class="mono">Rp {{ estimatedTotal }}</strong>
-          </div>
-          <a :href="orderHref" target="_blank" rel="noopener" class="ac-srv-btn ac-srv-btn-cta ac-srv-btn-full">
-            Pesan Sekarang via WhatsApp
-          </a>
-        </aside>
+        </div>
       </div>
     </section>
 
-    <section id="tarif" class="ac-srv-section ac-srv-white">
-      <div class="ac-srv-wrap">
-        <p class="ac-srv-eyebrow">Transparansi Harga</p>
-        <h2>Daftar Tarif Layanan Standar</h2>
-        <div class="ac-srv-tariffs">
-          <article v-for="t in tariffs" :key="t.name" class="ac-srv-tariff-card">
+    <section id="alur" class="express-steps">
+      <div class="express-wrap">
+        <div class="express-steps-grid">
+          <div class="express-step">
+            <span class="mono">STEP 01</span>
+            <h3>Kirim Lokasi &amp; Jumlah Unit</h3>
+            <p>Admin cek teknisi terdekat dari kecamatan Anda dalam hitungan menit.</p>
+          </div>
+          <div class="express-step">
+            <span class="mono">STEP 02</span>
+            <h3>Cek Tekanan Sebelum Aksi</h3>
+            <p>Freon tidak pernah ditambah kalau tekanannya masih normal.</p>
+          </div>
+          <div class="express-step">
+            <span class="mono">STEP 03</span>
+            <h3>Garansi Resmi 30 Hari</h3>
+            <p>AC kembali bocor atau kurang dingin? Teknisi datang ulang gratis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tarif" class="express-calc-section">
+      <div class="express-wrap">
+        <div class="express-sec-head">
+          <h2>Rakit Estimasi Tarif Resmi Anda</h2>
+          <p>Klik tombol tambah/kurang pada layanan yang dibutuhkan untuk langsung menghitung total estimasi.</p>
+        </div>
+
+        <div class="express-ledger">
+          <div v-for="srv in services" :key="srv.id" class="express-ledger-row">
+            <div class="express-ledger-info">
+              <h3>{{ srv.name }}</h3>
+              <p>{{ srv.desc }}</p>
+            </div>
+            <div class="express-ledger-price mono">
+              Rp {{ new Intl.NumberFormat('id-ID').format(srv.price) }}
+            </div>
+            <div class="express-qty">
+              <button type="button" @click="srv.qty = Math.max(0, srv.qty - 1)" :aria-label="`Kurangi ${srv.name}`">-</button>
+              <span class="mono">{{ srv.qty }}</span>
+              <button type="button" @click="srv.qty = Math.min(20, srv.qty + 1)" :aria-label="`Tambah ${srv.name}`">+</button>
+            </div>
+          </div>
+
+          <div class="express-ledger-total">
             <div>
-              <h3>{{ t.name }}</h3>
-              <p>{{ t.note }}</p>
+              <span>Total Estimasi ({{ totalUnits }} Item Layanan)</span>
+              <strong class="mono">Rp {{ new Intl.NumberFormat('id-ID').format(totalCost) }}</strong>
             </div>
-            <div class="ac-srv-tariff-price">
-              <strong class="mono">Rp {{ new Intl.NumberFormat('id-ID').format(t.price) }}</strong>
-              <span>{{ t.unit }}</span>
-            </div>
-          </article>
+            <a :href="whatsappHref(orderSummaryText)" target="_blank" rel="noopener" class="express-cta-btn express-cta-lg">
+              Pesan Paket Ini via WhatsApp
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <section id="garansi" class="ac-srv-section">
-      <div class="ac-srv-wrap">
-        <p class="ac-srv-eyebrow">Kenapa SejukTek</p>
-        <h2>Komitmen Teknisi Jujur &amp; Rapi</h2>
-        <div class="ac-srv-grid-3">
-          <div class="ac-srv-feature">
-            <strong class="mono">01</strong>
-            <h3>Cek Sebelum Tambah Freon</h3>
-            <p>Freon hanya diisi jika tekanan memang berkurang. Hasil ukur diperlihatkan langsung ke Anda.</p>
-          </div>
-          <div class="ac-srv-feature">
-            <strong class="mono">02</strong>
-            <h3>Pelindung Dinding &amp; Lantai</h3>
-            <p>Menggunakan terpal penampung air dan penutup furnitur agar tidak ada cipratan air kotor.</p>
-          </div>
-          <div class="ac-srv-feature">
-            <strong class="mono">03</strong>
-            <h3>Garansi Kunjungan Ulang</h3>
-            <p>Jika AC kembali menetes atau bermasalah dalam 30 hari, teknisi datang kembali tanpa biaya jasa.</p>
-          </div>
+        <div class="express-areas">
+          <span>Area Jangkauan Cepat:</span>
+          <strong v-for="a in areas" :key="a">{{ a }}</strong>
         </div>
       </div>
     </section>
 
     <div id="panggil">
       <PreviewLeadTeaser
-        business-name="SejukTek Service AC"
-        heading="Butuh Teknisi Datang ke Lokasi Hari Ini?"
-        subheading="Tulis keluhan AC dan kecamatan Anda. Admin langsung mencarikan teknisi terdekat yang siap meluncur."
-        cta-label="Panggil Teknisi via WhatsApp"
+        business-name="SejukTek Express"
+        heading="Jadwalkan Kedatangan Teknisi AC"
+        subheading="Isi alamat singkat dan keluhan unit AC Anda agar tim dispatch kami langsung mengonfirmasi jam kedatangan."
+        cta-label="Konfirmasi Panggilan Teknisi"
         :service-options="[
-          'Cuci AC Rutin (1-3 Unit)',
+          'Cuci AC Rutin',
           'AC Tidak Dingin / Cek Freon',
           'AC Bocor Menetes Air',
-          'Bongkar Pasang Pindahan',
-          'Kontrak Maintenance Kantor / Kos'
+          'Bongkar Pasang AC',
+          'Perawatan AC Kantor / Ruko'
         ]"
         accent-color="#EA580C"
         accent-text-color="#FFFFFF"
-        surface-bg="#EFF6FF"
+        surface-bg="#F1F5F9"
       />
     </div>
 
-    <footer class="ac-srv-footer">
-      <div class="ac-srv-wrap ac-srv-footer-inner">
-        <div>
-          <strong>SEJUKTEK AC SERVICE</strong>
-          <p>Melayani Tangerang Selatan, Jakarta Selatan, Depok &amp; Bekasi</p>
-        </div>
-        <span>Contoh Desain Niche Service AC &bull; Landingo</span>
+    <footer class="express-footer">
+      <div class="express-wrap express-footer-row">
+        <strong>SEJUKTEK EXPRESS &bull; Tangerang Selatan &amp; Jakarta Selatan</strong>
+        <span>Preview Niche Service AC &bull; Landingo</span>
       </div>
     </footer>
   </div>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-.ac-srv {
+.express {
   min-height: 100vh;
-  background: #eff6ff;
-  color: #1e3a8a;
-  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #0b1f4d;
+  font-family: 'Space Grotesk', sans-serif;
   line-height: 1.55;
   overflow-x: hidden;
 }
@@ -184,58 +200,88 @@ const orderHref = computed(() =>
   font-family: 'JetBrains Mono', monospace;
 }
 
-.ac-srv-wrap {
+.express-wrap {
   width: min(1140px, calc(100% - 36px));
   margin-inline: auto;
 }
 
-.ac-srv-header {
+.express-alert {
+  background: #ea580c;
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 8px 0;
+}
+
+.express-alert-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.express-header {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: #ffffff;
-  border-bottom: 2px solid #bfdbfe;
+  background: #0b1f4d;
+  color: #ffffff;
+  border-bottom: 1px solid #1e3a8a;
 }
 
-.ac-srv-header-inner {
+.express-header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: 72px;
+  min-height: 74px;
 }
 
-.ac-srv-brand {
+.express-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  color: #ffffff;
   text-decoration: none;
-  color: #1e3a8a;
+}
+
+.express-bolt {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #2563eb;
   font-weight: 700;
 }
 
-.ac-srv-badge {
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: #1e40af;
-  color: #ffffff;
-  font-weight: 800;
+.express-brand strong {
+  display: block;
+  font-size: 1rem;
   letter-spacing: 0.04em;
 }
 
-.ac-srv-nav {
+.express-brand span {
+  display: block;
+  font-size: 0.72rem;
+  color: #93c5fd;
+}
+
+.express-nav {
   display: flex;
   gap: 24px;
 }
 
-.ac-srv-nav a {
-  color: #475569;
+.express-nav a {
+  color: #dbeafe;
   font-size: 0.88rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.ac-srv-btn {
+.express-cta-btn,
+.express-ghost-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -248,281 +294,269 @@ const orderHref = computed(() =>
   cursor: pointer;
 }
 
-.ac-srv-btn-cta {
+.express-cta-btn {
   background: #ea580c;
   color: #ffffff;
-  border: 1px solid #ea580c;
 }
 
-.ac-srv-btn-cta:hover {
+.express-cta-btn:hover {
   background: #c2410c;
 }
 
-.ac-srv-btn-full {
-  width: 100%;
+.express-cta-lg {
+  padding: 13px 24px;
+  font-size: 0.94rem;
 }
 
-.ac-srv-hero {
-  padding: clamp(40px, 6vw, 76px) 0;
+.express-ghost-btn {
+  border: 1px solid #60a5fa;
+  color: #ffffff;
 }
 
-.ac-srv-hero-grid {
+.express-hero {
+  background: #0b1f4d;
+  color: #ffffff;
+  padding: clamp(44px, 6vw, 76px) 0 64px;
+}
+
+.express-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: 32px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 36px;
+  align-items: center;
 }
 
-.ac-srv-chip {
+.express-pill {
   display: inline-block;
   padding: 5px 12px;
   border-radius: 6px;
-  background: #dbeafe;
-  color: #1e40af;
+  background: #1e3a8a;
+  color: #93c5fd;
   font-size: 0.78rem;
   font-weight: 700;
   margin-bottom: 14px;
 }
 
-.ac-srv-hero h1 {
+.express-hero h1 {
   margin: 0;
-  font-size: clamp(2rem, 4.2vw, 3.2rem);
-  font-weight: 800;
-  line-height: 1.12;
-  color: #1e3a8a;
+  font-size: clamp(2.2rem, 4.3vw, 3.45rem);
+  line-height: 1.08;
 }
 
-.ac-srv-lead {
-  margin: 16px 0 26px;
-  color: #475569;
+.express-hero p {
+  margin: 18px 0 28px;
+  color: #cbd5e1;
   font-size: 1rem;
 }
 
-.ac-srv-proof-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  padding: 18px;
-  border-radius: 10px;
-  background: #ffffff;
-  border: 1px solid #bfdbfe;
-}
-
-.ac-srv-proof-row strong {
-  display: block;
-  color: #1e40af;
-  font-size: 1.05rem;
-}
-
-.ac-srv-proof-row span {
-  color: #475569;
-  font-size: 0.78rem;
-}
-
-.ac-srv-calc {
-  padding: 24px;
-  border-radius: 12px;
-  background: #ffffff;
-  border: 2px solid #1e40af;
-}
-
-.ac-srv-calc h2 {
-  margin: 0 0 18px;
-  font-size: 1.2rem;
-  font-weight: 800;
-}
-
-.ac-srv-calc-group {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.ac-srv-calc-group label {
-  font-size: 0.84rem;
-  font-weight: 600;
-  color: #334155;
-}
-
-.ac-srv-calc-group select {
-  min-height: 44px;
-  padding: 8px 12px;
-  border: 1px solid #bfdbfe;
-  border-radius: 8px;
-  font: inherit;
-  color: #1e3a8a;
-  background: #eff6ff;
-}
-
-.ac-srv-stepper {
-  display: inline-flex;
-  align-items: center;
+.express-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
-.ac-srv-stepper button {
-  width: 44px;
-  height: 44px;
-  border: 1px solid #bfdbfe;
-  border-radius: 8px;
-  background: #eff6ff;
-  color: #1e3a8a;
-  font-size: 1.15rem;
-  font-weight: 700;
-  cursor: pointer;
+.express-photo-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #1e3a8a;
+  background: #172554;
 }
 
-.ac-srv-stepper span {
-  min-width: 32px;
+.express-photo-frame img {
+  display: block;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+}
+
+.express-photo-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #1e3a8a;
+}
+
+.express-photo-bar > div {
+  background: #0f2963;
+  padding: 14px;
   text-align: center;
-  font-size: 1.1rem;
+}
+
+.express-photo-bar strong {
+  display: block;
+  font-size: 1.15rem;
+  color: #fb923c;
+}
+
+.express-photo-bar span {
+  font-size: 0.74rem;
+  color: #dbeafe;
+}
+
+.express-steps {
+  background: #f1f5f9;
+  padding: 48px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.express-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.express-step span {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #ea580c;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
-.ac-srv-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 14px 0;
-  margin-bottom: 14px;
-  border-top: 1px solid #bfdbfe;
-  border-bottom: 1px solid #bfdbfe;
+.express-step h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
 }
 
-.ac-srv-total strong {
-  font-size: 1.35rem;
-  color: #1e40af;
+.express-step p {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
 }
 
-.ac-srv-section {
+.express-calc-section {
   padding: 64px 0;
 }
 
-.ac-srv-white {
-  background: #ffffff;
+.express-sec-head {
+  margin-bottom: 28px;
 }
 
-.ac-srv-eyebrow {
+.express-sec-head h2 {
   margin: 0 0 8px;
-  color: #ea580c;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
 }
 
-.ac-srv-section h2 {
-  margin: 0 0 28px;
-  font-size: clamp(1.65rem, 3vw, 2.25rem);
-  font-weight: 800;
+.express-sec-head p {
+  margin: 0;
+  color: #475569;
 }
 
-.ac-srv-tariffs {
+.express-ledger {
+  border: 2px solid #0b1f4d;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.express-ledger-row {
   display: grid;
-  gap: 12px;
-}
-
-.ac-srv-tariff-card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 14px;
+  gap: 20px;
   padding: 20px 24px;
-  border: 1px solid #bfdbfe;
-  border-radius: 10px;
-  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
 }
 
-.ac-srv-tariff-card h3 {
+.express-ledger-info h3 {
   margin: 0 0 4px;
   font-size: 1.05rem;
 }
 
-.ac-srv-tariff-card p {
+.express-ledger-info p {
   margin: 0;
   color: #475569;
   font-size: 0.86rem;
 }
 
-.ac-srv-tariff-price {
-  text-align: right;
+.express-ledger-price {
+  font-weight: 700;
+  color: #1e40af;
+  font-size: 1.05rem;
 }
 
-.ac-srv-tariff-price strong {
+.express-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.express-qty button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0b1f4d;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.express-qty span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.express-ledger-total {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  background: #f8fafc;
+}
+
+.express-ledger-total span {
   display: block;
-  font-size: 1.2rem;
+  color: #475569;
+  font-size: 0.82rem;
+}
+
+.express-ledger-total strong {
+  font-size: 1.55rem;
+  color: #0b1f4d;
+}
+
+.express-areas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.express-areas strong {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #eff6ff;
   color: #1e40af;
 }
 
-.ac-srv-tariff-price span {
-  font-size: 0.76rem;
-  color: #475569;
+.express-footer {
+  padding: 26px 0;
+  background: #0b1f4d;
+  color: #dbeafe;
+  font-size: 0.84rem;
 }
 
-.ac-srv-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.ac-srv-feature {
-  padding: 24px;
-  border: 1px solid #bfdbfe;
-  border-radius: 10px;
-  background: #ffffff;
-}
-
-.ac-srv-feature > strong {
-  display: inline-block;
-  margin-bottom: 10px;
-  color: #ea580c;
-  font-size: 1.1rem;
-}
-
-.ac-srv-feature h3 {
-  margin: 0 0 8px;
-  font-size: 1.08rem;
-}
-
-.ac-srv-feature p {
-  margin: 0;
-  color: #475569;
-  font-size: 0.88rem;
-}
-
-.ac-srv-footer {
-  padding: 28px 0;
-  background: #1e3a8a;
-  color: #eff6ff;
-}
-
-.ac-srv-footer-inner {
+.express-footer-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  align-items: center;
 }
 
-.ac-srv-footer p {
-  margin: 4px 0 0;
-  color: #bfdbfe;
-  font-size: 0.84rem;
-}
-
-@media (max-width: 820px) {
-  .ac-srv-nav {
+@media (max-width: 860px) {
+  .express-nav {
     display: none;
   }
-  .ac-srv-hero-grid,
-  .ac-srv-grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 540px) {
-  .ac-srv-proof-row {
+  .express-hero-grid,
+  .express-steps-grid,
+  .express-ledger-row {
     grid-template-columns: 1fr;
   }
 }

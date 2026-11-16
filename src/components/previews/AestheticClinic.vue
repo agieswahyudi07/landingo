@@ -3,613 +3,713 @@ import { computed, ref } from 'vue';
 import PreviewLeadTeaser from '@/components/previews/shared/PreviewLeadTeaser.vue';
 import { whatsappHref } from '@/lib/whatsapp';
 
-const activeCategory = ref('Semua');
-const categories = ['Semua', 'Facial & Glow', 'Acne Care', 'Anti-Aging'];
-
 const treatments = [
   {
-    name: 'Medical Aqua Glow Facial',
-    category: 'Facial & Glow',
+    id: 'aqua-glow',
+    category: 'Facial Medis',
+    name: 'Lumière Aqua Glow Ritual',
     duration: '60 Menit',
     price: 'Rp 349.000',
-    desc: 'Pembersihan komedo mendalam dengan serum hidrasi medis tanpa rasa sakit dan minim kemerahan.',
-    tag: 'Paling Diminati',
+    downtime: 'Tanpa Downtime',
+    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&auto=format&fit=crop',
+    summary: 'Hidrasi mendalam & eksfoliasi lembut dengan serum medis untuk mengembalikan kilau alami kulit lelah.',
+    steps: ['Analisa kulit 3D Visia', 'Double cleansing & vakum komedo lembut', 'Infusi serum hyaluronic & masker menenangkan'],
   },
   {
-    name: 'Pico Laser Brightening',
-    category: 'Facial & Glow',
+    id: 'pico-laser',
+    category: 'Laser & Pigmentasi',
+    name: 'Pico Toning Brightening',
     duration: '45 Menit',
     price: 'Rp 899.000',
-    desc: 'Menyamarkan flek hitam, bekas jerawat PIH, dan meratakan warna kulit dengan teknologi laser non-ablatif.',
-    tag: 'Dokter Spesialis',
+    downtime: 'Kemerahan Ringan 2 Jam',
+    image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1000&auto=format&fit=crop',
+    summary: 'Menargetkan flek melasma, bekas jerawat kehitaman (PIH), dan meratakan warna kulit tanpa merusak permukaan.',
+    steps: ['Konsultasi dokter estetika', 'Penyinaran laser picosecond terkalibrasi', 'Soothing peptide mask & sunscreen medis'],
   },
   {
-    name: 'Acne Peeling & Blue Light',
+    id: 'acne-protocol',
     category: 'Acne Care',
+    name: 'Medical Acne Calm Therapy',
     duration: '50 Menit',
     price: 'Rp 425.000',
-    desc: 'Mengeringkan jerawat aktif, mengontrol sebum berlebih, dan menenangkan inflamasi kulit sensitif.',
-    tag: 'BPOM Certified',
+    downtime: 'Minimal',
+    image: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1000&auto=format&fit=crop',
+    summary: 'Protokol khusus jerawat aktif meradang untuk menekan bakteri penyebab jerawat sekaligus menjaga skin barrier.',
+    steps: ['Ekstraksi steril oleh perawat terlatih', 'Chemical peeling lembut tingkat medis', 'Terapi LED Blue Light anti-inflamasi'],
   },
   {
-    name: 'DNA Salmon Skin Booster',
-    category: 'Anti-Aging',
+    id: 'skin-booster',
+    category: 'Regenerasi',
+    name: 'DNA Salmon Glass Skin Booster',
     duration: '45 Menit',
     price: 'Rp 1.450.000',
-    desc: 'Nutrisi regenerasi sel untuk elastisitas kulit, mengecilkan pori, dan memperbaiki tekstur bopeng halus.',
-    tag: 'Hasil Terukur',
+    downtime: '1–2 Hari Bintik Halus',
+    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&auto=format&fit=crop',
+    summary: 'Nutrisi polinukleotida untuk memperbaiki elastisitas kulit, menyamarkan bopeng halus, dan mengecilkan pori.',
+    steps: ['Anestesi topikal nyaman 30 menit', 'Mikro-injeksi oleh dokter estetika', 'Post-care cream pencegah lebam'],
   },
 ];
 
-const filteredTreatments = computed(() =>
-  activeCategory.value === 'Semua'
-    ? treatments
-    : treatments.filter((t) => t.category === activeCategory.value)
+const selectedId = ref(treatments[0].id);
+const activeTreatment = computed(
+  () => treatments.find((item) => item.id === selectedId.value) || treatments[0]
 );
 
-const cases = [
-  {
-    title: 'Pemulihan Jerawat Meradang & Bekas Kemerahan',
-    patient: 'Rania P., 26 tahun — Tangerang Selatan',
-    protocol: '3x Acne Peeling + Blue Light Therapy (6 Minggu)',
-    result: 'Jerawat aktif mereda 85% dan barrier kulit kembali tenang.',
-  },
-  {
-    title: 'Flek Melasma & Kulit Kusam Pasca-Paparan Matahari',
-    patient: 'Dewi K., 34 tahun — Jakarta Selatan',
-    protocol: '2x Pico Laser Brightening + Medical Sunscreen',
-    result: 'Noda gelap memudar signifikan dan warna kulit tampak lebih merata.',
-  },
-];
-
 const consultHref = (topic) =>
-  whatsappHref(`Halo Lumiere Skin Clinic, saya ingin konsultasi mengenai ${topic}.`);
+  whatsappHref(`Halo Lumière Skin Atelier, saya ingin reservasi konsultasi untuk ${topic}.`);
 </script>
 
 <template>
-  <div class="ac-page">
-    <header class="ac-header">
-      <div class="ac-wrap ac-header-inner">
-        <a href="#top" class="ac-brand">
-          <span class="ac-brand-mark" aria-hidden="true">L</span>
-          <div>
-            <strong>LUMIÈRE</strong>
-            <span>Aesthetic &amp; Skin Clinic</span>
-          </div>
-        </a>
-
-        <nav class="ac-nav" aria-label="Navigasi klinik kecantikan">
-          <a href="#treatment">Treatment</a>
-          <a href="#hasil">Before &amp; After</a>
-          <a href="#reservasi">Reservasi</a>
+  <div class="atelier">
+    <header class="atelier-header">
+      <div class="atelier-wrap atelier-header-row">
+        <nav class="atelier-nav" aria-label="Navigasi menu klinik">
+          <a href="#filosofi">Filosofi</a>
+          <a href="#menu">Treatment</a>
+          <a href="#transformasi">Kisah Pasien</a>
         </nav>
 
-        <a :href="consultHref('jadwal konsultasi dokter')" target="_blank" rel="noopener" class="ac-btn ac-btn-primary">
-          Booking Dokter
+        <a href="#top" class="atelier-wordmark">
+          <strong>LUMIÈRE</strong>
+          <span>SKIN ATELIER</span>
         </a>
+
+        <div class="atelier-header-cta">
+          <a :href="consultHref('konsultasi analisa kulit')" target="_blank" rel="noopener" class="atelier-btn-pill">
+            Buat Janji
+          </a>
+        </div>
       </div>
     </header>
 
-    <section id="top" class="ac-hero">
-      <div class="ac-wrap ac-hero-grid">
-        <div class="ac-hero-copy">
-          <p class="ac-eyebrow">Klinik Estetika Berizin Resmi &bull; Ditangani Dokter</p>
-          <h1>Kulit Sehat, Cerah &amp; Terawat dengan Protokol Medis Terukur.</h1>
-          <p class="ac-lead">
-            Konsultasi analisa kulit menyeluruh sebelum tindakan. Tanpa krim abal-abal, seluruh rangkaian serum dan tindakan diawasi dokter estetika berpengalaman.
+    <section id="top" class="atelier-hero">
+      <div class="atelier-wrap atelier-hero-layout">
+        <div class="atelier-hero-text">
+          <span class="atelier-kicker">Klinik Estetika Medis &bull; BSD &amp; Jakarta Selatan</span>
+          <h1>Kulit sehat bercahaya lahir dari <em>perawatan yang jujur</em>.</h1>
+          <p>
+            Di Lumière, setiap kunjungan dimulai dengan analisa kondisi kulit oleh dokter—bukan paksaan paket mahal. Formula berizin BPOM, hasil bertahap dan alami.
           </p>
-          <div class="ac-hero-actions">
-            <a :href="consultHref('konsultasi analisa kulit pertama')" target="_blank" rel="noopener" class="ac-btn ac-btn-primary">
-              Konsultasi Kulit Gratis via WA
+          <div class="atelier-hero-actions">
+            <a :href="consultHref('analisa kulit pertama')" target="_blank" rel="noopener" class="atelier-btn-solid">
+              Jadwalkan Analisa Kulit
             </a>
-            <a href="#treatment" class="ac-btn ac-btn-outline">Lihat Daftar Treatment</a>
+            <a href="#menu" class="atelier-text-link">Jelajahi Menu Treatment &darr;</a>
+          </div>
+          <div class="atelier-signature">
+            <div><strong>4.9 &bull; Google Maps</strong><span>Dari 1.100+ ulasan pasien</span></div>
+            <div><strong>100% Dokter</strong><span>Semua tindakan di bawah pengawasan medis</span></div>
           </div>
         </div>
 
-        <div class="ac-hero-panel" aria-label="Ringkasan keunggulan klinik">
-          <div class="ac-panel-card">
-            <span class="ac-panel-badge">Sertifikasi &amp; Keamanan</span>
-            <h2>Standar Perawatan Klinik Lumière</h2>
-            <ul class="ac-panel-list">
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                <span><strong>Analisa Kulit 3D:</strong> Cek kondisi pori, hidrasi, &amp; pigmentasi sebelum memilih tindakan.</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                <span><strong>Skincare Ber-BPOM:</strong> Formulasi dokter aman untuk kulit sensitif, ibu hamil &amp; menyusui.</span>
-              </li>
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                <span><strong>Tanpa Biaya Tersembunyi:</strong> Estimasi harga disampaikan transparan di awal.</span>
-              </li>
-            </ul>
-            <div class="ac-panel-stats">
-              <div><strong>4.9 / 5</strong><span>Rating Google Maps</span></div>
-              <div><strong>12.400+</strong><span>Tindakan Selesai</span></div>
-              <div><strong>6 Dokter</strong><span>Estetika Aktif</span></div>
-            </div>
+        <div class="atelier-hero-visual">
+          <div class="atelier-arch-frame">
+            <img
+              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&auto=format&fit=crop"
+              alt="Perawatan wajah lembut di Lumière Skin Atelier"
+            />
+          </div>
+          <div class="atelier-floating-note">
+            <span>Protokol Terukur</span>
+            <strong>Tanpa krim etiket biru berbahaya</strong>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="treatment" class="ac-section">
-      <div class="ac-wrap">
-        <div class="ac-section-head">
-          <div>
-            <p class="ac-eyebrow">Menu Perawatan</p>
-            <h2>Treatment Unggulan &amp; Estimasi Biaya</h2>
-          </div>
-          <div class="ac-tabs" role="tablist" aria-label="Kategori treatment">
-            <button
-              v-for="cat in categories"
-              :key="cat"
-              type="button"
-              role="tab"
-              :aria-selected="activeCategory === cat"
-              :class="{ active: activeCategory === cat }"
-              @click="activeCategory = cat"
-            >
-              {{ cat }}
-            </button>
-          </div>
-        </div>
-
-        <div class="ac-grid-2">
-          <article v-for="item in filteredTreatments" :key="item.name" class="ac-card">
-            <div class="ac-card-top">
-              <span class="ac-tag">{{ item.tag }}</span>
-              <span class="ac-duration">{{ item.duration }}</span>
-            </div>
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.desc }}</p>
-            <div class="ac-card-foot">
-              <div>
-                <small>Mulai dari</small>
-                <strong>{{ item.price }}</strong>
-              </div>
-              <a :href="consultHref(item.name)" target="_blank" rel="noopener" class="ac-link">
-                Tanya Dokter &rarr;
-              </a>
-            </div>
-          </article>
-        </div>
+    <div id="filosofi" class="atelier-ribbon" aria-label="Nilai klinik">
+      <div class="atelier-wrap atelier-ribbon-grid">
+        <span>01. Analisa Visia 3D</span>
+        <span>02. Dokter Estetika Aktif</span>
+        <span>03. Skincare Resmi BPOM</span>
+        <span>04. Harga Jelas Tanpa Tekanan</span>
       </div>
-    </section>
-
-    <section id="hasil" class="ac-section ac-section-tint">
-      <div class="ac-wrap">
-        <div class="ac-section-head">
-          <div>
-            <p class="ac-eyebrow">Progres Pasien Nyata</p>
-            <h2>Studi Kasus &amp; Ulasan Klien</h2>
-          </div>
-        </div>
-        <div class="ac-grid-2">
-          <article v-for="c in cases" :key="c.title" class="ac-case">
-            <span class="ac-case-protocol">{{ c.protocol }}</span>
-            <h3>{{ c.title }}</h3>
-            <p>{{ c.result }}</p>
-            <footer>{{ c.patient }}</footer>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <div id="reservasi">
-      <PreviewLeadTeaser
-        business-name="Lumière Aesthetic Clinic"
-        heading="Jadwalkan Analisa Kulit &amp; Treatment Anda"
-        subheading="Pilih perawatan yang Anda minati dan tentukan waktu kunjungan. Tim resepsionis klinik akan mengonfirmasi jadwal dokter via WhatsApp."
-        cta-label="Reservasi Jadwal Klinik"
-        :service-options="[
-          'Konsultasi Analisa Kulit Gratis',
-          'Medical Aqua Glow Facial',
-          'Pico Laser Brightening',
-          'Acne Peeling & Blue Light',
-          'DNA Salmon Skin Booster'
-        ]"
-        accent-color="#DB2777"
-        accent-text-color="#FFFFFF"
-        surface-bg="#FDF2F8"
-      />
     </div>
 
-    <footer class="ac-footer">
-      <div class="ac-wrap ac-footer-inner">
-        <div>
-          <strong>LUMIÈRE AESTHETIC CLINIC</strong>
-          <p>Jl. Boulevard Utama No. 18, BSD City &bull; Buka Setiap Hari 09.00 – 20.00 WIB</p>
+    <section id="menu" class="atelier-menu-section">
+      <div class="atelier-wrap">
+        <div class="atelier-section-title">
+          <span>Kurasi Perawatan</span>
+          <h2>Pilih perawatan yang paling relevan dengan kondisi kulit Anda.</h2>
         </div>
-        <span>Contoh Desain Niche Klinik Kecantikan &bull; Landingo</span>
+
+        <div class="atelier-menu-split">
+          <div class="atelier-menu-list" role="tablist" aria-label="Daftar menu treatment">
+            <button
+              v-for="(item, idx) in treatments"
+              :key="item.id"
+              type="button"
+              role="tab"
+              class="atelier-menu-row"
+              :class="{ active: selectedId === item.id }"
+              :aria-selected="selectedId === item.id"
+              @click="selectedId = item.id"
+            >
+              <span class="atelier-row-num">0{{ idx + 1 }}</span>
+              <div class="atelier-row-main">
+                <small>{{ item.category }}</small>
+                <strong>{{ item.name }}</strong>
+              </div>
+              <span class="atelier-row-price">{{ item.price }}</span>
+            </button>
+          </div>
+
+          <aside class="atelier-menu-detail" aria-live="polite">
+            <div class="atelier-detail-media">
+              <img :src="activeTreatment.image" :alt="activeTreatment.name" loading="lazy" />
+            </div>
+            <div class="atelier-detail-body">
+              <div class="atelier-detail-meta">
+                <span>{{ activeTreatment.duration }}</span>
+                <span>&bull;</span>
+                <span>{{ activeTreatment.downtime }}</span>
+              </div>
+              <h3>{{ activeTreatment.name }}</h3>
+              <p>{{ activeTreatment.summary }}</p>
+              <ul>
+                <li v-for="step in activeTreatment.steps" :key="step">{{ step }}</li>
+              </ul>
+              <div class="atelier-detail-foot">
+                <div>
+                  <small>Investasi Perawatan</small>
+                  <strong>{{ activeTreatment.price }}</strong>
+                </div>
+                <a :href="consultHref(activeTreatment.name)" target="_blank" rel="noopener" class="atelier-btn-solid">
+                  Reservasi Sesi Ini
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="transformasi" class="atelier-story">
+      <div class="atelier-wrap atelier-story-grid">
+        <blockquote class="atelier-quote">
+          “Setelah dua tahun gonta-ganti krim tanpa hasil, di sini saya baru paham masalah barrier kulit saya. Tiga kali sesi acne calm, kemerahan mereda tanpa pengelupasan parah.”
+          <footer>&mdash; Rania Putri, 27 thn &bull; Pasien Acne Care (6 Minggu)</footer>
+        </blockquote>
+
+        <div class="atelier-timeline">
+          <div class="atelier-tl-item">
+            <span>Minggu 1</span>
+            <p>Analisa menyeluruh &amp; pembersihan komedo tanpa iritasi; penyesuaian basic skincare.</p>
+          </div>
+          <div class="atelier-tl-item">
+            <span>Minggu 3</span>
+            <p>Sesi laser/peeling terkontrol untuk meredakan inflamasi dan memudarkan bekas gelap.</p>
+          </div>
+          <div class="atelier-tl-item">
+            <span>Minggu 6</span>
+            <p>Skin barrier kembali stabil, tekstur lebih halus, jadwal perawatan masuk fase maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <PreviewLeadTeaser
+      business-name="Lumière Skin Atelier"
+      heading="Mulai Konsultasi Kulit Pertama Anda"
+      subheading="Pilih treatment yang ingin ditanyakan. Tim dokter dan resepsionis kami akan merespons dengan estimasi jadwal tercepat."
+      cta-label="Reservasi via WhatsApp"
+      :service-options="[
+        'Analisa Kulit 3D + Konsultasi Dokter',
+        'Lumière Aqua Glow Ritual',
+        'Pico Toning Brightening',
+        'Medical Acne Calm Therapy',
+        'DNA Salmon Glass Skin Booster'
+      ]"
+      accent-color="#A65D57"
+      accent-text-color="#FFFFFF"
+      surface-bg="#EFE7DE"
+    />
+
+    <footer class="atelier-footer">
+      <div class="atelier-wrap atelier-footer-row">
+        <div>
+          <strong>LUMIÈRE SKIN ATELIER</strong>
+          <p>The Breeze Boulevard Kav. 18, BSD City &bull; Senin – Minggu 09.30 – 20.00 WIB</p>
+        </div>
+        <span>Preview Niche Klinik Kecantikan &bull; Landingo</span>
       </div>
     </footer>
   </div>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-.ac-page {
+.atelier {
   min-height: 100vh;
-  background: #fdf2f8;
-  color: #831843;
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
+  background: #faf6f2;
+  color: #2b1e1a;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.65;
   overflow-x: hidden;
 }
 
-.ac-wrap {
-  width: min(1140px, calc(100% - 36px));
+.atelier-wrap {
+  width: min(1160px, calc(100% - 36px));
   margin-inline: auto;
 }
 
-.ac-header {
+.atelier-header {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(253, 242, 248, 0.94);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #fbcfe8;
+  background: rgba(250, 246, 242, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e4d8cc;
 }
 
-.ac-header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 74px;
-}
-
-.ac-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: #831843;
-}
-
-.ac-brand-mark {
+.atelier-header-row {
   display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #db2777;
-  color: #ffffff;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.35rem;
-  font-weight: 700;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 78px;
+  gap: 16px;
 }
 
-.ac-brand strong {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-}
-
-.ac-brand span {
-  display: block;
-  color: #475569;
-  font-size: 0.72rem;
-}
-
-.ac-nav {
+.atelier-nav {
   display: flex;
   gap: 24px;
 }
 
-.ac-nav a {
-  color: #475569;
-  font-size: 0.88rem;
+.atelier-nav a {
+  color: #5c4942;
+  font-size: 0.84rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.ac-nav a:hover {
-  color: #db2777;
+.atelier-nav a:hover {
+  color: #a65d57;
 }
 
-.ac-btn {
+.atelier-wordmark {
+  text-align: center;
+  text-decoration: none;
+  color: #2b1e1a;
+}
+
+.atelier-wordmark strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
+.atelier-wordmark span {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  color: #7d675f;
+  margin-top: 3px;
+}
+
+.atelier-header-cta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.atelier-btn-pill,
+.atelier-btn-solid {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 999px;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.ac-btn-primary {
-  background: #db2777;
+.atelier-btn-pill {
+  border: 1px solid #2b1e1a;
+  color: #2b1e1a;
+}
+
+.atelier-btn-pill:hover {
+  background: #2b1e1a;
+  color: #faf6f2;
+}
+
+.atelier-btn-solid {
+  background: #a65d57;
   color: #ffffff;
-  border: 1px solid #db2777;
+  border: 1px solid #a65d57;
 }
 
-.ac-btn-primary:hover {
-  background: #be185d;
-  border-color: #be185d;
+.atelier-btn-solid:hover {
+  background: #8c4b46;
 }
 
-.ac-btn-outline {
-  border: 1px solid #db2777;
-  color: #831843;
-  background: #ffffff;
-}
-
-.ac-btn-outline:hover {
-  background: #fce7f3;
-}
-
-.ac-eyebrow {
-  margin: 0 0 12px;
-  color: #be185d;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.ac-hero {
+.atelier-hero {
   padding: clamp(44px, 6vw, 84px) 0;
 }
 
-.ac-hero-grid {
+.atelier-hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 36px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(32px, 6vw, 72px);
   align-items: center;
 }
 
-.ac-hero h1 {
-  margin: 0;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
-  line-height: 1.12;
-  color: #500724;
-}
-
-.ac-lead {
-  margin: 18px 0 28px;
-  color: #475569;
-  font-size: 1.02rem;
-  max-width: 540px;
-}
-
-.ac-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.ac-panel-card {
-  padding: 28px;
-  border: 1px solid #fbcfe8;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 14px 36px rgba(131, 24, 67, 0.08);
-}
-
-.ac-panel-badge {
+.atelier-kicker {
   display: inline-block;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: #f3e8ff;
-  color: #6d28d9;
-  font-size: 0.74rem;
+  margin-bottom: 16px;
+  color: #a65d57;
+  font-size: 0.76rem;
   font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.ac-panel-card h2 {
-  margin: 14px 0 16px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.45rem;
-  color: #500724;
-}
-
-.ac-panel-list {
-  display: grid;
-  gap: 12px;
+.atelier-hero-text h1 {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  color: #334155;
-  font-size: 0.9rem;
-}
-
-.ac-panel-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.ac-panel-list svg {
-  flex: none;
-  margin-top: 3px;
-  color: #db2777;
-}
-
-.ac-panel-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid #fbcfe8;
-}
-
-.ac-panel-stats strong {
-  display: block;
-  font-size: 1.15rem;
-  color: #831843;
-}
-
-.ac-panel-stats span {
-  font-size: 0.75rem;
-  color: #475569;
-}
-
-.ac-section {
-  padding: 64px 0;
-  background: #ffffff;
-}
-
-.ac-section-tint {
-  background: #f8f5fc;
-}
-
-.ac-section-head {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.ac-section-head h2 {
-  margin: 0;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.75rem, 3vw, 2.4rem);
-  color: #500724;
-}
-
-.ac-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.ac-tabs button {
-  min-height: 44px;
-  padding: 8px 16px;
-  border: 1px solid #fbcfe8;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #475569;
-  font: inherit;
-  font-size: 0.84rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 5.4vw, 4.6rem);
   font-weight: 600;
-  cursor: pointer;
+  line-height: 1.03;
+  letter-spacing: -0.01em;
 }
 
-.ac-tabs button.active {
-  background: #db2777;
-  border-color: #db2777;
-  color: #ffffff;
+.atelier-hero-text h1 em {
+  font-style: italic;
+  color: #a65d57;
+  font-weight: 500;
 }
 
-.ac-grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.atelier-hero-text p {
+  margin: 22px 0 30px;
+  max-width: 510px;
+  color: #5c4942;
+  font-size: 1rem;
+}
+
+.atelier-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 20px;
 }
 
-.ac-card,
-.ac-case {
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  border: 1px solid #fbcfe8;
-  border-radius: 16px;
-  background: #ffffff;
-}
-
-.ac-card-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.ac-tag {
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: #fdf2f8;
-  color: #be185d;
-  font-size: 0.74rem;
-  font-weight: 700;
-}
-
-.ac-duration {
-  color: #475569;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.ac-card h3,
-.ac-case h3 {
-  margin: 0 0 8px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: #500724;
-}
-
-.ac-card p,
-.ac-case p {
-  margin: 0 0 20px;
-  color: #475569;
-  font-size: 0.9rem;
-}
-
-.ac-card-foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid #fce7f3;
-}
-
-.ac-card-foot small {
-  display: block;
-  color: #64748b;
-  font-size: 0.74rem;
-}
-
-.ac-card-foot strong {
-  color: #831843;
-  font-size: 1.12rem;
-}
-
-.ac-link {
+.atelier-text-link {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: #be185d;
+  color: #2b1e1a;
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
+  border-bottom: 1px solid #2b1e1a;
 }
 
-.ac-case-protocol {
-  display: inline-block;
-  margin-bottom: 10px;
-  color: #6d28d9;
-  font-size: 0.78rem;
-  font-weight: 700;
+.atelier-signature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid #e4d8cc;
 }
 
-.ac-case footer {
-  margin-top: auto;
-  color: #64748b;
+.atelier-signature strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.atelier-signature span {
+  color: #7d675f;
+  font-size: 0.8rem;
+}
+
+.atelier-hero-visual {
+  position: relative;
+}
+
+.atelier-arch-frame {
+  overflow: hidden;
+  border-radius: 260px 260px 18px 18px;
+  aspect-ratio: 4 / 5;
+  background: #efe7de;
+}
+
+.atelier-arch-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.atelier-floating-note {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #efe7de;
+  border-radius: 12px;
   font-size: 0.82rem;
+}
+
+.atelier-floating-note span {
+  color: #a65d57;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.atelier-ribbon {
+  background: #2b1e1a;
+  color: #efe7de;
+  padding: 18px 0;
+}
+
+.atelier-ribbon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.atelier-menu-section {
+  padding: clamp(56px, 8vw, 96px) 0;
+}
+
+.atelier-section-title {
+  max-width: 620px;
+  margin-bottom: 40px;
+}
+
+.atelier-section-title span {
+  color: #a65d57;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.atelier-section-title h2 {
+  margin: 10px 0 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.atelier-menu-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.atelier-menu-list {
+  display: grid;
+  border-top: 1px solid #d9cbbd;
+}
+
+.atelier-menu-row {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 22px 14px;
+  border: 0;
+  border-bottom: 1px solid #d9cbbd;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.atelier-menu-row:hover,
+.atelier-menu-row.active {
+  background: #efe7de;
+}
+
+.atelier-row-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  color: #a65d57;
   font-weight: 600;
 }
 
-.ac-footer {
-  padding: 28px 0;
-  background: #500724;
-  color: #fce7f3;
+.atelier-row-main small {
+  display: block;
+  color: #7d675f;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.ac-footer-inner {
+.atelier-row-main strong {
+  display: block;
+  margin-top: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.atelier-row-price {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #2b1e1a;
+}
+
+.atelier-menu-detail {
+  background: #ffffff;
+  border: 1px solid #e4d8cc;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.atelier-detail-media {
+  aspect-ratio: 16 / 10;
+  background: #efe7de;
+}
+
+.atelier-detail-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.atelier-detail-body {
+  padding: 26px;
+}
+
+.atelier-detail-meta {
+  display: flex;
+  gap: 8px;
+  color: #a65d57;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.atelier-detail-body h3 {
+  margin: 10px 0 8px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.85rem;
+  font-weight: 600;
+}
+
+.atelier-detail-body p {
+  margin: 0 0 16px;
+  color: #5c4942;
+  font-size: 0.92rem;
+}
+
+.atelier-detail-body ul {
+  margin: 0 0 22px;
+  padding-left: 18px;
+  color: #3d2e28;
+  font-size: 0.88rem;
+  display: grid;
+  gap: 6px;
+}
+
+.atelier-detail-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid #e4d8cc;
+}
+
+.atelier-detail-foot small {
+  display: block;
+  color: #7d675f;
+  font-size: 0.75rem;
+}
+
+.atelier-detail-foot strong {
+  font-size: 1.2rem;
+}
+
+.atelier-story {
+  padding: 64px 0;
+  background: #ffffff;
+  border-top: 1px solid #e4d8cc;
+}
+
+.atelier-story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.atelier-quote {
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+  font-style: italic;
+  line-height: 1.35;
+  color: #2b1e1a;
+}
+
+.atelier-quote footer {
+  margin-top: 18px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #a65d57;
+}
+
+.atelier-timeline {
+  display: grid;
+  gap: 14px;
+}
+
+.atelier-tl-item {
+  padding: 16px 20px;
+  background: #faf6f2;
+  border-left: 3px solid #a65d57;
+}
+
+.atelier-tl-item span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a65d57;
+  margin-bottom: 4px;
+}
+
+.atelier-tl-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #3d2e28;
+}
+
+.atelier-footer {
+  padding: 28px 0;
+  background: #2b1e1a;
+  color: #efe7de;
+}
+
+.atelier-footer-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -617,23 +717,32 @@ const consultHref = (topic) =>
   align-items: center;
 }
 
-.ac-footer p {
+.atelier-footer p {
   margin: 4px 0 0;
-  color: #fbcfe8;
-  font-size: 0.84rem;
+  color: #d9cbbd;
+  font-size: 0.82rem;
 }
 
-.ac-footer > div > span {
-  font-size: 0.8rem;
-  color: #f9a8d4;
-}
-
-@media (max-width: 820px) {
-  .ac-nav {
+@media (max-width: 860px) {
+  .atelier-header-row {
+    grid-template-columns: 1fr auto;
+  }
+  .atelier-nav {
     display: none;
   }
-  .ac-hero-grid,
-  .ac-grid-2 {
+  .atelier-wordmark {
+    text-align: left;
+  }
+  .atelier-hero-layout,
+  .atelier-menu-split,
+  .atelier-story-grid,
+  .atelier-ribbon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .atelier-signature {
     grid-template-columns: 1fr;
   }
 }
