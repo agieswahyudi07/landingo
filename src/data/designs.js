@@ -203,5 +203,17 @@ export const designs = [
     image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&auto=format&fit=crop',
     previewPath: '/preview/tax-legal',
     previewComponent: 'TaxLegal'
+  },
+  {
+    id: 'dental-cosmetic',
+    slug: 'dental-cosmetic',
+    name: 'AUREA Dental Atelier',
+    category: 'healthcare',
+    niche: 'Klinik Gigi',
+    description: 'Desain dark luxury obsidian untuk klinik dokter gigi kosmetik (veneer, clear aligner, implan, & bleaching) dengan simulasi shade gigi interaktif.',
+    features: ['Dark Luxury Aesthetic', 'Simulasi Shade Gigi', 'Digital Smile Storytelling', 'Layanan High-Ticket', 'Form Konsultasi Privat'],
+    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&auto=format&fit=crop',
+    previewPath: '/preview/dental-cosmetic',
+    previewComponent: 'DentalCosmetic'
   }
 ];
