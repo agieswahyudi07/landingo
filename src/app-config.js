@@ -1,11 +1,6 @@
 import { Icon } from '@iconify/vue';
-import naive from 'naive-ui';
 
 export default (app) => {
-  // Register global components
+  // Register Iconify globally for legacy design preview components
   app.component('Icon', Icon);
-  
-  // Use Naive UI
-  app.use(naive);
 };
-

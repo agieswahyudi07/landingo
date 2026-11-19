@@ -1,21 +1,127 @@
 ---
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/space-grotesk';
 import '../assets/main.css';
+import { homeFaqs } from '../data/faq';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   type?: string;
+  noindex?: boolean;
+  includeHomeFaqSchema?: boolean;
 }
 
 const {
-  title = 'Landingo - Landing Page Profesional untuk UMKM | Mulai dari Rp 1,5 Juta | SEO Optimized',
-  description = 'Transformasi bisnis UMKM Anda dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, loading cepat, SEO optimized, dan siap untuk iklan digital. Mulai dari Rp 1,5 Juta dengan diskon promo. Siap online dalam 2-5 hari kerja.',
+  title = 'Landingo - Landing Page Profesional untuk UMKM | Mulai dari Rp 1,5 Juta | SEO & GEO Ready',
+  description = 'Transformasi bisnis UMKM Anda dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, loading cepat, SEO & GEO ready, dan siap untuk iklan digital. Mulai dari Rp 1,5 Juta dengan diskon promo. Siap online dalam 2-5 hari kerja.',
   image = 'https://landingo.id/assets/images/seo.webp',
-  type = 'website'
+  type = 'website',
+  noindex = false,
+  includeHomeFaqSchema = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://landingo.id');
+const robotsContent = noindex
+  ? 'noindex, follow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+const graphNodes: Record<string, unknown>[] = [
+  {
+    '@type': ['Organization', 'ProfessionalService'],
+    '@id': 'https://landingo.id/#organization',
+    name: 'Landingo',
+    url: 'https://landingo.id',
+    logo: 'https://landingo.id/assets/images/landingo_logo.webp',
+    image: 'https://landingo.id/assets/images/seo.webp',
+    description:
+      'Jasa pembuatan landing page terima beres dan profesional untuk bisnis jasa & UMKM di Indonesia. Mobile-first, loading cepat, SEO & GEO ready, dan terintegrasi WhatsApp.',
+    priceRange: 'IDR 1.500.000 - IDR 8.500.000',
+    currenciesAccepted: 'IDR',
+    paymentAccepted: 'Bank Transfer',
+    areaServed: {
+      '@type': 'Country',
+      name: 'Indonesia',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+62-851-8307-7289',
+      contactType: 'customer service',
+      availableLanguage: ['Indonesian', 'English'],
+    },
+    sameAs: [
+      'https://www.instagram.com/landingo.id',
+      'https://www.facebook.com/landingo.id',
+      'https://www.linkedin.com/company/landingo.id',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Paket Pembuatan Landing Page Landingo',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          name: 'LANDINGO LITE',
+          description:
+            '1 halaman landing page konversi tinggi untuk bisnis jasa, tombol WhatsApp langsung, domain & hosting 1 tahun, pengerjaan 2-3 hari kerja.',
+          price: '1500000',
+          priceCurrency: 'IDR',
+          url: 'https://landingo.id/#pricing',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Jasa Landing Page Paket LITE',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'LANDINGO PRO',
+          description:
+            'Hingga 5 halaman website terpisah, Form Interaktif Dual-Action rekap otomatis ke Google Sheet klien & WhatsApp, Gratis Full Ads Tracking Setup (Meta Pixel + GTM + GA4), 1 akun email bisnis resmi.',
+          price: '4500000',
+          priceCurrency: 'IDR',
+          url: 'https://landingo.id/#pricing',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Jasa Landing Page Paket PRO (Paling Laris)',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'LANDINGO FUNNEL',
+          description:
+            'Hingga 10 halaman website eksklusif, Akses Akun Landingo Central CMS Dashboard (kelola katalog & database leads mandiri), 3 akun email bisnis resmi, Gratis Full Ads Tracking.',
+          price: '8500000',
+          priceCurrency: 'IDR',
+          url: 'https://landingo.id/#pricing',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Jasa Landing Page Paket FUNNEL (Eksklusif CMS)',
+          },
+        },
+      ],
+    },
+  },
+];
+
+if (includeHomeFaqSchema) {
+  graphNodes.push({
+    '@type': 'FAQPage',
+    '@id': 'https://landingo.id/#faq',
+    mainEntity: homeFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  });
+}
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': graphNodes,
+};
 ---
 
 <!DOCTYPE html>
@@ -27,12 +133,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://landingo
     <!-- Title & Meta Description -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="landing page profesional, website UMKM, landing page murah, landing page SEO optimized, jasa pembuatan landing page, landing page Indonesia, website untuk bisnis, landing page cepat, landing page mobile-first, landing page WhatsApp ready" />
+    <meta name="keywords" content="landing page profesional, website UMKM, landing page murah, landing page SEO GEO optimized, jasa pembuatan landing page, landing page Indonesia, website untuk bisnis, landing page cepat, landing page mobile-first, landing page WhatsApp ready" />
     <meta name="author" content="Landingo" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="language" content="Indonesian" />
-    <meta name="revisit-after" content="7 days" />
+    <meta name="robots" content={robotsContent} />
+    <meta name="googlebot" content={noindex ? 'noindex, follow' : 'index, follow'} />
 
     <!-- Open Graph (Facebook, LinkedIn) -->
     <meta property="og:title" content={title} />
@@ -53,187 +157,75 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://landingo
     <meta name="twitter:image" content={image} />
     <meta name="twitter:image:alt" content={title} />
 
-    <!-- Icons -->
+    <!-- Icons & Canonical -->
     <link rel="icon" type="image/svg+xml" href="/assets/images/landingo_logo2.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/webp" href="/assets/images/landingo_logo2.webp" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalURL.toString()} />
-    
+
     <!-- Theme Color -->
-    <meta name="theme-color" content="#2563EB" />
-    <meta name="msapplication-TileColor" content="#2563EB" />
-    
-    <!-- Resource Hints for Performance -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://api.whatsapp.com" />
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" as="style" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
-    
-    <!-- Preload Logo Images -->
-    <link rel="preload" as="image" href="/assets/images/landingo_logo2.webp" fetchpriority="high" type="image/webp" />
-    <link rel="preload" as="image" href="/assets/images/landingo_logo.webp" fetchpriority="high" type="image/webp" />
+    <meta name="theme-color" content="#5356FF" />
 
     <!-- LLM Context & AI Agent Discovery -->
     <link rel="alternate" type="text/plain" href="https://landingo.id/llms.txt" title="AI / LLM Summary" />
 
-    <!-- Structured Data JSON-LD (Multi-Entity Graph: Organization, ProfessionalService, OfferCatalog & FAQPage) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": ["Organization", "ProfessionalService"],
-          "@id": "https://landingo.id/#organization",
-          "name": "Landingo",
-          "url": "https://landingo.id",
-          "logo": "https://landingo.id/assets/images/landingo_logo.webp",
-          "image": "https://landingo.id/assets/images/seo.webp",
-          "description": "Jasa pembuatan landing page terima beres dan profesional untuk bisnis jasa & UMKM di Indonesia. Mobile-first, loading cepat, SEO optimized, dan terintegrasi WhatsApp.",
-          "priceRange": "IDR 1.500.000 - IDR 8.500.000",
-          "currenciesAccepted": "IDR",
-          "paymentAccepted": "Bank Transfer",
-          "areaServed": {
-            "@type": "Country",
-            "name": "Indonesia"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+62-851-8307-7289",
-            "contactType": "customer service",
-            "availableLanguage": ["Indonesian", "English"]
-          },
-          "sameAs": [
-            "https://www.instagram.com/landingo.id",
-            "https://www.facebook.com/landingo.id",
-            "https://www.linkedin.com/company/landingo.id"
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Paket Pembuatan Landing Page Landingo",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "name": "LANDINGO LITE",
-                "description": "1 halaman landing page konversi tinggi untuk bisnis jasa, tombol WhatsApp langsung, domain & hosting 1 tahun, pengerjaan 2-3 hari kerja.",
-                "price": "1500000",
-                "priceCurrency": "IDR",
-                "url": "https://landingo.id/#pricing",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Jasa Landing Page Paket LITE"
-                }
-              },
-              {
-                "@type": "Offer",
-                "name": "LANDINGO PRO",
-                "description": "Hingga 5 halaman website terpisah, Form Interaktif Dual-Action rekap otomatis ke Google Sheet klien & WhatsApp, Gratis Full Ads Tracking Setup (Meta Pixel + GTM + GA4), 1 akun email bisnis resmi.",
-                "price": "4500000",
-                "priceCurrency": "IDR",
-                "url": "https://landingo.id/#pricing",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Jasa Landing Page Paket PRO (Paling Laris)"
-                }
-              },
-              {
-                "@type": "Offer",
-                "name": "LANDINGO FUNNEL",
-                "description": "Hingga 10 halaman website eksklusif, Akses Akun Landingo Central CMS Dashboard (kelola katalog & database leads mandiri), 3 akun email bisnis resmi, Gratis Full Ads Tracking.",
-                "price": "8500000",
-                "priceCurrency": "IDR",
-                "url": "https://landingo.id/#pricing",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Jasa Landing Page Paket FUNNEL (Eksklusif CMS)"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://landingo.id/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Berapa lama waktu pengerjaan landing page di Landingo?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Waktu pengerjaan berkisar antara 2–3 hari kerja untuk Paket LITE, 5–7 hari kerja untuk Paket PRO, dan 7–10 hari kerja untuk Paket FUNNEL setelah materi onboarding lengkap dan DP 50% diterima."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Apakah pembuatan landing page sudah termasuk materi penulisan promosi (copywriting)?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Ya, seluruh paket di Landingo berkonsep 100% terima beres. Tim Landingo meriset dan menyusun copywriting persuasif yang menonjolkan solusi usaha Anda agar pengunjung terdorong untuk menghubungi WhatsApp."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Apa keunggulan Paket PRO dibanding Paket LITE?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Paket PRO mencakup hingga 5 halaman terpisah, Form Interaktif Dual-Action yang otomatis merekap data prospek ke Google Spreadsheet klien dan membuka WhatsApp admin, 1 akun email bisnis resmi (info@domain.id), serta GRATIS Full Setup Tracking Iklan (Meta Pixel + GTM + GA4) agar iklan tidak boncos."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Bagaimana sistem pembayaran di Landingo?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Pembayaran dilakukan dalam 2 termin transparan: DP 50% di awal untuk mengunci slot antrean produksi, dan pelunasan 50% dibayarkan maksimal 3 hari kalender setelah website resmi online dan disetujui."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Bagaimana cara memantau performa pengunjung website?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Setiap klien mendapatkan 1 Link Live Dashboard Google Looker Studio yang terhubung ke Google Analytics 4 (GA4). Dashboard visual ini dapat dibuka dari smartphone kapan saja untuk memantau total pengunjung, jumlah klik tombol WhatsApp, dan kota asal visitor."
-              }
-            }
-          ]
-        }
-      ]
-    })} />
-
-    <!-- Meta Pixel Code -->
-    <script is:inline>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '4334842353459488');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4334842353459488&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-TYY3N6871E"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-TYY3N6871E');
-    </script>
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <slot />
+
+    <!-- Deferred Analytics & Ads Tracking (Loads on first interaction or idle after load to protect LCP/TBT) -->
+    <script is:inline>
+      (function () {
+        var loaded = false;
+        function loadTrackers() {
+          if (loaded) return;
+          loaded = true;
+
+          // Google Analytics 4 (gtag.js)
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', 'G-TYY3N6871E');
+          var gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-TYY3N6871E';
+          document.head.appendChild(gaScript);
+
+          // Meta Pixel (fbevents.js)
+          !(function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+              n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = true;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = true;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s);
+          })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+          window.fbq('init', '4334842353459488');
+          window.fbq('track', 'PageView');
+        }
+
+        ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (evt) {
+          window.addEventListener(evt, loadTrackers, { once: true, passive: true });
+        });
+
+        window.addEventListener('load', function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(function () { setTimeout(loadTrackers, 2000); }, { timeout: 4000 });
+          } else {
+            setTimeout(loadTrackers, 3500);
+          }
+        }, { once: true });
+      })();
+    </script>
   </body>
 </html>
-

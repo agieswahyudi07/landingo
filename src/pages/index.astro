@@ -6,23 +6,27 @@ import Process from '../components/section/Process.astro';
 import ValueProposition from '../components/section/ValueProposition.astro';
 import Footer from '../components/section/Footer.astro';
 import DesignShowcase from '../components/section/DesignShowcase.vue';
-import Pricing from '../components/section/Pricing.vue';
+import Pricing from '../components/section/Pricing.astro';
+import Faq from '../components/section/Faq.astro';
 import Cta from '../components/section/Cta.astro';
 import MobileCta from '../components/section/MobileCta.astro';
 ---
 
 <Layout
-  title="Landingo - Landing Page Profesional untuk UMKM | Mulai dari Rp 1,5 Juta | SEO Optimized"
-  description="Transformasi bisnis UMKM Anda dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, loading cepat, SEO optimized, dan siap untuk iklan digital. Mulai dari Rp 1,5 Juta dengan diskon promo. Siap online dalam 2-5 hari kerja."
+  title="Landingo - Landing Page Profesional untuk UMKM | Mulai dari Rp 1,5 Juta | SEO & GEO Ready"
+  description="Transformasi bisnis UMKM Anda dengan landing page yang mengkonversi visitor menjadi customer. Desain modern, loading cepat, SEO & GEO ready, dan siap untuk iklan digital. Mulai dari Rp 1,5 Juta dengan diskon promo. Siap online dalam 2-5 hari kerja."
+  includeHomeFaqSchema={true}
 >
   <Header />
-  <Hero />
-  <Process />
-  <DesignShowcase client:visible />
-  <ValueProposition />
-  <Pricing client:visible />
-  <Cta />
+  <main id="main-content">
+    <Hero />
+    <Process />
+    <DesignShowcase client:visible />
+    <ValueProposition />
+    <Pricing />
+    <Faq />
+    <Cta />
+  </main>
   <Footer />
   <MobileCta />
 </Layout>
-

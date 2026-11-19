@@ -11,7 +11,9 @@ Landingo is an Indonesian landing-page service for service-based UMKM businesses
 - Astro 5 static site with Vue 3 islands.
 - Vite + Tailwind CSS 4.
 - `@iconify/vue` remains in existing design previews, but the Landingo shell uses locally bundled SVG icons.
-- `src/app-config.js` registers Naive UI and the global Iconify component for legacy preview components.
+- `src/app-config.js` registers only the global Iconify component for legacy preview components (do NOT register global `naive-ui` or bloated UI libraries).
+- Fonts (`Manrope Variable` & `Space Grotesk Variable`) are self-hosted via `@fontsource-variable/*` in `Layout.astro`; never add render-blocking external Google Fonts links or unused image preloads.
+- Follow Landingo's SEO & GEO Standard (`business/hq/operations/web_seo_geo_standard.md`): 1 `<main>` landmark wrapping all page content, visible FAQ (`src/components/section/Faq.astro`) synced 1:1 with `FAQPage` JSON-LD (`src/data/faq.js`), static Astro components (`Pricing.astro`, `Faq.astro`) for zero-JS sections, and `noindex={true}` on `/preview/*` routes so dummy previews stay out of `public/sitemap.xml`.
 
 ```powershell
 npm run dev

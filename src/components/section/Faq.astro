@@ -1,0 +1,29 @@
+---
+import LocalIcon from '../ui/LocalIcon.astro';
+import { homeFaqs } from '../../data/faq';
+---
+
+<section id="faq" class="section faq-section" aria-labelledby="faq-heading">
+  <div class="editorial-container faq-grid">
+    <div class="section-heading faq-heading">
+      <p class="eyebrow">Pertanyaan umum</p>
+      <h2 id="faq-heading">Jawaban cepat sebelum mulai.</h2>
+      <p>
+        Detail penting seputar waktu pengerjaan, copywriting, kesiapan SEO &amp;
+        GEO, hingga sistem pembayaran Landingo.
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {homeFaqs.map((item, idx) => (
+        <details class="faq-item" open={idx === 0}>
+          <summary>
+            <span>{item.question}</span>
+            <LocalIcon name="chevron-down" />
+          </summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
