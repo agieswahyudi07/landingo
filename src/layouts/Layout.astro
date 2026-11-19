@@ -175,17 +175,22 @@ const structuredData = {
   <body>
     <slot />
 
-    <!-- Deferred Analytics & Ads Tracking (Loads on first interaction or idle after load to protect LCP/TBT) -->
+    <!-- Deferred Analytics, Ads Tracking & Global click_whatsapp Event Delegation -->
     <script is:inline>
       (function () {
         var loaded = false;
+        window.dataLayer = window.dataLayer || [];
+        if (typeof window.gtag !== 'function') {
+          window.gtag = function () {
+            window.dataLayer.push(arguments);
+          };
+        }
+
         function loadTrackers() {
           if (loaded) return;
           loaded = true;
 
           // Google Analytics 4 (gtag.js)
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function () { window.dataLayer.push(arguments); };
           window.gtag('js', new Date());
           window.gtag('config', 'G-TYY3N6871E');
           var gaScript = document.createElement('script');
@@ -213,6 +218,34 @@ const structuredData = {
           window.fbq('init', '4334842353459488');
           window.fbq('track', 'PageView');
         }
+
+        window.__landingoLoadTrackers = loadTrackers;
+
+        document.addEventListener('click', function (event) {
+          var target = event.target;
+          if (!target || typeof target.closest !== 'function') return;
+          var anchor = target.closest('a[href*="api.whatsapp.com"], a[href*="wa.me"]');
+          if (!anchor) return;
+
+          loadTrackers();
+
+          var section = anchor.closest('section, header, footer, nav');
+          var label =
+            anchor.getAttribute('data-wa-location') ||
+            (section && section.id) ||
+            (anchor.classList.contains('mobile-cta') ? 'mobile-cta' : 'whatsapp_cta');
+          var href = anchor.getAttribute('href') || '';
+
+          window.gtag('event', 'click_whatsapp', {
+            event_category: 'engagement',
+            event_label: label,
+            link_url: href,
+            page_path: window.location.pathname,
+          });
+          if (typeof window.fbq === 'function') {
+            window.fbq('track', 'Contact', { content_name: label });
+          }
+        });
 
         ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (evt) {
           window.addEventListener(evt, loadTrackers, { once: true, passive: true });

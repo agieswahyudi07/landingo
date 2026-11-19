@@ -17,7 +17,7 @@ const consultationHref = whatsappHref('Halo! Saya ingin konsultasi tentang landi
     <button id="mobile-menu-button" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu"><LocalIcon name="menu" /></button>
     <div id="mobile-menu" class="header-menu">
       <nav aria-label="Navigasi utama">{navLinks.map((link) => <a href={link.href}>{link.text}</a>)}</nav>
-      <a class="header-cta" href={consultationHref} target="_blank" rel="noopener"><LocalIcon name="message" /> Konsultasi</a>
+      <a class="header-cta" href={consultationHref} data-wa-location="header" target="_blank" rel="noopener"><LocalIcon name="message" /> Konsultasi</a>
     </div>
   </div>
 </header>

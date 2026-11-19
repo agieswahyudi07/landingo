@@ -34,11 +34,11 @@ const consultationHref = computed(() => whatsappHref(`Halo! Saya tertarik dengan
 
 <template>
   <main v-if="design" class="preview-page">
-    <header class="preview-bar"><a href="/gallery" class="preview-back"><LocalIcon name="arrow-right" /> <span>Kembali ke gallery</span></a><div class="preview-title"><span>{{ categoryName }}</span><strong>{{ design.name }}</strong></div><a class="preview-consult" :href="consultationHref" target="_blank" rel="noopener">Konsultasi design ini <LocalIcon name="arrow-up-right" /></a></header>
+    <header class="preview-bar"><a href="/gallery" class="preview-back"><LocalIcon name="arrow-right" /> <span>Kembali ke gallery</span></a><div class="preview-title"><span>{{ categoryName }}</span><strong>{{ design.name }}</strong></div><a class="preview-consult" :href="consultationHref" :data-wa-location="`preview-bar-${design.slug || design.id}`" target="_blank" rel="noopener">Konsultasi design ini <LocalIcon name="arrow-up-right" /></a></header>
     <section class="preview-canvas" aria-label="Preview design"><Suspense><template #default><component v-if="previewComponent" :is="previewComponent" /></template><template #fallback><div class="preview-loading">Memuat preview…</div></template></Suspense></section>
     <section class="preview-details"><div><p class="eyebrow">{{ categoryName }}</p><h1>{{ design.name }}</h1><p>{{ design.description }}</p><p class="preview-package-note">Siap dikonfigurasi dalam format <strong>1 Halaman (Paket LITE)</strong> maupun <strong>5–10 Halaman Lengkap + Google Sheet &amp; Central CMS Dashboard (Paket PRO &amp; FUNNEL)</strong>.</p></div><ul><li v-for="feature in design.features" :key="feature"><LocalIcon name="check" />{{ feature }}</li></ul></section>
-    <section class="preview-final-cta"><div><p class="eyebrow">Siap memakai arah ini?</p><h2>Jadikan referensi ini milik bisnis Anda.</h2><a class="button button-primary" :href="consultationHref" target="_blank" rel="noopener">Konsultasi design ini <LocalIcon name="arrow-up-right" /></a></div></section>
-    <a class="preview-mobile-cta" :href="consultationHref" target="_blank" rel="noopener"><LocalIcon name="message" /> Konsultasi design ini</a>
+    <section class="preview-final-cta"><div><p class="eyebrow">Siap memakai arah ini?</p><h2>Jadikan referensi ini milik bisnis Anda.</h2><a class="button button-primary" :href="consultationHref" :data-wa-location="`preview-final-${design.slug || design.id}`" target="_blank" rel="noopener">Konsultasi design ini <LocalIcon name="arrow-up-right" /></a></div></section>
+    <a class="preview-mobile-cta" :href="consultationHref" :data-wa-location="`preview-mobile-${design.slug || design.id}`" target="_blank" rel="noopener"><LocalIcon name="message" /> Konsultasi design ini</a>
   </main>
   <main v-else class="preview-not-found"><h1>Design tidak ditemukan</h1><a class="button button-secondary" href="/gallery">Kembali ke gallery</a></main>
 </template>

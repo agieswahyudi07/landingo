@@ -92,13 +92,13 @@ onUnmounted(() => window.removeEventListener('popstate', onPopState));
       <div v-if="filteredDesigns.length" class="gallery-grid">
         <article v-for="design in filteredDesigns" :key="design.id" class="gallery-card">
           <a class="gallery-preview" :href="design.previewPath" :aria-label="`Lihat preview ${design.name}`"><DesignThumbnail :component-name="design.previewComponent" :width="600" :height="360" lazy /></a>
-          <div class="gallery-card-body"><div class="gallery-card-meta"><span>{{ metaLabel(design) }}</span><span>{{ design.features.length }} fitur</span></div><h2>{{ design.name }}</h2><p>{{ design.description }}</p><div class="gallery-card-actions"><a class="button button-primary" :href="design.previewPath">Lihat preview <LocalIcon name="arrow-up-right" /></a><a class="gallery-consult" :href="consultationHref(design)" target="_blank" rel="noopener">Konsultasi <LocalIcon name="message" /></a></div></div>
+          <div class="gallery-card-body"><div class="gallery-card-meta"><span>{{ metaLabel(design) }}</span><span>{{ design.features.length }} fitur</span></div><h2>{{ design.name }}</h2><p>{{ design.description }}</p><div class="gallery-card-actions"><a class="button button-primary" :href="design.previewPath">Lihat preview <LocalIcon name="arrow-up-right" /></a><a class="gallery-consult" :href="consultationHref(design)" :data-wa-location="`gallery-card-${design.slug || design.id}`" target="_blank" rel="noopener">Konsultasi <LocalIcon name="message" /></a></div></div>
         </article>
       </div>
       <div v-else class="gallery-empty"><h2>Belum ada design di kategori ini.</h2><button type="button" class="button button-secondary" @click="setCategory('all')">Lihat semua design</button></div>
     </div></section>
 
-    <section class="gallery-cta"><div class="editorial-container"><p class="eyebrow">Punya arah sendiri?</p><h2>Mulai dari kebutuhan bisnis Anda.</h2><p>Referensi hanyalah awal. Kami bisa menyesuaikan struktur dan visualnya agar terasa milik Anda.</p><a class="button button-light" :href="whatsappHref('Halo! Saya ingin konsultasi tentang design landing page.')" target="_blank" rel="noopener">Konsultasi via WhatsApp <LocalIcon name="arrow-up-right" /></a></div></section>
+    <section class="gallery-cta"><div class="editorial-container"><p class="eyebrow">Punya arah sendiri?</p><h2>Mulai dari kebutuhan bisnis Anda.</h2><p>Referensi hanyalah awal. Kami bisa menyesuaikan struktur dan visualnya agar terasa milik Anda.</p><a class="button button-light" :href="whatsappHref('Halo! Saya ingin konsultasi tentang design landing page.')" data-wa-location="gallery-closing-cta" target="_blank" rel="noopener">Konsultasi via WhatsApp <LocalIcon name="arrow-up-right" /></a></div></section>
   </main>
 </template>
 

@@ -132,6 +132,7 @@ const packages = [
           <a
             class={`button ${item.popular ? 'button-primary' : 'button-secondary'}`}
             href={whatsappHref(item.message)}
+            data-wa-location={item.name.toLowerCase().replace(/\s+/g, '-')}
             target="_blank"
             rel="noopener"
           >
