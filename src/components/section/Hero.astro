@@ -4,23 +4,25 @@ import { whatsappHref } from '../../lib/whatsapp';
 import seoImage from '../../assets/seo.webp';
 import LocalIcon from '../ui/LocalIcon.astro';
 
-const consultationHref = whatsappHref('Halo! Saya ingin konsultasi tentang landing page untuk bisnis jasa saya.');
+const consultationHref = whatsappHref(
+  'Halo Landingo! Saya mau konsultasi landing page.\nNama Bisnis:\nBidang Usaha:\nKebutuhan (Baru mulai / Untuk iklan):'
+);
 ---
 
 <section id="hero" class="hero-section">
   <div class="editorial-container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Landing page untuk bisnis jasa</p>
-      <h1>Landing page yang membuat bisnis jasa terlihat siap dipilih.</h1>
-      <p class="hero-intro">Landingo membantu bisnis Anda tampil lebih meyakinkan, lebih mudah ditemukan, dan siap menerima calon pelanggan lewat WhatsApp.</p>
+      <p class="eyebrow">Landing page terima beres • Mulai Rp 1,5 Jt</p>
+      <h1>Landing page siap iklan yang bikin bisnis jasa mudah dipilih.</h1>
+      <p class="hero-intro">Terima beres mulai Rp 1,5 juta — termasuk copywriting persuasif, domain, SSL, dan tracking iklan. DP 50% di awal, pelunasan baru dibayar setelah website live.</p>
       <div class="hero-actions">
         <a class="button button-primary" href={consultationHref} data-wa-location="hero" target="_blank" rel="noopener">Konsultasi via WhatsApp <LocalIcon name="arrow-up-right" /></a>
         <a class="button button-secondary" href="#design-showcase">Lihat contoh desain</a>
       </div>
       <dl class="hero-proof" aria-label="Keunggulan layanan">
-        <div><dt>2–5 hari</dt><dd>siap online</dd></div>
-        <div><dt>Mobile-first</dt><dd>untuk calon pelanggan Anda</dd></div>
-        <div><dt>WhatsApp</dt><dd>siap menerima lead</dd></div>
+        <div><dt>2–5 hari</dt><dd>siap online &amp; terima lead</dd></div>
+        <div><dt>Mulai Rp 1,5 Jt</dt><dd>pelunasan setelah live</dd></div>
+        <div><dt>Siap Iklan</dt><dd>Pixel, GA4 &amp; Looker Studio</dd></div>
       </dl>
     </div>
     <div class="hero-work" aria-label="Contoh desain landing page Landingo">

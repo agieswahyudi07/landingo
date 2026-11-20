@@ -67,7 +67,52 @@ const onPopState = () => {
   activeNiche.value = niche && availableNiches.value.includes(niche) ? niche : 'all';
 };
 
-const consultationHref = (design) => whatsappHref(`Halo! Saya tertarik dengan design "${design.name}". Bisa minta informasi lebih detail dan konsultasi untuk customisasi design ini?`);
+const categoryCopy = {
+  all: {
+    eyebrow: 'Referensi design landing page',
+    title: 'Pilih arah visual yang paling dekat dengan bisnis Anda.',
+    subtitle: 'Jelajahi referensi yang bisa kami sesuaikan dengan layanan, karakter, dan cara kerja bisnis Anda.',
+  },
+  healthcare: {
+    eyebrow: 'Referensi Landing Page • Kesehatan & Klinik',
+    title: 'Landing page khusus klinik kecantikan, gigi, dan layanan medis.',
+    subtitle: 'Tampil kredibel di 3 detik pertama, lengkap dengan profil dokter, menu perawatan, dan booking ke WhatsApp / Google Sheet.',
+  },
+  interior: {
+    eyebrow: 'Referensi Landing Page • Interior, Arsitektur & Properti',
+    title: 'Tampilkan portofolio proyek bernilai tinggi agar klien yakin hubungi Anda.',
+    subtitle: 'Dirancang untuk studio interior, arsitek, dan kontraktor yang mengincar proyek berkualitas tanpa perang harga.',
+  },
+  service: {
+    eyebrow: 'Referensi Landing Page • Bisnis Jasa & Konsultan B2B',
+    title: 'Ubah pengunjung iklan dan Google Maps menjadi lead WhatsApp yang serius.',
+    subtitle: 'Menjelaskan layanan, kisaran biaya, dan keunggulan bisnis jasa Anda sebelum calon klien menghubungi admin.',
+  },
+  food: {
+    eyebrow: 'Referensi Landing Page • Restoran, Kafe & Kuliner',
+    title: 'Menu digital dan reservasi cepat yang siap menaikkan kunjungan.',
+    subtitle: 'Tampilkan menu unggulan, lokasi Google Maps, dan tombol pemesanan atau reservasi meja dalam satu halaman cepat.',
+  },
+  ecommerce: {
+    eyebrow: 'Referensi Landing Page • Ritel & Toko Online',
+    title: 'Halaman katalog produk yang cepat dan mendorong checkout langsung.',
+    subtitle: 'Kurangi ketergantungan marketplace dengan halaman brand milik Anda sendiri.',
+  },
+  education: {
+    eyebrow: 'Referensi Landing Page • Kursus & Pelatihan',
+    title: 'Jelaskan kurikulum dan manfaat kelas agar pendaftar langsung yakin.',
+    subtitle: 'Struktur penawaran jelas dari pengenalan mentor, silabus, hingga tombol daftar WhatsApp.',
+  },
+  product: {
+    eyebrow: 'Referensi Landing Page • Produk & SaaS',
+    title: 'Kenalkan fitur inti produk Anda dengan alur demo yang fokus konversi.',
+    subtitle: 'Cocok untuk peluncuran produk baru, aplikasi bisnis, dan penawaran pre-order.',
+  },
+};
+
+const activeCopy = computed(() => categoryCopy[activeCategory.value] || categoryCopy.all);
+
+const consultationHref = (design) => whatsappHref(`Halo Landingo! Saya tertarik dengan design "${design.name}".\nNama Bisnis:\nBidang Usaha:`);
 onMounted(() => { onPopState(); window.addEventListener('popstate', onPopState); });
 onUnmounted(() => window.removeEventListener('popstate', onPopState));
 </script>
@@ -75,9 +120,9 @@ onUnmounted(() => window.removeEventListener('popstate', onPopState));
 <template>
   <main class="gallery-page">
     <section class="gallery-intro"><div class="editorial-container">
-      <p class="eyebrow">Referensi design landing page</p>
-      <h1>Pilih arah visual yang paling dekat dengan bisnis Anda.</h1>
-      <p>Jelajahi referensi yang bisa kami sesuaikan dengan layanan, karakter, dan cara kerja bisnis Anda.</p>
+      <p class="eyebrow">{{ activeCopy.eyebrow }}</p>
+      <h1>{{ activeCopy.title }}</h1>
+      <p>{{ activeCopy.subtitle }}</p>
       <nav class="gallery-filters" aria-label="Filter kategori design">
         <button v-for="category in categories" :key="category.id" type="button" :class="{ active: activeCategory === category.id }" :aria-pressed="activeCategory === category.id" @click="setCategory(category.id)">{{ category.name }}</button>
       </nav>

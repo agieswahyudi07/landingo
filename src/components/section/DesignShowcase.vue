@@ -4,8 +4,16 @@ import LocalIcon from '@/components/ui/LocalIcon.vue';
 import { designs as allDesigns } from '@/data/designs';
 import DesignThumbnail from '@/components/preview/DesignThumbnail.vue';
 
-const featuredSlugs = ['service-business', 'consulting', 'healthcare'];
+const featuredSlugs = ['aesthetic-clinic', 'interior-design', 'tax-legal'];
 const featuredDesigns = computed(() => featuredSlugs.map((slug) => allDesigns.find((design) => design.slug === slug)).filter(Boolean));
+const categoryLabel = (category) => {
+  const labels = {
+    healthcare: 'Klinik & Kesehatan',
+    interior: 'Interior & Properti',
+    service: 'Konsultan & Jasa',
+  };
+  return labels[category] || 'Bisnis jasa';
+};
 </script>
 
 <template>
@@ -18,7 +26,7 @@ const featuredDesigns = computed(() => featuredSlugs.map((slug) => allDesigns.fi
       </div>
       <div class="portfolio-list">
         <a v-for="(design, index) in featuredDesigns" :key="design.id" :href="design.previewPath" class="portfolio-item">
-          <div class="portfolio-meta"><span>0{{ index + 1 }}</span><span>{{ design.category === 'healthcare' ? 'Kesehatan' : 'Bisnis jasa' }}</span></div>
+          <div class="portfolio-meta"><span>0{{ index + 1 }}</span><span>{{ categoryLabel(design.category) }}</span></div>
           <div class="portfolio-preview"><DesignThumbnail :component-name="design.previewComponent" :width="900" :height="520" /></div>
           <div class="portfolio-copy"><div><h3>{{ design.name }}</h3><p>{{ design.description }}</p></div><LocalIcon name="arrow-up-right" /></div>
         </a>

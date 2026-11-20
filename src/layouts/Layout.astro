@@ -169,21 +169,55 @@ const structuredData = {
     <!-- LLM Context & AI Agent Discovery -->
     <link rel="alternate" type="text/plain" href="https://landingo.id/llms.txt" title="AI / LLM Summary" />
 
+    <!-- Analytics & Pixel Preconnect -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <slot />
 
-    <!-- Deferred Analytics, Ads Tracking & Global click_whatsapp Event Delegation -->
+    <!-- Non-Blocking Analytics, UTM Attribution, Ads Tracking & Reliable click_whatsapp Delegation -->
     <script is:inline>
       (function () {
         var loaded = false;
+        var PIXEL_ID = '4334842353459488';
         window.dataLayer = window.dataLayer || [];
         if (typeof window.gtag !== 'function') {
           window.gtag = function () {
             window.dataLayer.push(arguments);
           };
+        }
+
+        // Persist UTM parameters across internal page transitions (/ -> /gallery -> /preview/*)
+        var utmSource = '';
+        var utmCampaign = '';
+        try {
+          var params = new URLSearchParams(window.location.search);
+          ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
+            var val = params.get(key);
+            if (val) sessionStorage.setItem('landingo_' + key, val);
+          });
+          utmSource = sessionStorage.getItem('landingo_utm_source') || '';
+          utmCampaign = sessionStorage.getItem('landingo_utm_campaign') || '';
+        } catch (_) {}
+
+        function sendPixelBeacon(eventName, label) {
+          var url =
+            'https://www.facebook.com/tr?id=' +
+            PIXEL_ID +
+            '&ev=' +
+            encodeURIComponent(eventName) +
+            '&noscript=1' +
+            (label ? '&cd[content_name]=' + encodeURIComponent(label) : '');
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(url);
+          } else {
+            var img = new Image();
+            img.src = url;
+          }
         }
 
         function loadTrackers() {
@@ -215,7 +249,7 @@ const structuredData = {
             s = b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t, s);
           })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-          window.fbq('init', '4334842353459488');
+          window.fbq('init', PIXEL_ID);
           window.fbq('track', 'PageView');
         }
 
@@ -241,9 +275,16 @@ const structuredData = {
             event_label: label,
             link_url: href,
             page_path: window.location.pathname,
+            utm_source: utmSource || undefined,
+            utm_campaign: utmCampaign || undefined,
+            transport_type: 'beacon',
           });
-          if (typeof window.fbq === 'function') {
+
+          if (typeof window.fbq === 'function' && window.fbq.callMethod) {
             window.fbq('track', 'Contact', { content_name: label });
+          } else {
+            // Ensure instant mobile WA clicks are not lost before fbevents.js finishes downloading
+            sendPixelBeacon('Contact', label);
           }
         });
 
@@ -251,14 +292,21 @@ const structuredData = {
           window.addEventListener(evt, loadTrackers, { once: true, passive: true });
         });
 
-        window.addEventListener('load', function () {
-          if ('requestIdleCallback' in window) {
-            window.requestIdleCallback(function () { setTimeout(loadTrackers, 2000); }, { timeout: 4000 });
-          } else {
-            setTimeout(loadTrackers, 3500);
-          }
-        }, { once: true });
+        if (document.readyState === 'complete') {
+          setTimeout(loadTrackers, 300);
+        } else {
+          window.addEventListener('load', function () {
+            if ('requestIdleCallback' in window) {
+              window.requestIdleCallback(loadTrackers, { timeout: 800 });
+            } else {
+              setTimeout(loadTrackers, 300);
+            }
+          }, { once: true });
+        }
       })();
     </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=4334842353459488&ev=PageView&noscript=1" />
+    </noscript>
   </body>
 </html>

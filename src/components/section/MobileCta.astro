@@ -1,6 +1,22 @@
 ---
 import { whatsappHref } from '../../lib/whatsapp';
 import LocalIcon from '../ui/LocalIcon.astro';
-const href = whatsappHref('Halo! Saya ingin konsultasi tentang landing page untuk bisnis saya.');
+const href = whatsappHref(
+  'Halo Landingo! Saya mau konsultasi landing page.\nNama Bisnis:\nBidang Usaha:\nKebutuhan (Baru mulai / Untuk iklan):'
+);
 ---
-<a class="mobile-cta" href={href} data-wa-location="mobile-sticky-cta" target="_blank" rel="noopener"><LocalIcon name="message" /> Konsultasi via WhatsApp</a>
+<a id="mobile-sticky-cta" class="mobile-cta" href={href} data-wa-location="mobile-sticky-cta" target="_blank" rel="noopener"><LocalIcon name="message" /> Konsultasi via WhatsApp</a>
+<script is:inline>
+  (function () {
+    var cta = document.getElementById('mobile-sticky-cta');
+    var hero = document.getElementById('hero');
+    if (!cta || !hero || !('IntersectionObserver' in window)) return;
+    cta.classList.add('is-hidden');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        cta.classList.toggle('is-hidden', entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    observer.observe(hero);
+  })();
+</script>
